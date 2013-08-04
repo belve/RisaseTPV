@@ -1,0 +1,267 @@
+body {
+    
+    font-family: Arial;
+    font-size: 12px;
+    margin:0px;
+    
+}
+
+                  
+
+
+
+
+.blnco_limpio{
+	border: 1px solid #888888;
+	width:170px; height:403px;
+	background-color: white;
+	
+	
+}
+
+.blnco_limpio ul{
+list-style-type: none;
+padding: 0px;
+margin: 0px;
+	
+}
+
+.blnco_limpio li{
+height:15px; width:98%; padding-left:3px; cursor:pointer;
+}
+
+.blnco_limpio li:hover{background-color:#8DC29E;}
+.blnco_limpio li:pointed{background-color:#8DC29E;}
+
+.tselected {background-color:#B8B8B8;}
+
+.corto {width:50px;}
+.medio {width:100px;}
+.largo {width:200px;}
+
+.newcod {  font-size: 10px;
+    height: 14px;
+    margin-top: -2px;
+    width: 38px;}
+
+.iconos {
+    background-image: url("/iconos/iconos.png");
+    background-repeat: no-repeat;
+}
+
+.botonera {margin-bottom: 10px; position:relative;}
+
+.ini_on {cursor:pointer; width:19px; height:18px; background-position:0px -17px; float:left; }
+.ini_of {cursor:pointer; width:19px; height:18px; background-position:0px -35px; float:left; }
+
+.fin_on {cursor:pointer; width:19px; height:18px; background-position:-19px -17px; float:left; margin-left: 2px;}
+.fin_of {cursor:pointer; width:19px; height:18px; background-position:-19px -35px; float:left; margin-left: 2px;}
+
+.prev_on {cursor:pointer; width:19px; height:18px; background-position:-38px -17px; float:left; margin-left: 2px;}
+.prev_of {cursor:pointer; width:19px; height:18px; background-position:-38px -35px; float:left; margin-left: 2px;}
+
+.next_on {cursor:pointer; width:19px; height:18px; background-position:-57px -17px; float:left; margin-left: 2px;}
+.next_of {cursor:pointer; width:19px; height:18px; background-position:-57px -35px; float:left; margin-left: 2px;}
+
+.new_on {cursor:pointer; width:19px; height:18px; background-position:-97px -17px; float:right; margin-right:5px;}
+.save_on {cursor:pointer; width:19px; height:18px; background-position:-77px -17px; float:right;}
+
+.trash {cursor:pointer; width:16px; height:16px; background-position:-17px -0px; float:right;}
+
+.cabemp {height: 25px; width: 350px; background-color: #B8B8B8;  border-right: 1px solid #888888;  border-top: 1px solid #888888;}
+.pieemp {  background-color: #B8B8B8; border: 1px solid #888888; height: 18px; margin-top: -3px; padding: 7px; width: 544px;}
+
+.cabtab_emp 		{border-left:1px solid #888888; height:20px; text-align: center; float:left; padding-top:5px; font-size:12px;}
+.nom_tab_emp 	{width: 100px; } .camp_emp_nombre	{border:0px; width:149px; font-size:10px; }
+.ap1_tab_emp 	{width: 130px; } .camp_emp_ap1		{border:0px; width:149px; font-size:10px; }
+.ap2_tab_emp 	{width: 40px; } .camp_emp_ap2		{border:0px; width:139px; font-size:10px; }
+.trbj_tab_emp 	{width: 60px; }  .camp_emp_trb		{border:0px; width:30px; font-size:10px; }
+
+.cabart {height: 25px; width: 517px; background-color: #B8B8B8;  border-right: 1px solid #888888;  border-top: 1px solid #888888;}
+
+.cabtab_art 		{border-left:1px solid #888888; height:20px; text-align: center; float:left; padding-top:5px; font-size:10px; cursor: pointer;}
+.tab_art_codbar 	{width: 86px; } .camp_art_codbar	{border:0px; width:79px; font-size:10px; }
+.tab_art_rpro 	{width: 123px; } .camp_art_rpro		{border:0px; width:99px; font-size:10px; }
+.tab_art_stock 	{width: 50px; }  .camp_art_stock	{border:0px; width:40px; font-size:10px; }
+.tab_art_pvp 	{width: 50px; }  .camp_art_pvp		{border:0px; width:40px; font-size:10px; }
+.tab_art_temp 	{width: 50px; }  .camp_art_temp		{border:0px; width:40px; font-size:10px; }
+.tab_art_stini 	{width: 50px; }  .camp_art_stini		{border:0px; width:40px; font-size:10px; }
+.tab_art_cong 	{width: 50px; }  .camp_art_cong		{border:0px; width:40px; font-size:10px; }
+
+.tab_art_pco 	{width: 50px; }  .camp_art_pco		{border:0px; width:40px; font-size:10px; }
+
+
+.pieart {  background-color: #B8B8B8; border: 1px solid #888888; height: 18px; margin-top: -3px; padding: 7px; width: 544px;}
+
+
+
+.cabmas {height: 25px; width: 418px; background-color: #B8B8B8;  border-right: 1px solid #888888;  border-top: 1px solid #888888;}
+.cabmas2 {height: 25px; width: 100px;  }
+
+
+
+.cabtab_mas 		{border-left:1px solid #888888; height:20px; text-align: center; float:left; padding-top:5px; font-size:10px}
+
+
+
+
+.tab_mas_rpro 	{width: 124px; } 		.camp_mas_rpro 		{border:0px; width:115px; font-size:10px; }
+.tab_mas_g 	{width: 25px; } 			.camp_mas_g			{border:0px; width:15px; font-size:10px; }
+.tab_mas_s 	{width: 24px; }  			.camp_mas_s			{border:0px; width:15px; font-size:10px; }
+.tab_mas_color 	{width: 47px; }  		.camp_mas_color		{border:0px; width:40px; font-size:10px; }
+.tab_mas_cantidad 	{width: 47px; }  	.camp_mas_cantidad	{border:0px; width:40px; font-size:10px; }
+.tab_mas_alarma 	{width: 48px; }  	.camp_mas_alarma	{border:0px; width:40px; font-size:10px; }
+.tab_mas_precioC 	{width: 47px; }  	.camp_mas_precioC	{border:0px; width:40px; font-size:10px; }
+.tab_mas_pvp 	{width: 45px; }  		.camp_mas_pvp		{border:0px; width:40px; font-size:10px; }
+
+
+.pieart {  background-color: #B8B8B8; border: 1px solid #888888; height: 18px; margin-top: -3px; padding: 7px; width: 544px;}
+
+
+
+
+
+
+.cabartC {height: 25px; width: 199px; background-color: #B8B8B8;  border-right: 1px solid #888888;  border-top: 1px solid #888888;}
+
+.cabtab_artC 		{border-left:1px solid #888888; height:20px; text-align: center; float:left; padding-top:5px; font-size:10px}
+.tab_artC_codbar 	{width: 148px; } 	.camp_artC_codbar	{border:0px; width:130px; font-size:10px; }
+.tab_artC_cong 	{width: 45px; }  		.camp_artC_cong		{border:0px; width:40px; font-size:10px; }
+
+
+
+.cabREP {height: 20px; width: 991px; background-color: #999999;  
+		border-right: 1px solid #888888;  
+		border-top: 1px solid #888888; margin-top:5px;  
+		border-left: 1px solid #888888; 
+		}
+
+.cabtab_REP 		{border-right:1px solid #888888; height:15px; text-align: left; float:left; padding-top:5px; font-size:9px; padding-left:2px;background-color: #cccccc;}
+.tab_REP_art 		{width: 148px; } 								.camp_REP_art		{border:0px; width:148px; font-size:9px; height: 15px; background-color: transparent; }
+.tab_REP_rep 		{width: 28px; }  								.camp_REP_rep		{border:0px; width:28px; font-size:9px;  height: 15px; background-color: transparent;}
+.tab_REP_alm 		{width: 28px;border-right:2px solid orange }  	.camp_REP_alm		{border:0px; width:28px; font-size:9px;  height: 15px; background-color: transparent;}
+
+.tab_REP_tie 		{width: 24px;text-align: center; background-color: #8DC29E;font-size: 8px; }  	.camp_REP_tie		{border:0px; width:24px; font-size:9px;  height: 15px; text-align: center;background-color: transparent;}
+
+.estRep_F {background-color: #00CC66;}
+/*.estRep_A {background-color: yellow;}*/
+
+.selector {width:9px;height: 9px; border:1px solid #666666; margin-left:5px; position:relative; top:8px; cursor:pointer; background-color:white;}
+
+.boton {padding:4px 10px 4px 10px; border: 1px solid #888888; text-align: center; margin-top:10px; color:#333333; cursor:pointer; background-color: #aaaaaa;}
+
+.codbarras ul{
+list-style-type: none;
+padding: 0px;
+margin: 0px;
+	
+}
+
+.codbarras li{
+height:15px; width:96%; padding-left:3px; cursor:pointer;
+}
+
+
+
+
+.imprimir 		{ height: 22px; left: 770px; position: absolute; top: -10px; width: 200px;}
+.impREP 		{ }
+.impREPtiend 	{ }
+
+.eReparto { height: 22px;
+    left: 358px;
+    position: absolute;
+    top: 10px;
+    width: 200px;}
+
+.eREP {  background-color: #DCDCDC;
+    border: 1px solid #888888;
+    height: 15px;
+    left: 471px;
+    padding: 5px;
+    position: absolute;
+    top: 4px;
+    width: 132px;}
+    
+.repnue {margin-top:30px;}    
+
+
+
+
+.cabLREP {height: 20px; width: 353px; background-color: #999999;  border-top: 1px solid #888888; margin-top:5px;border-left: 1px solid #888888; border-bottom: 1px solid #888888; }
+
+.cabtab_LREP 		{border-right:1px solid #888888; height:15px; text-align: left; float:left; padding-top:5px; font-size:9px; padding-left:2px;background-color: #cccccc;}
+.tab_LREP_art 		{width: 168px; } 								
+.tab_LREP_rep 		{width: 68px; }  								
+.tab_LREP_alm 		{width: 108px; }  	
+
+
+
+.cabtab_LREP0 		{background-color:white; border-right:1px solid #888888;border-bottom:1px solid #888888; height:15px; text-align: left; float:left; padding-top:5px; font-size:9px; padding-left:2px;}
+
+.tab_LREP_1 		{width: 168px;  border-left: 1px solid #888888; } 	
+.tab_LREP_2 		{width: 68px; }  	
+.tab_LREP_3 		{width: 108px; }  	
+
+
+
+
+
+.cabPEPEN {height: 20px; width: 202px; background-color: #999999;  border-top: 1px solid #888888; margin-top:5px;  border-left: 1px solid #888888; border-bottom: 1px solid #888888; }
+
+.cabtab_PEPEN 		{border-right:1px solid #888888; height:15px; text-align: left; float:left; padding-top:5px; font-size:9px; padding-left:2px;background-color: #cccccc;}
+.tab_PEPEN_art 		{width: 168px; } 								
+.tab_PEPEN_rep 		{width: 28px; }  								
+.tab_PEPEN_agr 		{width: 199px; } 
+
+
+.pedPen 	{background-color:white; border-bottom:1px solid #888888; border-right:1px solid #888888;font-size:10px; height: 15px; width:202px;}
+.pedPen_ART {width: 166px; float:left; border-left:1px solid #888888;padding:2px;height: 11px}
+.pedPen_REP {width: 24px;  float:left; border-left:1px solid #888888;padding:2px;height: 11px}
+
+
+.agrup {border-left:1px solid #888888;border-right:1px solid #888888;border-bottom:1px solid #888888; height: 16px;padding: 2px;color:#444444; font-size:10px;}
+.agrupados {font-size:10px; border:0px; background-color: transparent;width:160px;}
+.agrupados:focus {font-size:10px; border:1px solid #666666; background-color: white;}
+.timer {  
+	height: 25px; 
+    visibility: hidden;
+    left: 40%;
+    margin: auto;
+    position: absolute;
+    top: 42%;
+    width: 25px;
+    }
+
+
+.lado {border-left: 1px solid #888888; width:1px; height: 27px;float:left; margin-right:-1px; }
+.PestaniaON  {color:#444444; float:left; text-align:center; border-top:1px solid #888888; border-right:1px solid #888888; padding: 5px 15px 5px 15px;  }
+.PestaniaOFF {color:#444444; float:left; text-align:center;background-color:#b8b8b8; border-top:1px solid #888888; border-right:1px solid #888888; border-bottom:1px solid #888888; padding:  5px 15px 5px 15px;  cursor:pointer;}
+.NOpestania  {float:left;  border-bottom:1px solid #888888; width:831px;height: 25px}
+
+
+.V2_lado { border-left: 1px solid #888888;float: left;height: 16px;margin-right: -1px; width: 1px;}
+
+.V2_PEST_on  	{color:#444444; border-right:1px solid #888888;border-top:1px solid #888888; height:10px; float:left;
+				 font-size:9px; text-align: center; padding: 2px 3px 2px 3px; background-color:orange;}
+.V2_PEST_off {color:#444444; border-right:1px solid #888888;border-top:1px solid #888888;border-bottom:1px solid #888888;
+			 height:10px; float:left; font-size:9px; text-align: center; padding: 2px 3px 2px 3px; background-color:#B8B8B8; cursor:pointer;}
+             
+.subfranja  {border-right:1px solid #888888;border-left:1px solid #888888;border-bottom:1px solid #888888; height:5px;width: 96px; margin-top: -1px; background-color:orange;}
+
+
+.VP1 {padding:10px; position: absolute; }
+.VP2 {padding:10px; position: absolute; visibility: hidden;}
+
+.agrup_V2  {cursor:pointer;color:#666666;border-left:1px solid #888888;border-right:1px solid #888888;border-bottom:1px solid #888888; height: 12px;padding: 2px; font-size:9px; width:92px; background-color:white;}
+.agV2 {position:absolute;}
+
+.contGridAgrup	{ background-color: #D8D8D8; border: 1px solid #888888;    height: 512px;    margin: 10px 0 10px -6px;    padding: 5px;}
+.pG_estado_off {cursor:pointer;color:#444444; float:left;width:100px;height:15px;padding:5px;text-align:center;  border-bottom: 1px solid #888888;border-right: 1px solid #888888;border-top: 1px solid #888888;background-color:#B8B8B8; }
+.pG_estado_on {color:#444444;float:left;width:100px;height:15px;padding:5px;text-align:center;  border-bottom: 1px solid orange;border-right: 1px solid #888888;border-top: 1px solid #888888;background-color:orange; }
+
+.pg_titAG {color:#444444; float:left;width:200px;height:15px;padding:5px;text-align:center; border-right: 1px solid #888888;border-left: 1px solid #888888;border-top: 1px solid #888888;background-color:orange; }
+
+.pg_hueco {border-bottom: 1px solid #888888;border-right: 1px solid #888888;color: #444444;float: left; height: 16px; padding: 5px;text-align: center; width: 180px;}
+
+.bot_imp { z-index:999; height: 71px;position: absolute;top: 461px; width: 119px;left:4px; border-right:1px solid #d8d8d8;border-left:1px solid #888888;border-top:1px solid #888888;border-bottom:1px solid #888888;background-color: #D8D8D8;}

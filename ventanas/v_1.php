@@ -1,27 +1,29 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-
-
-<title>test</title>
-
-
 <script type="text/javascript" src="/jquery/jquery-1.9.0.min.js"></script>
-<script type="text/javascript" src="/js/functions.js"></script>
+
+<link rel='stylesheet' type='text/css' href='/css/framework_inside.css' />
+<link rel='stylesheet' type='text/css' href='/css/tiquets.css' />
 <script type="text/javascript" src="/js/tiquets.js"></script>
-
-
-
-<link rel='stylesheet' type='text/css' href='/css/framework.css' />
-
 
 
 
 </head>
 
+
+
+
+
+<body>
+
+
+
+
+
+	
+	
 <script type="text/javascript">
 
     
@@ -97,73 +99,47 @@
 
 
 
-<body class="gris1_BG">
-	
-<input style="font-size:10px;" type="hidden" id="crtl" style="position:absolute;top:0px;left:0px; z-index: 999; " value="0">
-	
-<div class="page">
+<div class="emple">Empleado</div>
+<div class="emple2" id="emple">EMPLEADO EVENTUAL</div>
+
+<div style="clear:both;"></div>
+
+<div class="emple">Código</div>
+<div class="emple2" id="emple"><input type="text" class="impCod" id="impCod"></div>
+
+<div style="clear:both;"></div>	
 
 
-<div id="menu">
-<ul id="nav">
-	<li><a>Principal</a>
-		<ul class="submenu">
-        	
-        	 <li onclick="javascript:owin('v_1','Venta de Artículos','');"><a>Venta de Artículos</a></li>
-        	 
-        </ul>
-	</li>
-    
-    <li><a>Comprobar</a>
-    	<ul class="submenu">
-        	<li onclick="javascript:owin('v_10','------','');"><a>------</a></li>
-        	
-        </ul>
-    	
-    </li>
-    
-    
-
-   
-</ul>
-</div>
-
-
-
-
-<div id="ventanas">
-
-
+<div class="cabemp">
+	<div class="cabtab_emp nom_tab_emp">Cod</div>
+	<div class="cabtab_emp ap1_tab_emp">Artículo</div>
+	<div class="cabtab_emp ap2_tab_emp">Cant</div>
+	<div class="cabtab_emp trbj_tab_emp">Precio</div>
 	
 </div>
 
+<div style="clear:both;"></div>	
+<div style="float:left">
+<iframe id="agrupaciones" src="/ajax/agrupaciones.php" width="350" height="230" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>
+</div>
 
-
-
+<div style="float:left">
+<div class="keys">
+F1 Ver Caja <br>	
+F3 Desglose Caja <br>
+F4 Cambiar Empleado <br>
+<br>
+<br>
+F7,F8,F9 Cobrar Ticket <br>
+F11 Devoluciones <br>
+F12 Descuento <br>	
+</div>
 
 </div>
 
-
-<div class="minimizadas" id="minimizadas">
-
-</div>
-
-
-</div>
-
+<div style="clear:both;"></div>	
+<div class="emple">Importe</div>
+<div class="total" id="total">0.00</div>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
