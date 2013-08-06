@@ -139,7 +139,7 @@ F12 Descuento <br>
 
 <div style="clear:both;"></div>	
 <div class="emple">Importe</div>
-<div class="total" id="total">0.00</div>
+<div class="total" id="total">0.00 €</div>
 
 </body>
 </html>
