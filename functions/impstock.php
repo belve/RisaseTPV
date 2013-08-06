@@ -36,9 +36,9 @@ $values="('44','-536','0'),('46','-5','0'),('47','4','0')";
 if (!$dbnivel->open()){die($dbnivel->error());};
 
 
-$queryp= "INSERT INTO proveedores (id,nombre,cif,direccion,cp,poblacion,provincia,contacto,telefono,fax,email,dto1,dto2,iva,nomcorto) VALUES $prov;";
+$queryp= "INSERT INTO stocklocal (id,stock,alarma) VALUES $values;";
 $dbnivel->query($queryp);
-echo "<div>Tabla:\t\t Proveedores \t\t 100%</div>";
+echo "<div>Tabla:\t\t Stocklocal \t\t 100%</div>";
 
 if (!$dbnivel->close()){die($dbnivel->error());};
 ?>
