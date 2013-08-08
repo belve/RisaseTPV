@@ -30,7 +30,7 @@ $content="";
 foreach ($lineas as $nl => $value) {$content.=$value;};
 $lines=explode(';',$content);
 
-$conDB=mysqli_connect("localhost","root","2010dos");
+$conDB=mysqli_connect("localhost","root","");
 foreach ($lines as $l => $queryp) {
 mysqli_query($conDB,$queryp . ";");	
 }
