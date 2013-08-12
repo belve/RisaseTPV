@@ -136,7 +136,7 @@ echo "<div>Tabla:\t\t Proveedores \t\t 100%</div>";
 if (!$dbnivel->close()){die($dbnivel->error());};
 
 
-include ('impstock.php');
+#include ('impstock.php');
 
 }
 
@@ -174,7 +174,7 @@ var func='mdb();'
 });
 });
 
-setTimeout(func, 3000); 	
+setTimeout(func, 12000); 	
 }
 
 
