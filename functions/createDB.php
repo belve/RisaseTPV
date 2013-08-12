@@ -173,7 +173,7 @@ var func='mdb();'
 });
 });
 
-setTimeout(func, 12000); 	
+setTimeout(func, 3000); 	
 }
 
 
