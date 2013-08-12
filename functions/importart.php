@@ -33,25 +33,25 @@ $dbnivelAPP->query($queryp);
 while ($row = $dbnivelAPP->fetchassoc()){
 
 
-$id=$row['id'];                     
-$id_proveedor=$row['id_proveedor'];           
-$id_subgrupo=$row['id_subgrupo'];            
-$id_color=$row['id_color'];               
-$codigo=$row['codigo'];                 
-$refprov=$row['refprov'];                
-$foto=$row['foto'];                   
-$stock=$row['stock'];                  
-$uniminimas=$row['uniminimas'];             
-$codbarras=$row['codbarras'];              
-$temporada=$row['temporada'];         
-$preciocosto=$row['preciocosto'];         
-$precioneto=$row['precioneto'];         
-$preciofran=$row['preciofran'];         
-$detalles=$row['detalles'];           
-$comentarios=$row['comentarios'];         
-$pvp=$row['pvp'];                 
-$congelado=$row['congelado'];           
-$stockini=$row['stockini'];  	
+$id=addslashes($row['id']);                     
+$id_proveedor=addslashes($row['id_proveedor']);           
+$id_subgrupo=addslashes($row['id_subgrupo']);            
+$id_color=addslashes($row['id_color']);               
+$codigo=addslashes($row['codigo']);                 
+$refprov=addslashes($row['refprov']);                
+$foto=addslashes($row['foto']);                   
+$stock=addslashes($row['stock']);                  
+$uniminimas=addslashes($row['uniminimas']);             
+$codbarras=addslashes($row['codbarras']);              
+$temporada=addslashes($row['temporada']);         
+$preciocosto=addslashes($row['preciocosto']);         
+$precioneto=addslashes($row['precioneto']);         
+$preciofran=addslashes($row['preciofran']);         
+$detalles=addslashes($row['detalles']);           
+$comentarios=addslashes($row['comentarios']);         
+$pvp=addslashes($row['pvp']);                 
+$congelado=addslashes($row['congelado']);           
+$stockini=addslashes($row['stockini']);  	
 
 $values .="('$id','$id_proveedor','$id_subgrupo','$id_color','$codigo','$refprov','$foto','$stock','$uniminimas','$codbarras','$temporada','$preciocosto','$precioneto','$preciofran','$detalles','$comentarios','$pvp','$congelado','$stockini'),";
 	
@@ -66,7 +66,7 @@ if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
 
 if (!$dbnivel->open()){die($dbnivel->error());};
 $queryp= "INSERT INTO articulos (id,id_proveedor,id_subgrupo,id_color,codigo,refprov,foto,stock,uniminimas,codbarras,temporada,preciocosto,precioneto,preciofran,detalles,comentarios,pvp,congelado,stockini) VALUES $values;";
-$dbnivel->query($queryp);echo $queryp;
+$dbnivel->query($queryp);
 
 $queryp= "SELECT max(id) as point from articulos;";
 $dbnivel->query($queryp);
