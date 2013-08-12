@@ -136,7 +136,6 @@ echo "<div>Tabla:\t\t Proveedores \t\t 100%</div>";
 if (!$dbnivel->close()){die($dbnivel->error());};
 
 
-#include ('impstock.php');
 
 }
 
