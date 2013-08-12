@@ -66,7 +66,7 @@ if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
 
 if (!$dbnivel->open()){die($dbnivel->error());};
 $queryp= "INSERT INTO articulos (id,id_proveedor,id_subgrupo,id_color,codigo,refprov,foto,stock,uniminimas,codbarras,temporada,preciocosto,precioneto,preciofran,detalles,comentarios,pvp,congelado,stockini) VALUES $values;";
-$dbnivel->query($queryp);
+$dbnivel->query($queryp);echo $queryp;
 
 $queryp= "SELECT max(id) as point from articulos;";
 $dbnivel->query($queryp);
