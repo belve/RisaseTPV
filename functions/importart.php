@@ -28,7 +28,7 @@ while ($row = $dbnivelAPP->fetchassoc()){$total=$row['total'];};
 if($point < $total){
 	
 $values="";
-$queryp= "select * from articulos where id >= $point limit 100;";
+$queryp= "select * from articulos where id >= $point limit 500;";
 $dbnivelAPP->query($queryp);
 while ($row = $dbnivelAPP->fetchassoc()){
 
