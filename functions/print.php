@@ -14,14 +14,11 @@ Total			33.25 €
 
 $ticket=iconv('UTF-8', 'ASCII//TRANSLIT', $ticket). "\n\n\n\n\n\n\n\n\n";
 
-$fp = fopen("lpt1:", "r+");
+$fp = fopen("LPT1:", "r+");
 fwrite($fp,$ticket);
 
 
-
-$handle = printer_open();
-printer_write($handle, $ticket);
-printer_close($handle);
-
+$data = "test.txt"; 
+exec("type ".$data." > lpt1");  
 echo $ticket;
 ?>
