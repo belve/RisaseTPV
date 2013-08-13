@@ -73,7 +73,7 @@ function owin(value,tit,param){
 	document.getElementById("m_"+value).setAttribute("class", "minimi_on");  	
 	}else{
 	var html='<div id="' + value +'" class="'+ value  + '"><div class="contenedor gris2_BG shadow"><div class="cabcontenerdor"><div class="tit_contenedor">'+ tit +
-	'</div><div class="iconos closeW" onclick="javascript:cwin(\'' +	 value + '\')"></div></div><div class="iframe"><iframe id="' + value + '" src="/ventanas/'+ value +'.php' + param + '" width="100%" height="100%" border="0" frameborder="0" marginheight="0" scrolling="no"></iframe></div></div></div>';
+	'</div><div class="iconos closeW" onclick="javascript:cwin(\'' +	 value + '\')"></div></div><div class="iframe"><iframe id="f_' + value + '" src="/ventanas/'+ value +'.php' + param + '" width="100%" height="100%" border="0" frameborder="0" marginheight="0" scrolling="no"></iframe></div></div></div>';
 	$('#ventanas').append(html);
 	
 	var minhtml='<div class="minimi_on" id="m_' + value +'" onclick="javascript:focusW(\''+ value +'\')">' + tit + '<div class="iconos closeW"  onclick="javascript:cwin(\'' + value + '\')"></div></div>';

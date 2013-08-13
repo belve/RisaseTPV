@@ -52,7 +52,7 @@
       
          
          case 115:
-         alert('cambio empleado');
+        loop_emp2();
        	 return false;
          break;
          
@@ -151,7 +151,9 @@
 
 </div>
 
-
+<script>
+	owin('v_1','Venta de Artículos','');
+</script>
 </body>
 </html>
 

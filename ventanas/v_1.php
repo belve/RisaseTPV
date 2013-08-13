@@ -54,7 +54,7 @@
       
          
          case 115:
-         alert('cambio empleado');
+         loop_emp();
        	 return false;
          break;
          
@@ -92,7 +92,6 @@
       }
    });
    
-
 
 </script>
 
@@ -140,6 +139,11 @@ F12 Descuento <br>
 <div style="clear:both;"></div>	
 <div class="emple">Importe</div>
 <div class="total" id="total">0.00 €</div>
+
+<script>
+	
+cargaEmpleados();
+</script>
 
 </body>
 </html>
