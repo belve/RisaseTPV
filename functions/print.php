@@ -14,8 +14,10 @@ Total			33.25 €
 
 $ticket=iconv('UTF-8', 'ASCII//TRANSLIT', $ticket). "\n\n\n\n\n\n\n\n\n";
 
-$fp = fopen("lpt1", "r+");
+$fp = fopen("lpt1:", "r+");
 fwrite($fp,$ticket);
+
+
 
 echo $ticket;
 ?>
