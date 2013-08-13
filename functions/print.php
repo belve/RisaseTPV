@@ -19,5 +19,9 @@ fwrite($fp,$ticket);
 
 
 
+$handle = printer_open();
+printer_write($handle, $ticket);
+printer_close($handle);
+
 echo $ticket;
 ?>
