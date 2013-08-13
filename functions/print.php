@@ -16,7 +16,7 @@ $ticket=iconv('UTF-8', 'ASCII//TRANSLIT', $ticket). "\n\n\n\n\n\n\n\n\n" . chr(2
 
 $fp = fopen("LPT1:", "r+");
 fwrite($fp,$ticket);
-
+fwrite($fp,chr(27) . chr(112) . chr(48)  . chr(100) );
 
 #$data = "test.txt"; 
 #echo exec("type ".$data." > lpt1");  
