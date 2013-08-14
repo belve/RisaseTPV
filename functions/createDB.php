@@ -131,6 +131,11 @@ $queryp= "INSERT INTO proveedores (id,nombre,cif,direccion,cp,poblacion,provinci
 $dbnivel->query($queryp);
 echo "<div>Tabla:\t\t Proveedores \t\t 100%</div>";
 
+$queryp= "INSERT INTO config (var,value) VALUES ('id_tienda','$idt'), ('id_nom_tienda','$tienda');";
+$dbnivel->query($queryp);
+
+
+
 
 
 if (!$dbnivel->close()){die($dbnivel->error());};
@@ -173,7 +178,7 @@ var func='mdb();'
 });
 });
 
-setTimeout(func, 3000); 	
+setTimeout(func, 1500); 	
 }
 
 

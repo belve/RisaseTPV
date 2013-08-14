@@ -32,13 +32,20 @@
    // Register keypress events on the whole document
    $(document).keypress(function(e) {
    	
-   	
+   
       switch(e.keyCode) { 
         
          case 13:
-           alert('combo');
-         
+         introD();
+         return false;	
          break;
+      
+		 
+         case 27:
+         escapeD();
+         return false;	
+         break;      
+      
       
       
          case 112:
@@ -63,17 +70,17 @@
          break;
 
          case 118:
-            alert('cobro');
+           cobro();
          return false;
          break;
          
           case 119:
-            alert('cobro');
+            cobro();
          return false;
          break;
          
           case 120:
-            alert('cobro');
+            cobro();
          return false;
          break;
          
@@ -99,12 +106,12 @@
 
 
 <div class="emple">Empleado</div>
-<div class="emple2" id="emple">EMPLEADO EVENTUAL</div>
+<div class="emple2" id="emple"></div>
 
 <div style="clear:both;"></div>
 
 <div class="emple">Código</div>
-<div class="emple2" id="emple"><input type="text" class="impCod" id="impCod"></div>
+<div class="emple2" id="emple"><input type="text" class="impCod" id="impCod" onFocus="this.select()"></div>
 
 <div style="clear:both;"></div>	
 
@@ -119,7 +126,7 @@
 
 <div style="clear:both;"></div>	
 <div style="float:left">
-<iframe id="agrupaciones" src="/ajax/agrupaciones.php" width="350" height="230" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>
+<iframe id="dettiq" src="/ajax/det_ticket.php" width="364" height="230" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>
 </div>
 
 <div style="float:left">
@@ -140,9 +147,26 @@ F12 Descuento <br>
 <div class="emple">Importe</div>
 <div class="total" id="total">0.00 €</div>
 
+<div id="cobrador" style="visibility: hidden;">
+<div style=" background-color: #C8C8C8;    height: 341px;    left: 0px;    opacity: 0.6;    position: absolute;    top: 0px;    width: 476px;"></div>
+<div style="background-color: #999999;    height: 87px;    left: 93px;    padding: 35px;    position: absolute;    top: 84px;    width: 201px;">
+	
+<div class="emple">Total: </div><input type="text" class="impCod2" style="margin-left: 43px;" id="do_tot">
+<div style="clear:both;"></div>
+<div class="emple">Pagado:</div><input type="text" class="impCod2" id="do_pag">	
+<div style="clear:both;"></div>
+<div class="emple">Cambio:</div><input type="text" class="impCod2" id="do_cam">	
+
+<input type="hidden" id="do_tot_H" value="">
+
+</div>	
+</div>
+
+
 <script>
 	
-cargaEmpleados();
+
+setTimeout('cargaEmpleados();', 1000);
 </script>
 
 </body>

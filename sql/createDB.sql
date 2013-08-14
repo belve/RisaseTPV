@@ -79,7 +79,7 @@ CREATE TABLE `config` (
   `var` varchar(255) DEFAULT NULL,
   `value` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `empleados` */
 
@@ -150,6 +150,41 @@ CREATE TABLE `subgrupos` (
   `nombre` varchar(255) CHARACTER SET latin1 COLLATE latin1_spanish_ci DEFAULT NULL,
   `clave` int(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `ticket_det` */
+
+DROP TABLE IF EXISTS `ticket_det`;
+
+CREATE TABLE `ticket_det` (
+  `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
+  `id_tienda` bigint(255) DEFAULT NULL,
+  `id_ticket` bigint(255) DEFAULT NULL,
+  `id_articulo` bigint(255) DEFAULT NULL,
+  `cantidad` int(10) DEFAULT NULL,
+  `importe` decimal(8,2) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_tienda` (`id_tienda`),
+  KEY `id_ticket` (`id_ticket`),
+  KEY `id_articulo` (`id_articulo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Table structure for table `tickets` */
+
+DROP TABLE IF EXISTS `tickets`;
+
+CREATE TABLE `tickets` (
+  `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
+  `id_tienda` bigint(255) DEFAULT NULL,
+  `id_ticket` varchar(255) DEFAULT NULL,
+  `id_empleado` int(30) DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  `importe` decimal(8,2) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_tienda` (`id_tienda`),
+  KEY `id_ticket` (`id_ticket`),
+  KEY `id_empleado` (`id_empleado`),
+  KEY `fecha` (`fecha`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Table structure for table `tiendas` */
