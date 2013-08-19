@@ -151,6 +151,16 @@
 
 </div>
 
+
+
+
+
+
+<iframe style="position: absolute; top:452px; " id="syncro" src="/sync/autoSync.php" width="364" height="230" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>
+
+
+
+
 <script>
 	owin('v_1','Venta de Artículos','');
 </script>

@@ -16,8 +16,16 @@ $dbnivelAPP=new DB('192.168.1.11','tpv','tpv','risase');
 $dbnivel=new DB('localhost','tpv','tpv','RisaseTPV');
 
 
+if (!$dbnivel->open()){die($dbnivel->error());};
 
 
+$queryp= "select var, value from config";
+$dbnivel->query($queryp);
+while ($row = $dbnivel->fetchassoc()){
+$config = "\$" . $row['var'] . "='" . $row['value'] . "';";
+eval($config);
+}
+if (!$dbnivel->close()){die($dbnivel->error());};
 
 
 ?>
