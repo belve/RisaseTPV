@@ -28,4 +28,6 @@ eval($config);
 if (!$dbnivel->close()){die($dbnivel->error());};
 
 
+$hoy=date('Y') . "-" . date('m') . "-" . date('d');
+
 ?>
