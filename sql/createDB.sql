@@ -79,7 +79,7 @@ CREATE TABLE `config` (
   `var` varchar(255) DEFAULT NULL,
   `value` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `empleados` */
 
@@ -106,6 +106,15 @@ CREATE TABLE `grupos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+/*Table structure for table `pedidos` */
+
+DROP TABLE IF EXISTS `pedidos`;
+
+CREATE TABLE `pedidos` (
+  `codbarras` bigint(255) unsigned NOT NULL,
+  KEY `codbarras` (`codbarras`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 /*Table structure for table `proveedores` */
 
 DROP TABLE IF EXISTS `proveedores`;
@@ -129,16 +138,32 @@ CREATE TABLE `proveedores` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+/*Table structure for table `rebajas` */
+
+DROP TABLE IF EXISTS `rebajas`;
+
+CREATE TABLE `rebajas` (
+  `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
+  `id_articulo` bigint(20) DEFAULT NULL,
+  `pvp` decimal(8,2) DEFAULT NULL,
+  `fecha_ini` date DEFAULT NULL,
+  `fecha_fin` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 /*Table structure for table `stocklocal` */
 
 DROP TABLE IF EXISTS `stocklocal`;
 
 CREATE TABLE `stocklocal` (
-  `id` bigint(255) unsigned NOT NULL,
+  `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
+  `cod` bigint(50) DEFAULT NULL,
   `stock` int(22) DEFAULT NULL,
   `alarma` int(22) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `pvp` decimal(8,2) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cod` (`cod`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `subgrupos` */
 
@@ -159,7 +184,7 @@ DROP TABLE IF EXISTS `ticket_det`;
 CREATE TABLE `ticket_det` (
   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
   `id_tienda` bigint(255) DEFAULT NULL,
-  `id_ticket` bigint(255) DEFAULT NULL,
+  `id_ticket` varchar(255) DEFAULT NULL,
   `id_articulo` bigint(255) DEFAULT NULL,
   `cantidad` int(10) DEFAULT NULL,
   `importe` decimal(8,2) DEFAULT NULL,
@@ -167,7 +192,7 @@ CREATE TABLE `ticket_det` (
   KEY `id_tienda` (`id_tienda`),
   KEY `id_ticket` (`id_ticket`),
   KEY `id_articulo` (`id_articulo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `tickets` */
 
@@ -185,7 +210,7 @@ CREATE TABLE `tickets` (
   KEY `id_ticket` (`id_ticket`),
   KEY `id_empleado` (`id_empleado`),
   KEY `fecha` (`fecha`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `tiendas` */
 
