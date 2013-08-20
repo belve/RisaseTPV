@@ -1,6 +1,6 @@
 <?php
 
-$art="";$restos=array();$tickets=array();$pedir=array();$noconectado=0;$tickdone=array();
+$art="";$restos=array();$tickets=array();$pedir=array();$noconectado=0;$tickdone=array();$articulos=array();
 
 if (!$dbnivel->open()){die($dbnivel->error());};
 
@@ -89,6 +89,9 @@ if (!$dbnivel->open()){die($dbnivel->error());};
 
 
 foreach ($restos as $codbar => $resto){
+
+if(!array_key_exists($codbar, $articulos)){$articulos[$codbar]['s']=0;$articulos[$codbar]['a']=0;};	
+	
 if($articulos[$codbar]['s'] - $resto <= $articulos[$codbar]['a']){
 $queryp= "insert into pedidos (codbarras) values ('$codbar');";
 $dbnivel->query($queryp);		
