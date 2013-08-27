@@ -1,5 +1,5 @@
 <?php
-$listahago="";$idcapedir="";$yahechos=array();$pedidone=array();$artapedir=array();
+$listahago="";$idcapedir="";$yahechos=array();$pedidone=array();$artapedir=array();$relcods=array();
 
 if (!$dbnivel->open()){die($dbnivel->error());};
 
@@ -12,6 +12,13 @@ $dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){$pedidoshago[$row['codbarras']]=1;$listahago.=$row['codbarras'] . ",";	
 };
 
+$listahago=substr($listahago,0,strlen($listahago)-1);
+
+$queryp= "select cod, stock from stocklocal where cod IN ($listahago);";
+$dbnivel->query($queryp); 
+while ($row = $dbnivel->fetchassoc()){ $stockdepedidos[$row['cod']]=$row['stock'];};
+
+
 
 if (!$dbnivel->close()){die($dbnivel->error());};
 
@@ -20,11 +27,13 @@ if (!$dbnivel->close()){die($dbnivel->error());};
 if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;};
 
 
-$listahago=substr($listahago,0,strlen($listahago)-1);$fecha=date('Y') . "-" . date('m') . "-" . date('d');
+$fecha=date('Y') . "-" . date('m') . "-" . date('d');
 
-$queryp= "select id, id_proveedor, id_subgrupo, (select id_grupo from subgrupos where id=id_subgrupo) as id_grupo, codigo, id_color from articulos where codbarras IN ($listahago);";
+$queryp= "select id, codbarras, id_proveedor, id_subgrupo, (select id_grupo from subgrupos where id=id_subgrupo) as id_grupo, codigo, id_color from articulos where codbarras IN ($listahago);";
 $dbnivelAPP->query($queryp);
 while ($row = $dbnivelAPP->fetchassoc()){
+	
+$relcods[$row['id']]=$row['codbarras'];	
 	
 $artapedir[$row['id']]['idp']=$row['id_proveedor'];
 $artapedir[$row['id']]['isg']=$row['id_subgrupo'];
@@ -45,7 +54,7 @@ foreach ($artapedir as $idar => $values) {if(!array_key_exists($idar, $yahechos)
 
 $queryp= "select cantidad from repartir where id_tienda=$idt AND id_articulo='$idar';";
 $dbnivelAPP->query($queryp);
-while ($row = $dbnivelAPP->fetchassoc()){$cantidad=$row['cantidad'];};
+while ($row = $dbnivelAPP->fetchassoc()){$cantidad=$row['cantidad'] - $stockdepedidos[$relcods[$idar]];};
 
 $prov=$artapedir[$idar]['idp'];
 $grupo=$artapedir[$idar]['idg'];

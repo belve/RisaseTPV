@@ -13,7 +13,7 @@ $tickets[$row['id_ticket']]['imp']=$row['importe'];
 $tickets[$row['id_ticket']]['idt']=$row['id_tienda'];	
 };
 
-$queryp= "select * from ticket_det;";
+$queryp= "select id_ticket, id_articulo, cantidad, importe FROM ticket_det;";
 $dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){
 $tickets[$row['id_ticket']]['det'][$row['id_articulo']]['qty']=$row['cantidad'];
@@ -25,11 +25,12 @@ $restos[$row['id_articulo']]=$restos[$row['id_articulo']] + $row['cantidad'];
 };
 $art=substr($art,0,strlen($art)-1);
 
-$queryp= "select * from stocklocal where cod IN ($art);";
+$queryp= "select cod, stock, alarma, (select congelado from articulos where codbarras=cod) as congelado from stocklocal where cod IN ($art);";
 $dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){
 $articulos[$row['cod']]['s']=$row['stock'];	
 $articulos[$row['cod']]['a']=$row['alarma'];
+$articulos[$row['cod']]['c']=$row['congelado'];
 }
 
 
@@ -92,7 +93,7 @@ foreach ($restos as $codbar => $resto){
 
 if(!array_key_exists($codbar, $articulos)){$articulos[$codbar]['s']=0;$articulos[$codbar]['a']=0;};	
 	
-if($articulos[$codbar]['s'] - $resto <= $articulos[$codbar]['a']){
+if(($articulos[$codbar]['s'] - $resto <= $articulos[$codbar]['a'])&&($articulos[$codbar]['c']<1)){
 $queryp= "insert into pedidos (codbarras) values ('$codbar');";
 $dbnivel->query($queryp);		
 } #genera pedido
