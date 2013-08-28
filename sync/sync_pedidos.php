@@ -79,12 +79,16 @@ $idpedidoup=$yahechos[$idar];
 $queryp= "select cantidad from repartir where id_tienda=$idt AND id_articulo='$idar';";
 $dbnivelAPP->query($queryp);
 while ($row = $dbnivelAPP->fetchassoc()){$cantidad=$row['cantidad'] - $stockdepedidos[$relcods[$idar]];};
-		
-$queryp= "UPDATE pedidos SET cantidad='$cantidad' WHERE id=$idpedidoup;";
 
-echo "Actualizado pedido de articulo: $idar <br>";
-$dbnivelAPP->query($queryp);		
-	
+if($cantidad > 0){		
+$queryp= "UPDATE pedidos SET cantidad='$cantidad' WHERE id=$idpedidoup;";
+$dbnivelAPP->query($queryp);
+}else{
+$queryp= "DELETE FROM pedidos WHERE id=$idpedidoup;";
+$dbnivelAPP->query($queryp);	
+}		
+echo "Actualizado pedido de articulo: $idar <br>";	
+
 }
 
 

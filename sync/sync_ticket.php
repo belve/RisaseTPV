@@ -10,7 +10,8 @@ while ($row = $dbnivel->fetchassoc()){
 $tickets[$row['id_ticket']]['emp']=$row['id_empleado'];
 $tickets[$row['id_ticket']]['dat']=$row['fecha'];
 $tickets[$row['id_ticket']]['imp']=$row['importe'];	
-$tickets[$row['id_ticket']]['idt']=$row['id_tienda'];	
+$tickets[$row['id_ticket']]['idt']=$row['id_tienda'];
+$tickets[$row['id_ticket']]['des']=$row['descuento'];	
 };
 
 $queryp= "select id_ticket, id_articulo, cantidad, importe FROM ticket_det;";
@@ -51,9 +52,9 @@ if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;};
 
 foreach ($tickets as $cticket => $valores){
 
-$id_tienda=$valores['idt']; $id_empleado=$valores['emp']; $fecha=$valores['dat']; $importe=$valores['imp'];
+$id_tienda=$valores['idt']; $id_empleado=$valores['emp']; $fecha=$valores['dat']; $importe=$valores['imp']; $desc=$valores['des'];
 
-$queryp= "insert into tickets (id_tienda, id_ticket, id_empleado, fecha, importe) values ('$id_tienda', '$cticket', '$id_empleado', '$fecha', '$importe');";
+$queryp= "insert into tickets (id_tienda, id_ticket, id_empleado, fecha, importe, descuento) values ('$id_tienda', '$cticket', '$id_empleado', '$fecha', '$importe', '$desc');";
 $dbnivelAPP->query($queryp);
 
 $queryp="select id_ticket from tickets where id IN(SELECT LAST_INSERT_ID() from tickets);";

@@ -92,7 +92,7 @@
          break;  
          
          case 123:
-              alert('Descuento');
+              showdescount();
          return false;     
          break;
          
@@ -163,7 +163,33 @@ F12 Descuento <br>
 <input type="hidden" id="do_tot_H" value="">
 
 </div>	
+
+
+<div style="background-color: #cccccc; padding: 35px; position: absolute; z-index: 100; height: 17px; top: 90px; width: 195px; left: 96px; visibility: hidden; " id="cajon">
+	
+<div style="background-color: orange; color: white; text-align: center; padding: 5px; width: 100px; margin-left: 47px; font-weight: bold;" onclick="javascript:escapeD();">Cerrar</div>	
+	
 </div>
+
+</div>
+
+
+
+<div id="descuento" style="visibility: hidden;">
+<div style=" background-color: #C8C8C8;    height: 341px;    left: 0px;    opacity: 0.6;    position: absolute;    top: 0px;    width: 476px;"></div>
+<div style="background-color: #cccccc;    height: 87px;    left: 93px;    padding: 35px;    position: absolute;    top: 84px;    width: 201px; border: 1px solid #666666;">
+	
+<input type="hidden" id="descount_H" value="">
+<div class="emple">Descuento:</div><input type="text" class="impCod2" id="descount" style="background-color: white; color:#333333; cursor: pointer;"; onsubmit ="javascript:descount();">	
+<div style="clear:both;"></div>
+
+<input type="hidden" id="do_tot_H" value="">
+
+</div>	
+</div>
+
+
+
 
 
 <script>

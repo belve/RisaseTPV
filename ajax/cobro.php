@@ -12,6 +12,7 @@ while ($row = $dbnivel->fetchassoc()){$config = "\$" . $row['var'] . "='" . $row
 $detalle=$_GET['detTick'];
 $idemp=$_GET['emp'];
 $total=$_GET['total'];
+$desc=$_GET['desc'];
 
 $fecha=date('Y') . "-" . date('m') . "-" . date('d');
 
@@ -20,7 +21,7 @@ $fecha=date('Y') . "-" . date('m') . "-" . date('d');
 
 $idt=$id_nom_tienda . date('d') . date('m') . date('y') . date('G') . date('i') . date('s');
 
-$queryp= "INSERT INTO tickets (id_ticket,id_tienda,id_empleado,fecha,importe) values ('$idt', '$id_tienda', '$idemp', '$fecha', '$total');";
+$queryp= "INSERT INTO tickets (id_ticket,id_tienda,id_empleado,fecha,importe,descuento) values ('$idt', '$id_tienda', '$idemp', '$fecha', '$total','$desc');";
 $dbnivel->query($queryp);
 
 foreach ($detalle as $idart => $values) {

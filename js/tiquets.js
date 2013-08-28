@@ -50,7 +50,10 @@ show_emp(1);
 
 
 function introD(){
-if(document.getElementById("cobrador").style.visibility=='visible'){cobro_calc();}else{addART();};
+if      (document.getElementById("cajon").style.visibility=='visible'){cobro_hide();}
+else if (document.getElementById("cobrador").style.visibility=='visible'){cobro_calc();}
+else if (document.getElementById("descuento").style.visibility=='visible'){aplydescuent();}
+else{addART();};
 }
 
 
@@ -106,14 +109,26 @@ document.getElementById("impCod").select();
 
 
 function escapeD(){
-if(document.getElementById("cobrador").style.visibility=='visible'){cobro_hide();}else{delTicket();};
+if(document.getElementById("cobrador").style.visibility=='visible'){cobro_hide();}
+else if
+(document.getElementById("descuento").style.visibility=='visible'){
+document.getElementById("descuento").style.visibility='hidden';
+}else{delTicket();};
+
+document.getElementById("descount_H").value='';
+document.getElementById("descount").value='';
+document.getElementById("do_pag").value='';
+
 }
 
 function cobro_hide(){
+document.getElementById("cajon").style.visibility='hidden';
 document.getElementById("cobrador").style.visibility='hidden';
 document.getElementById("impCod").select();	
 document.getElementById("do_cam").value="";
 document.getElementById("do_pag").value="";
+document.getElementById("descount_H").value='';
+document.getElementById("descount").value='';
 }
 
 
@@ -161,12 +176,31 @@ document.getElementById('total').innerHTML=total + " €";
 document.getElementById('do_tot_H').value=total;
 }
 
+function showdescount(){
+document.getElementById("descuento").style.visibility='visible';
+document.getElementById("descount").select();
+	
+}
+
+function aplydescuent(){
+document.getElementById("descount_H").value=document.getElementById("descount").value;	
+document.getElementById("descuento").style.visibility='hidden';	
+show_cobro_do();
+}
 
 
 function show_cobro_do(){
 document.getElementById("cobrador").style.visibility='visible';
 document.getElementById("do_pag").select();
-document.getElementById('do_tot').value=document.getElementById('do_tot_H').value + " €";
+
+var importe=document.getElementById('do_tot_H').value
+
+if(document.getElementById("descount_H").value > 0){
+importe =importe -(importe * document.getElementById("descount_H").value / 100);
+importe = importe.toFixed(2);	
+}
+
+document.getElementById('do_tot').value=importe + " €";
 }
 
 function cobro(){
@@ -176,7 +210,13 @@ show_cobro_do();
 
 
 function cambi(){
-var total=document.getElementById('do_tot_H').value;	
+var total=document.getElementById('do_tot_H').value;
+
+if(document.getElementById("descount_H").value > 0){
+total =total -(total * document.getElementById("descount_H").value / 100);
+total = total.toFixed(2);	
+}
+	
 var pagado=	document.getElementById("do_pag").value;
 var cambio=(total*1)-(pagado*1);
 cambio = cambio.toFixed(2);
@@ -186,13 +226,26 @@ document.getElementById("do_cam").value=cambio;
 }
 
 function cobro_calc(){
-var total=document.getElementById('do_tot_H').value;	
+var total=document.getElementById('do_tot_H').value;
+
+if(document.getElementById("descount_H").value > 0){
+total =total -(total * document.getElementById("descount_H").value / 100);
+total = total.toFixed(2);	
+}
+
+
+	
 var pagado=	document.getElementById("do_pag").value;
-var cambio=(total*1)-(pagado*1);
+var cambio=(total*1)-(pagado*1);var check=cambio;
+
+if(check <= 0){
 cambio = cambio.toFixed(2) + ' €';
 document.getElementById("do_cam").value=cambio;
+document.getElementById("cajon").style.visibility='visible';	
 cobro_do();
 delTicket();
+
+}
 }
 
 function cobro_do(){
@@ -222,8 +275,15 @@ code=code + '&detTick[' + datos[0] + '][q]=' + datos[2] +
 total=(total*1)+(datos[3]*datos[2]);			
 }}
 
+var desc=0;
+if(document.getElementById("descount_H").value > 0){
+desc=document.getElementById("descount_H").value;	
+total =total -(total * document.getElementById("descount_H").value / 100);
+total = total.toFixed(2);	
+}
 
-var url='/ajax/cobro.php?emp=' + emp + '&total=' + total + code;
+
+var url='/ajax/cobro.php?emp=' + emp + '&desc=' + desc + '&total=' + total + code;
 $.getJSON(url, function(data) {
 $.each(data, function(key, val) {
 
