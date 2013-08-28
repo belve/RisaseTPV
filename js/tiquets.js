@@ -250,6 +250,8 @@ setCookieT('current_emp',numemp,1);
 document.getElementById('emple').innerHTML=getCookieT('empN_' + numemp);
 document.getElementById("impCod").value="";
 document.getElementById("impCod").select();
+document.getElementById("dev_h").value=0;
+document.getElementById("dev_c").innerHTML='';	
 
 
 showTicket();
@@ -270,6 +272,8 @@ var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
 innerDoc.getElementById('emple').innerHTML=getCookieT('empN_' + numemp);
 innerDoc.getElementById("impCod").value="";	
 innerDoc.getElementById("impCod").select();	
+innerDoc.getElementById("dev_h").value=0;
+innerDoc.getElementById("dev_c").innerHTML='';	
 		
 }
 
