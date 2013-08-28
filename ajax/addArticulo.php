@@ -26,11 +26,13 @@ $queryp= "select pvp from rebajas where id_articulo=$id AND fecha_ini <= '$hoy' 
 $dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){
 if($row['pvp']>0) $pvp=$row['pvp'];	
+
+
 };
 
+if($mod==1){$sumo=-1;}else{$sumo=1;};
 
-
-if($codbarras){$datos[]="<>$codbarras|$refprov|1|$pvp";}else{$datos[]="error";};
+if($codbarras){$datos[]="<>$codbarras|$refprov|$sumo|$pvp";}else{$datos[]="error";};
 
 
 

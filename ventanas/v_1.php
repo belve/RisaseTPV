@@ -87,9 +87,9 @@
          
        
          case 122:
-              alert('Devoluciones');
-         return false;     
-         break;
+         devolucion();
+         return false;	
+         break;  
          
          case 123:
               alert('Descuento');
@@ -113,11 +113,14 @@
 <div class="emple">Código</div>
 <div class="emple2" id="emple"><input type="text" class="impCod" id="impCod" onFocus="this.select()"></div>
 
+<input type="hidden" value="0" id="dev_h">
+<div id="dev_c" style="float:left; margin-left: 20px; color:red;  font-size: 16px;"></div>
+
 <div style="clear:both;"></div>	
 
 
 <div class="cabemp">
-	<div class="cabtab_emp nom_tab_emp">Cod</div>
+	<div class="cabtab_emp nom_tab_emp">Código</div>
 	<div class="cabtab_emp ap1_tab_emp">Artículo</div>
 	<div class="cabtab_emp ap2_tab_emp">Cant</div>
 	<div class="cabtab_emp trbj_tab_emp">Precio</div>
@@ -149,13 +152,13 @@ F12 Descuento <br>
 
 <div id="cobrador" style="visibility: hidden;">
 <div style=" background-color: #C8C8C8;    height: 341px;    left: 0px;    opacity: 0.6;    position: absolute;    top: 0px;    width: 476px;"></div>
-<div style="background-color: #999999;    height: 87px;    left: 93px;    padding: 35px;    position: absolute;    top: 84px;    width: 201px;">
+<div style="background-color: #cccccc;    height: 87px;    left: 93px;    padding: 35px;    position: absolute;    top: 84px;    width: 201px; border: 1px solid #666666;">
 	
-<div class="emple">Total: </div><input type="text" class="impCod2" style="margin-left: 43px;" id="do_tot">
+<div class="emple">Importe: </div><input type="text" class="impCod2" style="margin-left: 31px; border:0px; background-color: #cccccc; color:green;" id="do_tot">
 <div style="clear:both;"></div>
-<div class="emple">Pagado:</div><input type="text" class="impCod2" id="do_pag">	
+<div class="emple">Efectivo:</div><input type="text" class="impCod2" id="do_pag" style="background-color: white; color:#333333;"; onkeyup="javascript:cambi();">	
 <div style="clear:both;"></div>
-<div class="emple">Cambio:</div><input type="text" class="impCod2" id="do_cam">	
+<div class="emple">Cambio:</div><input type="text" class="impCod2" id="do_cam" style="margin-left: 31px; border:0px; background-color: #cccccc; color:red;">	
 
 <input type="hidden" id="do_tot_H" value="">
 

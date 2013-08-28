@@ -62,6 +62,7 @@ var tiq=getCookieT('tiq_'+current);
 }
 
 var cod=document.getElementById('impCod').value;
+var mod=document.getElementById("dev_h").value;
 
 if(tiq.length>0){var det=tiq.split('<>');}
 var repe=0;
@@ -71,7 +72,8 @@ if(det){
 for (var i = 1; i < det.length; i++) {
 var deti=det[i];	
 var datos=deti.split('|');
-if(datos[0]==cod){var QTY=(datos[2]*1)+1;var repe=1;}else{var QTY=datos[2]*1;};
+if(mod==1){var mas=-1;}else{var mas=1;};
+if(datos[0]==cod){var QTY=(datos[2]*1)+mas;var repe=1;}else{var QTY=datos[2]*1;};
 
 code=code + '<>' + datos[0] + '|' + datos[1] + '|' + QTY + '|' + datos[3];
 total=(total*1)+(datos[3]*QTY);
@@ -80,7 +82,7 @@ total=(total*1)+(datos[3]*QTY);
 }
 
 if(repe==0){
-var url='/ajax/addArticulo.php?cod=' + cod;
+var url='/ajax/addArticulo.php?cod=' + cod + '&mod=' + mod;
 $.getJSON(url, function(data) {
 $.each(data, function(key, val) {
 
@@ -164,7 +166,7 @@ document.getElementById('do_tot_H').value=total;
 function show_cobro_do(){
 document.getElementById("cobrador").style.visibility='visible';
 document.getElementById("do_pag").select();
-document.getElementById('do_tot').value=document.getElementById('do_tot_H').value;
+document.getElementById('do_tot').value=document.getElementById('do_tot_H').value + " €";
 }
 
 function cobro(){
@@ -172,11 +174,22 @@ show_cobro_do();
 
 }
 
+
+function cambi(){
+var total=document.getElementById('do_tot_H').value;	
+var pagado=	document.getElementById("do_pag").value;
+var cambio=(total*1)-(pagado*1);
+cambio = cambio.toFixed(2);
+if(cambio <= 0 ){cambio=cambio + ' €';}else{cambio='';};
+document.getElementById("do_cam").value=cambio;
+	
+}
+
 function cobro_calc(){
 var total=document.getElementById('do_tot_H').value;	
 var pagado=	document.getElementById("do_pag").value;
-var cambio=(pagado*1)-(total*1);
-cambio = cambio.toFixed(2);
+var cambio=(total*1)-(pagado*1);
+cambio = cambio.toFixed(2) + ' €';
 document.getElementById("do_cam").value=cambio;
 cobro_do();
 delTicket();
@@ -235,6 +248,7 @@ show_emp(current)	;
 function show_emp(numemp){
 setCookieT('current_emp',numemp,1);
 document.getElementById('emple').innerHTML=getCookieT('empN_' + numemp);
+document.getElementById("impCod").value="";
 document.getElementById("impCod").select();
 
 
@@ -254,9 +268,21 @@ setCookieT('current_emp',numemp,1);
 var iframe = document.getElementById('f_v_1');
 var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
 innerDoc.getElementById('emple').innerHTML=getCookieT('empN_' + numemp);
+innerDoc.getElementById("impCod").value="";	
 innerDoc.getElementById("impCod").select();	
 		
 }
 
+function devolucion(){
 
+if(document.getElementById("dev_h").value==1){
+document.getElementById("dev_h").value=0;
+document.getElementById("dev_c").innerHTML='';	
+}else{
+document.getElementById("dev_h").value=1;
+document.getElementById("dev_c").innerHTML='MODO DEVOLUCIÓN';	
+}
+
+	
+}
 

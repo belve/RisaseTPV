@@ -45,9 +45,9 @@ $idcapedir .=$row['id'] . ",";
 
 $idcapedir=substr($idcapedir,0,strlen($idcapedir)-1);
 
-$queryp= "select id_articulo from pedidos where id_tienda=$idt AND estado NOT LIKE 'F' AND id_articulo IN($idcapedir);";
+$queryp= "select id_articulo, id, estado from pedidos where id_tienda=$idt AND (estado NOT LIKE 'F') AND id_articulo IN($idcapedir);";
 $dbnivelAPP->query($queryp);
-while ($row = $dbnivelAPP->fetchassoc()){$yahechos[$row['id_articulo']]=1;};
+while ($row = $dbnivelAPP->fetchassoc()){$yahechos[$row['id_articulo']]=$row['id'];$estados[$row['id_articulo']]=$row['estado'];};
 
 if(count($artapedir)>0){
 foreach ($artapedir as $idar => $values) {if(!array_key_exists($idar, $yahechos)){
@@ -62,7 +62,7 @@ $subgrupo=$artapedir[$idar]['isg'];
 $codigo=$artapedir[$idar]['cod'];
 
 
-
+############ crea nuevo pedido 
 $queryp= "insert into pedidos (id_articulo,id_tienda,cantidad,tip,fecha,prov,grupo,subgrupo,codigo)
  values 
 ('$idar','$idt','$cantidad','2','$fecha','$prov','$grupo','$subgrupo','$codigo');";
@@ -70,7 +70,25 @@ $queryp= "insert into pedidos (id_articulo,id_tienda,cantidad,tip,fecha,prov,gru
 echo "Pedido articulo: $idar <br>";
 $dbnivelAPP->query($queryp);
 
-}}}
+
+}elseif($estados[$idar]=="-"){
+	
+$idpedidoup=$yahechos[$idar];
+############# actualiza pedido existente	
+
+$queryp= "select cantidad from repartir where id_tienda=$idt AND id_articulo='$idar';";
+$dbnivelAPP->query($queryp);
+while ($row = $dbnivelAPP->fetchassoc()){$cantidad=$row['cantidad'] - $stockdepedidos[$relcods[$idar]];};
+		
+$queryp= "UPDATE pedidos SET cantidad='$cantidad' WHERE id=$idpedidoup;";
+
+echo "Actualizado pedido de articulo: $idar <br>";
+$dbnivelAPP->query($queryp);		
+	
+}
+
+
+}}
 
 
 if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
