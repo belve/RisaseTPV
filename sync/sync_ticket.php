@@ -110,10 +110,10 @@ $dbnivel->query($queryp);
 foreach ($tickdone as $idhecho => $point){
 	
 $queryp= "delete from tickets where id_ticket='$idhecho';";
-#$dbnivel->query($queryp);	
+$dbnivel->query($queryp);	
 
 $queryp= "delete from ticket_det where id_ticket='$idhecho';";
-#$dbnivel->query($queryp);	
+$dbnivel->query($queryp);	
 
 echo "Procesado Ticket: $idhecho <br>";
 	
