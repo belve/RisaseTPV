@@ -12,6 +12,9 @@ $dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){$pedidoshago[$row['codbarras']]=1;$listahago.=$row['codbarras'] . ",";	
 };
 
+$queryp= "delete from pedidos;";
+$dbnivel->query($queryp);
+
 $listahago=substr($listahago,0,strlen($listahago)-1);
 
 $queryp= "select cod, stock from stocklocal where cod IN ($listahago);";
