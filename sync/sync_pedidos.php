@@ -52,6 +52,7 @@ while ($row = $dbnivelAPP->fetchassoc()){$yahechos[$row['id_articulo']]=$row['id
 if(count($artapedir)>0){
 foreach ($artapedir as $idar => $values) {if(!array_key_exists($idar, $yahechos)){
 
+$cantidad=0;
 $queryp= "select cantidad from repartir where id_tienda=$idt AND id_articulo='$idar';";
 $dbnivelAPP->query($queryp);
 while ($row = $dbnivelAPP->fetchassoc()){$cantidad=$row['cantidad'] - $stockdepedidos[$relcods[$idar]];};
