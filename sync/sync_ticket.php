@@ -5,7 +5,7 @@ $art="";$restos=array();$tickets=array();$pedir=array();$noconectado=0;$tickdone
 if (!$dbnivel->open()){die($dbnivel->error());};
 
 $queryp= "select * from tickets;";
-$dbnivel->query($queryp);
+$dbnivel->query($queryp); 
 while ($row = $dbnivel->fetchassoc()){
 $tickets[$row['id_ticket']]['emp']=$row['id_empleado'];
 $tickets[$row['id_ticket']]['dat']=$row['fecha'];
@@ -34,7 +34,9 @@ $articulos[$row['cod']]['a']=$row['alarma'];
 $articulos[$row['cod']]['c']=$row['congelado'];
 }
 
+#print_r($tickets);
 
+#print_r($articulos);
 
 
 
@@ -108,10 +110,10 @@ $dbnivel->query($queryp);
 foreach ($tickdone as $idhecho => $point){
 	
 $queryp= "delete from tickets where id_ticket='$idhecho';";
-$dbnivel->query($queryp);	
+#$dbnivel->query($queryp);	
 
 $queryp= "delete from ticket_det where id_ticket='$idhecho';";
-$dbnivel->query($queryp);	
+#$dbnivel->query($queryp);	
 
 echo "Procesado Ticket: $idhecho <br>";
 	

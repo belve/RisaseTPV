@@ -25,6 +25,20 @@ $queryp= "INSERT INTO tickets (id_ticket,id_tienda,id_empleado,fecha,importe,des
 $dbnivel->query($queryp);
 
 foreach ($detalle as $idart => $values) {
+	
+$check="";$codba="";
+
+
+
+$queryp= "select cod from stocklocal where cod = $idart;";
+$dbnivel->query($queryp); echo $queryp;
+while ($row = $dbnivel->fetchassoc()){$check=$row['cod'];};
+
+if(!$check){
+$queryp= "INSERT INTO stocklocal (cod,stock,alarma) values ($idart,0,0);";
+$dbnivel->query($queryp); echo $queryp;	
+}
+	
 $qty=$values['q']; $pvp=$values['p'];	
 $queryp= "INSERT INTO ticket_det (id_ticket,id_tienda,id_articulo,cantidad,importe) values ('$idt', '$id_tienda', '$idart', '$qty', '$pvp');";
 $dbnivel->query($queryp);
