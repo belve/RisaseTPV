@@ -64,13 +64,15 @@ $codigo=$artapedir[$idar]['cod'];
 
 
 ############ crea nuevo pedido 
+
+if($cantidad > 0){	
 $queryp= "insert into pedidos (id_articulo,id_tienda,cantidad,tip,fecha,prov,grupo,subgrupo,codigo)
  values 
 ('$idar','$idt','$cantidad','2','$fecha','$prov','$grupo','$subgrupo','$codigo');";
 
 echo "Pedido articulo: $idar <br>";
 $dbnivelAPP->query($queryp);
-
+}
 
 }elseif($estados[$idar]=="-"){
 	
