@@ -19,7 +19,7 @@
 
 require_once("../db.php");
 require_once("../variables.php");
-
+require_once("../functions/sync.php");
 
 
 include('sync_general.php');

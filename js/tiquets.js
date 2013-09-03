@@ -67,6 +67,24 @@ var tiq=getCookieT('tiq_'+current);
 var cod=document.getElementById('impCod').value;
 var mod=document.getElementById("dev_h").value;
 
+var check=0;
+if ((cod==10009999)||(cod==20009999)||(cod==30009999)||(cod==40009999)||(cod==50009999)||(cod==60009999)||(cod==70009999)||(cod==80009999)||(cod==90009999)){var check=1;
+if(document.getElementById("manual").style.visibility=='hidden'){
+document.getElementById("manual").style.visibility='visible';
+document.getElementById("manual_i").value='';
+document.getElementById("manual_i").select();
+}else{document.getElementById("manual").style.visibility='hidden';};	
+}
+
+
+
+
+
+
+if(document.getElementById("manual").style.visibility=='hidden'){
+var manual=document.getElementById("manual_i").value;
+document.getElementById("manual_i").value='';
+	
 if(tiq.length>0){var det=tiq.split('<>');}
 var repe=0;
 var total=0;
@@ -76,7 +94,7 @@ for (var i = 1; i < det.length; i++) {
 var deti=det[i];	
 var datos=deti.split('|');
 if(mod==1){var mas=-1;}else{var mas=1;};
-if(datos[0]==cod){var QTY=(datos[2]*1)+mas;var repe=1;}else{var QTY=datos[2]*1;};
+if((datos[0]==cod)&&(check==0)){var QTY=(datos[2]*1)+mas;var repe=1;}else{var QTY=datos[2]*1;};
 
 code=code + '<>' + datos[0] + '|' + datos[1] + '|' + QTY + '|' + datos[3];
 total=(total*1)+(datos[3]*QTY);
@@ -84,8 +102,12 @@ total=(total*1)+(datos[3]*QTY);
 
 }
 
+
+
 if(repe==0){
-var url='/ajax/addArticulo.php?cod=' + cod + '&mod=' + mod;
+var url='/ajax/addArticulo.php?cod=' + cod + '&mod=' + mod + '&manual=' + manual;
+
+
 $.getJSON(url, function(data) {
 $.each(data, function(key, val) {
 
@@ -105,6 +127,9 @@ tiq=code;
 setCookieT('tiq_'+ current,tiq,1);	
 showTicket();
 document.getElementById("impCod").select();
+}
+
+
 }
 
 
@@ -270,8 +295,8 @@ if(det){
 for (var i = 1; i < det.length; i++) {
 var deti=det[i];	
 var datos=deti.split('|');
-code=code + '&detTick[' + datos[0] + '][q]=' + datos[2] +
-			'&detTick[' + datos[0] + '][p]=' + datos[3]; 
+code=code + '&detTick[' + i + '][' + datos[0] + '][q]=' + datos[2] +
+			'&detTick[' + i + '][' + datos[0] + '][p]=' + datos[3]; 
 total=(total*1)+(datos[3]*datos[2]);			
 }}
 

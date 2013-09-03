@@ -1,6 +1,6 @@
 <?php
 
-if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;};
+if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;}; $hazpedidos=array();$tosync=array();
 
 $querys=array();$queryshechas=array(); $alarmas=array();
 $queryp= "select * from syncupdate where id_tiend=$id_tienda;";
@@ -46,13 +46,25 @@ while ($row = $dbnivel->fetchassoc()){$id=$row['id'];};
 
 if($id){
 $queryp= "update stocklocal set alarma=$alar where cod=$cod;";
-$dbnivel->query($queryp);
+$dbnivel->query($queryp);$tosync[]=$queryp;
 }else{
 $queryp= "INSERT INTO stocklocal (cod,alarma,stock) VALUES ($cod,$alar,0);";
-$dbnivel->query($queryp);	
+$dbnivel->query($queryp);	$tosync[]=$queryp;
 }
 
 }}
+
+
+$queryp= "select cod from stocklocal where stock <= alarma and cod not in(select distinct codbarras from pedidos);";
+$dbnivel->query($queryp);
+while ($row = $dbnivel->fetchassoc()){$hazpedidos[$row['cod']]=1;};
+
+if(count($hazpedidos)>0){foreach($hazpedidos as $codapedir => $point){
+$queryp= "INSERT INTO pedidos (codbarras) VALUES ($codapedir);";
+$dbnivel->query($queryp);	
+}}
+
+
 
 if (!$dbnivel->close()){die($dbnivel->error());};
 
@@ -75,6 +87,9 @@ $dbnivelAPP->query($queryp);
 
 if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
 
+if(count($tosync)>0){foreach ($tosync as $point => $sql){
+SyncModBD($sql,$id_tienda);
+}}
 
 
 ?>

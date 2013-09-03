@@ -13,6 +13,8 @@ $equiEST['T']="ENVIADO A TIENDAS";
 global $dbnivel; global $tiendas; global $dbnivelCR; global $dbnivelAPP;
 
 $dbnivelAPP=new DB('192.168.1.11','tpv','tpv','risase');
+$dbnivelBAK=new DB('192.168.1.11','tpv','tpv','tpv_backup');
+
 $dbnivel=new DB('localhost','tpv','tpv','RisaseTPV');
 
 

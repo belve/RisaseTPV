@@ -1,6 +1,6 @@
 <?php
 
-$art="";$restos=array();$tickets=array();$pedir=array();$noconectado=0;$tickdone=array();$articulos=array();
+$art="";$restos=array();$tickets=array();$pedir=array();$noconectado=0;$tickdone=array();$articulos=array();$tosync=array();
 
 if (!$dbnivel->open()){die($dbnivel->error());};
 
@@ -15,10 +15,10 @@ $tickets[$row['id_ticket']]['des']=$row['descuento'];
 };
 
 $queryp= "select id_ticket, id_articulo, cantidad, importe FROM ticket_det;";
-$dbnivel->query($queryp);
-while ($row = $dbnivel->fetchassoc()){
-$tickets[$row['id_ticket']]['det'][$row['id_articulo']]['qty']=$row['cantidad'];
-$tickets[$row['id_ticket']]['det'][$row['id_articulo']]['imp']=$row['importe'];
+$dbnivel->query($queryp);$count=0;
+while ($row = $dbnivel->fetchassoc()){$count++;
+$tickets[$row['id_ticket']]['det'][$count][$row['id_articulo']]['qty']=$row['cantidad'];
+$tickets[$row['id_ticket']]['det'][$count][$row['id_articulo']]['imp']=$row['importe'];
 $art .=$row['id_articulo'] . ",";
 
 if(!array_key_exists($row['id_articulo'], $restos)){$restos[$row['id_articulo']]=0;};
@@ -66,7 +66,7 @@ while ($row = $dbnivelAPP->fetchassoc()){$tickdone[$row['id_ticket']]=1;};
 
 if(count($tickdone)>0){
 foreach ($tickdone as $idhecho => $point){
-foreach ($tickets[$idhecho]['det'] as $codidbar => $datos){
+foreach ($tickets[$idhecho]['det'] as $pint => $detallin){foreach($detallin as $codidbar => $datos){
 
 $catidad=$datos['qty'];
 $importe=$datos['imp'];
@@ -75,7 +75,8 @@ $queryp= "insert into ticket_det (id_tienda, id_ticket, id_articulo, cantidad, i
 $dbnivelAPP->query($queryp);
 		
 	
-}
+}}
+
 }}
 
 
@@ -102,7 +103,8 @@ $dbnivel->query($queryp);
 } #genera pedido
 
 $queryp= "update stocklocal set stock=stock - $resto where cod=$codbar;";
-$dbnivel->query($queryp);
+$dbnivel->query($queryp); $tosync[]=$queryp;
+
 }
 	
 
@@ -122,4 +124,11 @@ echo "Procesado Ticket: $idhecho <br>";
 	
 
 if (!$dbnivel->close()){die($dbnivel->error());};
+
+
+if(count($tosync)>0){foreach ($tosync as $point => $sql){
+SyncModBD($sql,$id_tienda);
+}}
+
+
 ?>

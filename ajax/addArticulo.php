@@ -32,6 +32,9 @@ if($row['pvp']>0) $pvp=$row['pvp'];
 
 if($mod==1){$sumo=-1;}else{$sumo=1;};
 
+
+if($manual>0){$manual=str_replace(',','.',$manual);$pvp=$manual;};
+
 if($codbarras){$datos[]="<>$codbarras|$refprov|$sumo|$pvp";}else{$datos[]="error";};
 
 

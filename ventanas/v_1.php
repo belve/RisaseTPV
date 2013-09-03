@@ -189,6 +189,18 @@ F12 Descuento <br>
 </div>
 
 
+<div id="manual" style="visibility: hidden;">
+<div style=" background-color: #C8C8C8;    height: 341px;    left: 0px;    opacity: 0.6;    position: absolute;    top: 0px;    width: 476px;"></div>
+<div style="background-color: #cccccc;    height: 36px;    left: 93px;    padding: 35px;    position: absolute;    top: 84px;    width: 150px; border: 1px solid #666666;">
+
+
+<div class="emple">Importe:</div><input type="text" class="impCod2" id="manual_i" style="width:40px; background-color: white; color:#333333; cursor: pointer;"; onsubmit ="javascript:descount();">	
+<div style="clear:both;"></div>
+
+
+</div>	
+</div>
+
 
 
 

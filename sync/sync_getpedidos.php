@@ -1,6 +1,6 @@
 <?php
 
-if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;};
+if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;};$tosync=array();
 
 $getped=array();$pedfin=array();
 
@@ -38,10 +38,10 @@ while ($row = $dbnivel->fetchassoc()){$idstl=$row['id'];};
 		
 if($idstl){			
 $queryp= "update stocklocal set stock=stock+$qty where id=$idstl;";
-$dbnivel->query($queryp);		
+$dbnivel->query($queryp);	$tosync[]=$queryp;
 }else{
 $queryp= "insert into stocklocal (cod,stock,alarma) values ('$cod','$qty','$alm');";
-$dbnivel->query($queryp);	
+$dbnivel->query($queryp);	$tosync[]=$queryp;
 }
 
 $queryp= "delete from pedidos where codbarras=$cod;";
@@ -87,6 +87,9 @@ $dbnivelAPP->query($queryp);
 if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
 
 
+if(count($tosync)>0){foreach ($tosync as $point => $sql){
+SyncModBD($sql,$id_tienda);
+}}
 
 
 
