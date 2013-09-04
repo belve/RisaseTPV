@@ -3,7 +3,7 @@ foreach($_GET as $nombre_campo => $valor){  $asignacion = "\$" . $nombre_campo .
 require_once("../db.php");
 require_once("../variables.php");
 
-
+$manual=str_replace('-','',$manual);
 
 if (!$dbnivel->open()){die($dbnivel->error());};
 
