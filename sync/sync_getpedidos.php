@@ -56,8 +56,7 @@ $pedfin[$id]=$agr;
 
 }
 }
-
-
+print_r($tosync);
 
 if (!$dbnivel->close()){die($dbnivel->error());};
 
