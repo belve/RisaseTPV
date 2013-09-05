@@ -20,7 +20,10 @@
 
 <?php
 require_once("../db.php");
-require_once("../variables.php");
+
+$dbnivelAPP=new DB('192.168.1.11','tpv','tpv','risase');
+$dbnivelBAK=new DB('192.168.1.11','tpv','tpv','tpv_backup');
+$dbnivel=new DB('localhost','tpv','tpv','RisaseTPV');
 
 
 $lineas=file("../sql/createDB.sql");
@@ -46,6 +49,8 @@ if (!$dbnivelAPP->open()){die($dbnivelAPP->error());};
 $queryp= "select id from tiendas where id_tienda = '$tienda';";
 $dbnivelAPP->query($queryp);
 while ($row = $dbnivelAPP->fetchassoc()){$idt=$row['id'];};
+
+
 
 $queryp= "select * from colores;";
 $dbnivelAPP->query($queryp);$colstr="";
@@ -110,6 +115,8 @@ echo "<div>idt: $idt </div>";
 
 if (!$dbnivel->open()){die($dbnivel->error());};
 
+
+
 $queryp= "INSERT INTO colores (id,nombre) VALUES $colstr;";
 $dbnivel->query($queryp);
 echo "<div>Tabla:\t\t Colores \t\t 100%</div>";
@@ -131,7 +138,7 @@ $queryp= "INSERT INTO proveedores (id,nombre,cif,direccion,cp,poblacion,provinci
 $dbnivel->query($queryp);
 echo "<div>Tabla:\t\t Proveedores \t\t 100%</div>";
 
-$queryp= "INSERT INTO config (var,value) VALUES ('id_tienda','$idt'), ('id_nom_tienda','$tienda');";
+$queryp= "INSERT INTO config (var,value) VALUES ('id_tienda','$idt'), ('id_nom_tienda','$tienda'), ('max_dec','25');";
 $dbnivel->query($queryp);
 
 
@@ -149,9 +156,9 @@ if (!$dbnivel->close()){die($dbnivel->error());};
 ?>
 
 
-<div>Tabla: Articulos <div id="art"></div></div>
+<div>Tabla: Articulos <div id="art"></div></div><input type="hidden" id="restart" value="10">
 
-
+<div>Tabla: stocklocal <div id="stl"></div></div><input type="hidden" id="reststl" value="0">
 
 
 <script>
@@ -161,30 +168,57 @@ if (!$dbnivel->close()){die($dbnivel->error());};
 
 
 function artic(){
+	
 var func='artic();'
 $.ajaxSetup({'async': false});
+
 $.getJSON('importart.php', function(data) {
 $.each(data, function(key, val) {
-if(key==1){
-document.getElementById('art').innerHTML=val;
-}	
-if(key==2){var tot=val; tot++;};
-
-if(key==4){if(val=='fin'){
-var func='mdb();'
-	}
-}
-
-});
-});
-
-setTimeout(func, 1500); 	
-}
-
-
-
-function mdb(){
 	
+if(key==1){document.getElementById('art').innerHTML=val;}	
+if(key==2){var tot=val; tot++;};
+if(key==4){var resto=val; document.getElementById('restart').value=resto;}
+
+
+});
+});
+
+
+if( document.getElementById('restart').value<=0 ){ var func='stl();' }
+
+setTimeout(func, 1500);	
+}
+
+
+
+function stl(){
+
+	
+var func='stl();'
+$.ajaxSetup({'async': false});
+
+$.getJSON('importstl.php?idt=<?php echo $idt;?>', function(data) {
+$.each(data, function(key, val) {
+	
+if(key==1){document.getElementById('stl').innerHTML=val;}	
+if(key==2){var tot=val; tot++;};
+if(key==4){var resto=val; document.getElementById('reststl').value=resto;}
+
+
+});
+});
+
+
+if( document.getElementById('reststl').value<=0 ){ var func='fin();' }
+
+setTimeout(func, 1500);	
+
+
+
+}
+
+function fin(){
+alert('finalizado');
 }
 
 

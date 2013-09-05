@@ -102,8 +102,23 @@ $queryp= "insert into pedidos (codbarras) values ('$codbar');";
 $dbnivel->query($queryp);		
 } #genera pedido
 
+
+
+$idstl="";
+$queryp= "select id from stocklocal where cod=$codbar ";
+$dbnivel->query($queryp);
+while ($row = $dbnivel->fetchassoc()){$idstl=$row['id'];};
+		
+if($idstl){			
 $queryp= "update stocklocal set stock=stock - $resto where cod=$codbar;";
-$dbnivel->query($queryp); $tosync[]=$queryp;
+$dbnivel->query($queryp);	$tosync[]=$queryp;
+}else{
+$resto=$resto * (-1);
+$queryp= "insert into stocklocal (cod,stock,alarma) values ('$codbar','$resto','0');";
+$dbnivel->query($queryp);	$tosync[]=$queryp;
+}
+
+
 
 }
 	

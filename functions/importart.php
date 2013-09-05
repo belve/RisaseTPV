@@ -6,6 +6,8 @@ foreach($_GET as $nombre_campo => $valor){  $asignacion = "\$" . $nombre_campo .
 require_once("../db.php");
 require_once("../variables.php");
 
+
+
 if (!$dbnivel->open()){die($dbnivel->error());};
 $queryp= "SELECT max(id) as point from articulos;";
 $dbnivel->query($queryp);
@@ -78,6 +80,6 @@ if (!$dbnivel->close()){die($dbnivel->error());};
 $valores[1]="$point de $total";
 $valores[2]=$total;
 $valores[3]=$point;
-
+$valores[4]=$total - $point;
 echo json_encode($valores);
 ?>

@@ -138,7 +138,13 @@ if(document.getElementById("cobrador").style.visibility=='visible'){cobro_hide()
 else if
 (document.getElementById("descuento").style.visibility=='visible'){
 document.getElementById("descuento").style.visibility='hidden';
-}else{delTicket();};
+}else if
+(document.getElementById("manual").style.visibility=='visible'){
+document.getElementById("manual").style.visibility='hidden';
+document.getElementById("manual_i").value='';
+document.getElementById("impCod").select();
+}
+else{delTicket();};
 
 document.getElementById("descount_H").value='';
 document.getElementById("descount").value='';

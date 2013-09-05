@@ -2,6 +2,7 @@
 foreach($_GET as $nombre_campo => $valor){  $asignacion = "\$" . $nombre_campo . "='" . $valor . "';";   eval($asignacion);};
 require_once("../db.php");
 require_once("../variables.php");
+require_once("../functions/sync.php");
 
 if (!$dbnivel->open()){die($dbnivel->error());};
 $queryp= "select var, value from config";
@@ -13,6 +14,7 @@ $detalle=$_GET['detTick'];
 $idemp=$_GET['emp'];
 $total=$_GET['total'];
 $desc=$_GET['desc'];
+$tosync=array();
 
 $fecha=date('Y') . "-" . date('m') . "-" . date('d');
 
@@ -36,7 +38,7 @@ while ($row = $dbnivel->fetchassoc()){$check=$row['cod'];};
 
 if(!$check){
 $queryp= "INSERT INTO stocklocal (cod,stock,alarma) values ($idart,0,0);";
-$dbnivel->query($queryp); echo $queryp;	
+$dbnivel->query($queryp); echo $queryp;	$tosync[]=$queryp;
 }
 	
 $qty=$values['q']; $pvp=$values['p'];	
@@ -51,7 +53,9 @@ $dbnivel->query($queryp);
 
 if (!$dbnivel->close()){die($dbnivel->error());};
 
-
+if(count($tosync)>0){foreach ($tosync as $point => $sql){
+SyncModBD($sql,$id_tienda);
+}}
 #echo json_encode($datos);
 
 ?>

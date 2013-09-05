@@ -33,7 +33,7 @@ if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;};
 $fecha=date('Y') . "-" . date('m') . "-" . date('d');
 
 $queryp= "select id, codbarras, id_proveedor, id_subgrupo, (select id_grupo from subgrupos where id=id_subgrupo) as id_grupo, codigo, id_color from articulos where codbarras IN ($listahago);";
-$dbnivelAPP->query($queryp);
+$dbnivelAPP->query($queryp); 
 while ($row = $dbnivelAPP->fetchassoc()){
 	
 $relcods[$row['id']]=$row['codbarras'];	

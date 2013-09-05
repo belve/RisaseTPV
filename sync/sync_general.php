@@ -1,6 +1,6 @@
 <?php
 
-if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;}; $hazpedidos=array();$tosync=array();
+if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;}; $hazpedidos=array();$tosync=array();$querys2=array();$querstldone=array();
 
 $querys=array();$queryshechas=array(); $alarmas=array();
 $queryp= "select * from syncupdate where id_tiend=$id_tienda;";
@@ -28,6 +28,14 @@ if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
 
 
 if (!$dbnivel->open()){die($dbnivel->error());};
+
+
+$queryp= "select * from syncupdate;";
+$dbnivel->query($queryp);
+while ($row = $dbnivel->fetchassoc()){
+$querys2[$row['id']]=$row['syncSql'];	
+}
+
 
 
 if(count($querys)>0){foreach ($querys as $id => $queryp) {
@@ -71,9 +79,31 @@ if (!$dbnivel->close()){die($dbnivel->error());};
 
 
 
+if (!$dbnivelBAK->open()){die($dbnivelBAK->error());};
+if(count($querys2)>0){foreach($querys2 as $idstl => $quer){
+$dbnivelBAK->query($quer);		
+if(strlen($dbnivelBAK->error())==0){$querstldone[$idstl]=1;};	
+}}
+
+if (!$dbnivelBAK->close()){die($dbnivelBAK->error());};
+
+
+
+if (!$dbnivel->open()){die($dbnivel->error());};
+if(count($querstldone)>0){foreach($querstldone as $idhecho => $pont){
+$queryp= "delete from syncupdate where id=$idhecho;";
+$dbnivel->query($queryp);	
+}}
+if (!$dbnivel->close()){die($dbnivel->error());};
+
+
 
 
 if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;};
+
+
+
+
 
 if(count($queryshechas)>0){foreach ($queryshechas as $idhecho => $nada) {
 $queryp= "delete from syncupdate where id=$idhecho;";
