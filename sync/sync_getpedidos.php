@@ -37,7 +37,7 @@ $dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){$idstl=$row['id'];};
 		
 if($idstl){			
-$queryp= "update stocklocal set stock=stock+$qty where id=$idstl;";
+$queryp= "update stocklocal set stock=stock+$qty where cod=$cod;";
 $dbnivel->query($queryp);	$tosync[]=$queryp;
 }else{
 $queryp= "insert into stocklocal (cod,stock,alarma) values ('$cod','$qty','$alm');";
@@ -56,7 +56,7 @@ $pedfin[$id]=$agr;
 
 }
 }
-print_r($tosync);
+
 
 if (!$dbnivel->close()){die($dbnivel->error());};
 
