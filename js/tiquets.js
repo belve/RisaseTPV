@@ -94,7 +94,7 @@ for (var i = 1; i < det.length; i++) {
 var deti=det[i];	
 var datos=deti.split('|');
 if(mod==1){var mas=-1;}else{var mas=1;};
-if((datos[0]==cod)&&(check==0)){var QTY=(datos[2]*1)+mas;var repe=1;}else{var QTY=datos[2]*1;};
+if((datos[0]==cod)&&(check==0)&&(mod!=1)&&(datos[2]>0)){var QTY=(datos[2]*1)+mas;var repe=1;}else{var QTY=datos[2]*1;};
 
 code=code + '<>' + datos[0] + '|' + datos[1] + '|' + QTY + '|' + datos[3];
 total=(total*1)+(datos[3]*QTY);

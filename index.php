@@ -116,7 +116,7 @@
     
     <li><a>Comprobar</a>
     	<ul class="submenu">
-        	<li onclick="javascript:owin('v_10','------','');"><a>------</a></li>
+        	<li onclick="javascript:owin('v_2','Roturas/Devoluciones','');"><a>Roturas/Devoluciones</a></li>
         	
         </ul>
     	
