@@ -53,38 +53,46 @@
 
 
 <div class="emple wA">Código</div>
-<div class="emple2" id="emple" style="margin-left: 0px;"><input type="text" class="impCod" id="impCod" onFocus="this.select()"></div>
+<div class="emple2" id="emple" style="margin-left: 0px;"><input type="text" class="impCod" id="impCodA" onFocus="this.select()"></div>
 
 <div style="clear:both;"></div>
 <div class="emple wA">Grupo</div>
-<div class="emple2" id="emple">BISUTERIA</div>
+<div class="emple2" id="3"></div>
 
 <div style="clear:both;"></div>
 <div class="emple wA">Subgrupo</div>
-<div class="emple2" id="emple">ANILLOS</div>
+<div class="emple2" id="4"></div>
 
 <div style="clear:both;"></div>
 <div class="emple wA">Color</div>
-<div class="emple2" id="emple">GENERICO</div>
+<div class="emple2" id="5"></div>
 
 
 <div style="clear:both;"></div>
 <div class="emple wA">Stock</div>
-<div class="emple2" id="emple">5</div>
+<div class="emple2" id="10"></div>
 
 
 
 <div style="clear:both;"></div>
 <div class="emple wA">Stock mín</div>
-<div class="emple2" id="emple">3</div>
+<div class="emple2" id="11"></div>
 
 
 <div style="clear:both;"></div>
 <div class="emple wA">PVP</div>
-<div class="emple2" id="emple">4.2</div>
+<div class="emple2" id="16"></div>
+
+<div style="clear:both;"></div>
+<div id="18" class="detycomen"></div>
+
+<div style="clear:both;"></div>
+<div id="19" class="detycomen"></div>
 
 
-<div class="photo"></div>
+<div class="photo">
+	<img src="" id="foto" style="max-height:205px; max-width: 273px; margin:1px; ">
+</div>
 
 
 
