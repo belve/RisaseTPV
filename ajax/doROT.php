@@ -19,6 +19,11 @@ foreach ($detalle as $key => $values) {foreach ($values as $codbarras => $val){
 $qty=$val['q'];$mod=$val['m'];
 $queryp= "INSERT INTO roturas (codbarras,qty,modo) values ('$codbarras','$qty','$mod');";
 $dbnivel->query($queryp);	
+
+$queryp= "UPDATE stocklocal SET stock=stock - $qty where cod=$codbarras;";
+$dbnivel->query($queryp);	
+	
+
 		
 }}}
 

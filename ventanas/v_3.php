@@ -84,7 +84,7 @@
 <div class="emple2" id="emple">4.2</div>
 
 
-
+<div class="photo"></div>
 
 
 
