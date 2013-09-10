@@ -1,5 +1,6 @@
 <?php
 $querys2=array();$queryshechas=array();
+$fecha=date('Y') . "-" . date('m') . "-" . date('d');
 
 if (!$dbnivel->open()){die($dbnivel->error());};
 
@@ -24,7 +25,7 @@ $codbarras=$valores['c'];
 $qty=$valores['q'];
 $modo=$valores['m'];		
 
-$queryp= "INSERT INTO roturas (id_tienda,codbarras,modo,qty) VALUES ('$id_tienda', '$codbarras', '$modo', '$qty');";
+$queryp= "INSERT INTO roturas (id_tienda,codbarras,modo,qty,fecha) VALUES ('$id_tienda', '$codbarras', '$modo', '$qty','$fecha');";
 $dbnivelAPP->query($queryp);	
 if(strlen($dbnivelAPP->error())==0){$queryshechas[$idq]=1;};	
 
