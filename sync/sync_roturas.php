@@ -27,7 +27,7 @@ $modo=$valores['m'];
 
 $do=1;
 if($modo=="D"){
-$queryp= "UPDATE articulos SET stock=stock - $qty where codbarras=$codbarras;";
+$queryp= "UPDATE articulos SET stock=stock + $qty where codbarras=$codbarras;";
 $dbnivelAPP->query($queryp);	
 if(strlen($dbnivelAPP->error())!=0){$do="";};	
 }
