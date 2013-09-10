@@ -25,9 +25,18 @@ $codbarras=$valores['c'];
 $qty=$valores['q'];
 $modo=$valores['m'];		
 
+$do=1;
+if($modo=="D"){
+$queryp= "UPDATE articulos SET stock=stock - $qty where codbarras=$codbarras;";
+$dbnivelAPP->query($queryp);	
+if(strlen($dbnivelAPP->error())!=0){$do="";};	
+}
+
+if($do){
 $queryp= "INSERT INTO roturas (id_tienda,codbarras,modo,qty,fecha) VALUES ('$id_tienda', '$codbarras', '$modo', '$qty','$fecha');";
 $dbnivelAPP->query($queryp);	
 if(strlen($dbnivelAPP->error())==0){$queryshechas[$idq]=1;};	
+}
 
 }}
 if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
