@@ -26,8 +26,6 @@ $qty=$valores['q'];
 $modo=$valores['m'];		
 
 
-
-
 $queryp= "INSERT INTO roturas (id_tienda,codbarras,modo,qty,fecha) VALUES ('$id_tienda', '$codbarras', '$modo', '$qty','$fecha');";
 $dbnivelAPP->query($queryp);	
 if(strlen($dbnivelAPP->error())==0){$queryshechas[$idq]=1;};	
