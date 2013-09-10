@@ -67,13 +67,14 @@ if($row['pvp']>0) $valores[16]=$row['pvp'];
 };
 
 if($id){
+	
 $queryp= "select pvp from rebajas where id_articulo=$id AND fecha_ini <= '$hoy' AND fecha_fin >= '$hoy';";
 $dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){
 if($row['pvp']>0) $valores[16]=$row['pvp'];	
 }
 
-};
+
 
 
 
@@ -96,11 +97,13 @@ $valores['opciones'].="$fot <br>";
 	
 }}
 
-
+}else{
+$valores['error']=1;
+}
 
 if (!$dbnivel->close()){die($dbnivel->error());};
 
-if(!array_key_exists(1, $valores)){$valores['error']=1;};
+
 
 echo json_encode($valores);
 
