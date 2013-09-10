@@ -130,7 +130,7 @@
 
 <div style="clear:both;"></div>	
 <div style="float:left">
-<iframe id="detRotura" src="/ajax/det_devolucion.php" width="238" height="290" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>
+<iframe id="detRotura" src="/ajax/det_devolucion.php" width="238" height="245" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>
 </div>
 
 

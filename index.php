@@ -156,7 +156,7 @@
 
 
 
-<iframe style="position: absolute; top:452px; " id="syncro" src="/sync/autoSync.php" width="0" height="0" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>
+<iframe style="position: absolute; top:452px; " id="syncro" src="/sync/autoSync.php" width="50" height="50" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>
 
 
 
