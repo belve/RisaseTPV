@@ -122,7 +122,7 @@
 
 <div class="cabDEV">
 	<div class="cabtab_DEV nom_tab_emp">Código</div>
-	<div class="cabtab_DEV ap1_tab_DEV">Qty</div>
+	<div class="cabtab_DEV ap1_tab_DEV">Can</div>
 	<div class="cabtab_DEV ap2_tab_DEV">R/D</div>
 	
 	
@@ -130,7 +130,7 @@
 
 <div style="clear:both;"></div>	
 <div style="float:left">
-<iframe id="detRotura" src="/ajax/det_devolucion.php" width="238" height="320" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>
+<iframe id="detRotura" src="/ajax/det_devolucion.php" width="238" height="290" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>
 </div>
 
 

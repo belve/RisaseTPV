@@ -110,14 +110,14 @@
 		<ul class="submenu">
         	
         	 <li onclick="javascript:owin('v_1','Venta de Artículos','');"><a>Venta de Artículos</a></li>
-        	 
+        	 <li onclick="javascript:owin('v_2','Roturas/Devoluciones','');"><a>Roturas/Devoluciones</a></li>
         </ul>
 	</li>
     
     <li><a>Comprobar</a>
     	<ul class="submenu">
-        	<li onclick="javascript:owin('v_2','Roturas/Devoluciones','');"><a>Roturas/Devoluciones</a></li>
         	
+        	<li onclick="javascript:owin('v_3','Comprobar Artículo','');"><a>Comprobar Artículo</a></li>
         </ul>
     	
     </li>
@@ -156,7 +156,7 @@
 
 
 
-<iframe style="position: absolute; top:452px; " id="syncro" src="/sync/autoSync.php" width="364" height="230" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>
+<iframe style="position: absolute; top:452px; " id="syncro" src="/sync/autoSync.php" width="0" height="0" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>
 
 
 
