@@ -1,5 +1,5 @@
 <?php
-$valores=array();$id="";
+$valores=array();$id="";$valores['opciones']="";
 
 foreach($_GET as $nombre_campo => $valor){  $asignacion = "\$" . $nombre_campo . "='" . $valor . "';";   eval($asignacion);};
 require_once("../db.php");
@@ -79,9 +79,22 @@ if($row['pvp']>0) $valores[16]=$row['pvp'];
 
 
 $file = fopen ("http://192.168.1.11/ajax/getimage.php?codbarras=$codbarras", "r");
-while (!feof ($file)) { $valores['foto'] = fgets ($file, 1024);};
+while (!feof ($file)) { $fotos = fgets ($file, 1024);};
 fclose($file);
 
+$afotos=json_decode($fotos);
+
+if(array_key_exists(0, $afotos)){
+$valores['foto']=str_replace($pathimages, $urlimages, $afotos[0]);
+}else{
+$valores['foto']= $urlimages . "nodisp.jpg";	
+}
+
+
+if(count($afotos)>0){foreach($afotos as $noot => $fot){
+$valores['opciones'].="$fot <br>";
+	
+}}
 
 
 

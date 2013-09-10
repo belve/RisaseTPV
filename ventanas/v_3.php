@@ -92,6 +92,7 @@
 
 <div class="photo">
 	<img src="" id="foto" style="max-height:205px; max-width: 273px; margin:1px; ">
+	<div id="opciones"></div>
 </div>
 
 
