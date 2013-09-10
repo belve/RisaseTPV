@@ -21,7 +21,7 @@ $queryp= "INSERT INTO roturas (codbarras,qty,modo) values ('$codbarras','$qty','
 $dbnivel->query($queryp);	
 
 $queryp= "UPDATE stocklocal SET stock=stock - $qty where cod=$codbarras;";
-$dbnivel->query($queryp);	
+$dbnivel->query($queryp);	$tosync[]=$queryp;
 	
 
 		
@@ -30,7 +30,9 @@ $dbnivel->query($queryp);
 
 if (!$dbnivel->close()){die($dbnivel->error());};
 
-
+if(count($tosync)>0){foreach ($tosync as $point => $sql){
+SyncModBD($sql,$id_tienda);
+}}
 #echo json_encode($datos);
 
 ?>
