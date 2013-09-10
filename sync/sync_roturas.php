@@ -15,7 +15,7 @@ $querys2[$row['id']]['m']=$row['modo'];
 if (!$dbnivel->close()){die($dbnivel->error());};
 
 
-print_r($querys2);
+
 
 if (!$dbnivelAPP->open()){die($dbnivelAPP->error());};
 
@@ -31,7 +31,7 @@ if(strlen($dbnivelAPP->error())==0){$queryshechas[$idq]=1;};
 }}
 if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
 
-print_r($queryshechas);
+
 
 
 
