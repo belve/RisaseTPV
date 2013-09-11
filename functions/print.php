@@ -70,7 +70,7 @@ $ticket.="                      Descuento:$descuento%$idesc\n";
 
 $ticket.="\n";
 
-
+$total=number_format($total, 2);
 
 $s=$espacios[7-strlen($total)]; $total=$s . $total;
 
