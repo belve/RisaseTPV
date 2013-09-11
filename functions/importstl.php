@@ -25,7 +25,7 @@ if (!$dbnivelBAK->open()){die($dbnivelBAK->error());};
 
 
 
-$queryp= "select count(id) as total from stocklocal_$idt;";
+$queryp= "select max(id) as total from stocklocal_$idt;";
 $dbnivelBAK->query($queryp);
 while ($row = $dbnivelBAK->fetchassoc()){$total=$row['total'];};
 
@@ -33,7 +33,7 @@ while ($row = $dbnivelBAK->fetchassoc()){$total=$row['total'];};
 if($point < $total){
 	
 $values="";
-$queryp= "select * from stocklocal_$idt where id >= $point limit 50000;";
+$queryp= "select * from stocklocal_$idt where id >= $point limit 5000;";
 $dbnivelBAK->query($queryp);
 while ($row = $dbnivelBAK->fetchassoc()){
 
