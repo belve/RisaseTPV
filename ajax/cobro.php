@@ -3,6 +3,7 @@ foreach($_GET as $nombre_campo => $valor){  $asignacion = "\$" . $nombre_campo .
 require_once("../db.php");
 require_once("../variables.php");
 require_once("../functions/sync.php");
+require_once("../functions/print.php");
 
 if (!$dbnivel->open()){die($dbnivel->error());};
 $queryp= "select var, value from config";
@@ -44,19 +45,39 @@ $dbnivel->query($queryp); echo $queryp;	$tosync[]=$queryp;
 $qty=$values['q']; $pvp=$values['p'];	
 $queryp= "INSERT INTO ticket_det (id_ticket,id_tienda,id_articulo,cantidad,importe) values ('$idt', '$id_tienda', '$idart', '$qty', '$pvp');";
 $dbnivel->query($queryp);
-	
+
+$grup=substr($idart, 1,1);
+$subgru=substr($idart, 1,1);
+
+$queryp= "select nombre from subgrupos where id_grupo = $grup AND clave=$subgru;";
+$dbnivel->query($queryp); echo $queryp;
+while ($row = $dbnivel->fetchassoc()){$ngru=$row['nombre'];};
+
+global $id_tienda;
+$tifprint[$point][$idart]['n']=$ngru;
+$tifprint[$point][$idart]['q']=$qty;
+$tifprint[$point][$idart]['p']=$pvp;
+$tifprint[$point][$idart]['t']=$total;
+$tifprint[$point][$idart]['d']=$desc;
 }}
 
 
 
 
+$queryp= "select ciudad, direccion from tiendas where id=$id_tienda;";
+$dbnivel->query($queryp);
+while ($row = $dbnivel->fetchassoc()){$nt=$row['ciudad']; $dr=$row['direccion'];};
+
+ticket($tifprint,$nt,$dr,$id_tienda);
 
 if (!$dbnivel->close()){die($dbnivel->error());};
 
 if(count($tosync)>0){foreach ($tosync as $point => $sql){
 SyncModBD($sql,$id_tienda);
 }}
-#echo json_encode($datos);
+
+
+
 
 ?>
 
