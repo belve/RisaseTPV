@@ -79,7 +79,7 @@ CREATE TABLE `config` (
   `var` varchar(255) DEFAULT NULL,
   `value` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `empleados` */
 
@@ -175,7 +175,7 @@ CREATE TABLE `stocklocal` (
   `pvp` decimal(8,2) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cod` (`cod`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `subgrupos` */
 
@@ -197,7 +197,7 @@ CREATE TABLE `syncupdate` (
   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
   `syncSql` longtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `ticket_det` */
 
@@ -214,7 +214,7 @@ CREATE TABLE `ticket_det` (
   KEY `id_tienda` (`id_tienda`),
   KEY `id_ticket` (`id_ticket`),
   KEY `id_articulo` (`id_articulo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `tickets` */
 
@@ -233,7 +233,7 @@ CREATE TABLE `tickets` (
   KEY `id_ticket` (`id_ticket`),
   KEY `id_empleado` (`id_empleado`),
   KEY `fecha` (`fecha`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `tiendas` */
 
@@ -256,7 +256,7 @@ CREATE TABLE `tiendas` (
   KEY `activa` (`activa`),
   KEY `orden` (`orden`),
   KEY `id_tienda` (`id_tienda`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

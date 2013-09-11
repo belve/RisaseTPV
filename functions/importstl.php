@@ -33,7 +33,7 @@ while ($row = $dbnivelBAK->fetchassoc()){$total=$row['total'];};
 if($point < $total){
 	
 $values="";
-$queryp= "select * from stocklocal_$idt where id >= $point limit 500;";
+$queryp= "select * from stocklocal_$idt where id >= $point limit 50000;";
 $dbnivelBAK->query($queryp);
 while ($row = $dbnivelBAK->fetchassoc()){
 

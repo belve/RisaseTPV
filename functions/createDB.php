@@ -108,6 +108,32 @@ $prov=substr($prov, 0,strlen($prov)-1);
 
 
 
+
+$queryp= "select * from tiendas;";
+$dbnivelAPP->query($queryp);$tiendas="";
+while ($row = $dbnivelAPP->fetchassoc()){
+$id=$row['id'];
+$id_tienda=$row['id_tienda'];
+$nombre=$row['nombre'];
+$cp=$row['cp'];
+$direccion=$row['direccion'];
+$poblacion=$row['poblacion'];
+$ciudad=$row['ciudad'];
+$provincia=$row['provincia'];	
+$telefono=$row['telefono'];		
+$telefonoConex=$row['telefonoConex'];	
+$activa=$row['activa'];	
+$orden=$row['orden'];	
+
+
+
+$tiendas .= "('$id','$id_tienda','$nombre','$cp','$direccion','$poblacion','$ciudad','$provincia','$telefono','$telefonoConex','$activa','$orden'),";};
+$tiendas=substr($tiendas, 0,strlen($tiendas)-1);
+
+
+
+
+
 if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
 
 
@@ -137,6 +163,15 @@ echo "<div>Tabla:\t\t Empleados \t\t 100%</div>";
 $queryp= "INSERT INTO proveedores (id,nombre,cif,direccion,cp,poblacion,provincia,contacto,telefono,fax,email,dto1,dto2,iva,nomcorto) VALUES $prov;";
 $dbnivel->query($queryp);
 echo "<div>Tabla:\t\t Proveedores \t\t 100%</div>";
+
+$queryp= "INSERT INTO tiendas (id,id_tienda,nombre,cp,direccion,poblacion,ciudad,provincia,telefono,telefonoConex,activa,orden) VALUES $tiendas;";
+$dbnivel->query($queryp);
+echo "<div>Tabla:\t\t Tiendas \t\t 100%</div>";
+
+
+
+
+
 
 $queryp= "INSERT INTO config (var,value) VALUES ('id_tienda','$idt'), ('id_nom_tienda','$tienda'), ('max_dec','25');";
 $dbnivel->query($queryp);

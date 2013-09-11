@@ -30,7 +30,7 @@ while ($row = $dbnivelAPP->fetchassoc()){$total=$row['total'];};
 if($point < $total){
 	
 $values="";
-$queryp= "select * from articulos where id >= $point ORDER BY id ASC limit 500;";
+$queryp= "select * from articulos where id >= $point ORDER BY id ASC limit 5000;";
 $dbnivelAPP->query($queryp);
 while ($row = $dbnivelAPP->fetchassoc()){
 

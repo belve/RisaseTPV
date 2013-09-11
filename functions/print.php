@@ -17,9 +17,13 @@ $espacios[7] ="       ";
 $espacios[8] ="        ";
 $espacios[9] ="         ";
 $espacios[10]="          ";
-
-
-
+$espacios[11]="           ";
+$espacios[12]="            ";
+$espacios[13]="             ";
+$espacios[14]="              ";
+$espacios[15]="               ";
+$espacios[16]="                ";
+$espacios[17]="                 ";
 
 $fecha=date('d') . "/" . date('m') . "/" . date('Y');
 $ticket ="RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
