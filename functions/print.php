@@ -78,9 +78,12 @@ $ticket.="I.V.A. Incluido        Total euros:$total\n";
 
 $ticket.="------------------------------------------\n";
 $ticket.="GRACIAS POR SU COMPRA                     \n";
+$ticket.="------------------------------------------\n";
+
+$ticket.="           www.debisuteria.com            \n";
+$ticket.="visitenos en internet y obtenga descuentos\n";
 
 $ticket.="\n";
-
 
 
 Send_print($ticket);
