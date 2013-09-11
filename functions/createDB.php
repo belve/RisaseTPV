@@ -137,6 +137,32 @@ $tiendas=substr($tiendas, 0,strlen($tiendas)-1);
 if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
 
 
+if (!$dbnivelBAK->open()){die($dbnivelBAK->error());};
+$chki=0;
+$queryp= "SHOW TABLES LIKE 'stocklocal_$idt';";
+$dbnivelBAK->query($queryp);
+while ($row = $dbnivelBAK->fetchassoc()){$chki=1;}
+
+if(!$chki){
+$queryp= "CREATE TABLE `stocklocal_$idt` (                        
+                 `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,  
+                 `cod` bigint(50) DEFAULT NULL,                      
+                 `stock` int(22) DEFAULT NULL,                       
+                 `alarma` int(22) DEFAULT NULL,                      
+                 `pvp` decimal(8,2) DEFAULT NULL,                    
+                 PRIMARY KEY (`id`),                                 
+                 KEY `cod` (`cod`)                                   
+               ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;";
+			   
+$dbnivelBAK->query($queryp);	
+}
+if (!$dbnivelBAK->close()){die($dbnivelBAK->error());};
+
+
+
+
+
+
 echo "<div>idt: $idt </div>";
 
 if (!$dbnivel->open()){die($dbnivel->error());};
