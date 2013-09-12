@@ -95,7 +95,7 @@ Send_print($ticket);
 }
 
 
-function Send_print2($ticket){
+function Send_print($ticket){
 	
 $ticket=iconv('UTF-8', 'ASCII//TRANSLIT', $ticket)  ;
 
@@ -106,7 +106,7 @@ fwrite($fp,chr(27) . chr(112) . chr(48)  . chr(100) );
 }
 
 
-function Send_print($ticket){
+function Send_print2($ticket){
 	
 $ticket=urlencode($ticket);
 

@@ -1,4 +1,5 @@
 <?php
+$debug=1;
 
 if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;}; $hazpedidos=array();$tosync=array();$querys2=array();$querstldone=array();
 
@@ -8,6 +9,7 @@ $dbnivelAPP->query($queryp);
 while ($row = $dbnivelAPP->fetchassoc()){
 $querys[$row['id']]=$row['syncSql'];	
 }
+if($debug){echo "$queryp <br><br>";};
 
 
 $queryp= "select id, stockmin, id_articulo, cantidad, (select codbarras from articulos where id=id_articulo) as cod from repartir where id_tienda=$id_tienda AND estado='P';";
@@ -16,10 +18,11 @@ while ($row = $dbnivelAPP->fetchassoc()){
 $alarmas[$row['cod']]=$row['stockmin'];	
 $qants[$row['cod']]=$row['cantidad'];	
 }
+if($debug){echo "$queryp <br><br>";};
 
 $queryp= "UPDATE repartir SET estado='F' where id_tienda=$id_tienda AND estado='P';";
 $dbnivelAPP->query($queryp);
-
+if($debug){echo "$queryp <br><br>";};
 
 if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
 
@@ -35,14 +38,14 @@ $dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){
 $querys2[$row['id']]=$row['syncSql'];	
 }
-
+if($debug){echo "$queryp <br><br>";};
 
 
 if(count($querys)>0){foreach ($querys as $id => $queryp) {
 $dbnivel->query($queryp);
 if(strlen($dbnivel->error())==0){$queryshechas[$id]=1;};
 }}
-
+if($debug){echo "$queryp <br><br>";};
 
 
 if(count($alarmas)>0){foreach ($alarmas as $cod => $alar) {
@@ -64,7 +67,7 @@ $dbnivel->query($queryp);	$tosync[]=$queryp;
 
 
 $queryp= "select cod from stocklocal where stock <= alarma and cod not in(select distinct codbarras from pedidos);";
-$dbnivel->query($queryp);
+#$dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){$hazpedidos[$row['cod']]=1;};
 
 if(count($hazpedidos)>0){foreach($hazpedidos as $codapedir => $point){
