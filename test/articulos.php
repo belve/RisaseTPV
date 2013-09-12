@@ -52,7 +52,8 @@ $ncamp[15]='congelado';
 $ncamp[16]='stockini';
 
 
-$conn=odbc_connect('risasenew','remoto','azul88');
+#$conn=odbc_connect('risasenew','remoto','azul88');
+$conn = odbc_connect("Driver={SQL Server Native Client 10.0};Server=SERVER;Database=Risase;", 'remoto', 'azul88');
 
 if (!$conn)
   {exit("Connection Failed: " . $conn);}
