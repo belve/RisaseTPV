@@ -97,7 +97,7 @@ Send_print($ticket);
 
 function Send_print($ticket){
 	
-$ticket=iconv('UTF-8', 'ASCII//TRANSLIT', $ticket) . chr(27) . chr(112) . chr(48)  ;
+$ticket=iconv('UTF-8', 'ASCII//TRANSLIT', $ticket) . chr(27) . chr(112)  ;
 
 $fp = fopen("LPT1:", "r+");
 fwrite($fp,$ticket);
