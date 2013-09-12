@@ -26,7 +26,7 @@ $espacios[16]="                ";
 $espacios[17]="                 ";
 
 $fecha=date('d') . "/" . date('m') . "/" . date('Y');
-$ticket =" RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
+$ticket ="RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
 
 $s=$espacios[43-strlen($nt)-strlen($dr)]; $dr=$s . $dr;
 $ticket.= $nt . $dr ."\n\n";
@@ -87,7 +87,7 @@ $ticket.="------------------------------------------\n";
 $ticket.="           www.debisuteria.com            \n";
 $ticket.="visitenos en internet y obtenga descuentos\n";
 
-$ticket.="\n";
+$ticket.="\n\n\n\n\n\n\n\n";
 
 
 Send_print($ticket);
