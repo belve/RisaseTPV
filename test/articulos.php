@@ -3,7 +3,7 @@ set_time_limit(0);
 foreach($_GET as $nombre_campo => $valor){  $asignacion = "\$" . $nombre_campo . "='" . $valor . "';";   eval($asignacion);};
 
 if(!$ini){$ini=0;};
-$fin=$ini+5000;
+$fin=$ini+500;
 ##### datos OLD
 $Ntab='Articulos';
 
