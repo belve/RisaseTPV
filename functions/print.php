@@ -87,7 +87,7 @@ $ticket.="------------------------------------------\n";
 $ticket.="           www.debisuteria.com            \n";
 $ticket.="visitenos en internet y obtenga descuentos\n";
 
-$ticket.="\n\n\n\n\n\n";
+$ticket.="\n\n\n\n\n";
 
 
 Send_print($ticket);
