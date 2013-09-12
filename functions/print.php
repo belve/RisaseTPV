@@ -28,14 +28,14 @@ $espacios[17]="                 ";
 $fecha=date('d') . "/" . date('m') . "/" . date('Y');
 $ticket ="RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
 
-$s=$espacios[43-strlen($nt)-strlen($dr)]; $dr=$s . $dr;
+$s=$espacios[42-strlen($nt)-strlen($dr)]; $dr=$s . $dr;
 $ticket.= $nt . $dr ."\n\n";
 
 
  
-#$ticket.="Fecha: $fecha\n";
+
 $ticket.="Articulo       Codigo  Cant  Precio  Total\n";
-#$ticket.="Anillos      14141414     2    2,00   4,00\n";
+
 
 $toti=0;
 if(count($tifprint)>0){foreach($tifprint as $point => $det){foreach($det as $cod => $vals){
@@ -90,36 +90,33 @@ $ticket.="visitenos en internet y obtenga descuentos\n";
 $ticket.="\n\n\n\n\n";
 
 
-Send_print($ticket);
-
-}
-
-
-function Send_print($ticket){
-
 
 $ticket2 = chr(29) . chr(86) . chr(48)  . chr(0) ;
 $ticket3 = chr(27) . chr(112) . chr(0)  . chr(25) . chr(250);
 
 
-	
+Send_print($ticket,$ticket2,$ticket3);
+
+}
+
+
+function Send_print($ticket,$ticket2,$ticket3){
+
 $ticket=iconv('UTF-8', 'ASCII//TRANSLIT', $ticket);
-#$ticket2=iconv('UTF-8', 'ASCII//TRANSLIT', $ticket2);
-#$ticket3=iconv('UTF-8', 'ASCII//TRANSLIT', $ticket3);
 
 $fp = fopen("LPT1:", "r+");
 fwrite($fp,$ticket);
 fwrite($fp,$ticket2);
 fwrite($fp,$ticket3);
-#fwrite($fp,chr(27) . chr(112) . chr(48)  . chr(100) );	
+
 
 	
 }
 
 
-function Send_print2($ticket){
+function Send_print2($ticket,$ticket2,$ticket3){
 	
-$ticket=urlencode($ticket);
+$ticket=urlencode($ticket . $ticket2 . $ticket3);
 
 $file = fopen ("http://192.168.1.41/print.php?t=$ticket", "r");
 while (!feof ($file)) { $fotos = fgets ($file, 1024);};
