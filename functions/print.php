@@ -26,7 +26,7 @@ $espacios[16]="                ";
 $espacios[17]="                 ";
 
 $fecha=date('d') . "/" . date('m') . "/" . date('Y');
-$ticket ="RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
+$ticket =" RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
 
 $s=$espacios[43-strlen($nt)-strlen($dr)]; $dr=$s . $dr;
 $ticket.= $nt . $dr ."\n\n";
@@ -96,12 +96,23 @@ Send_print($ticket);
 
 
 function Send_print($ticket){
+
+
+$ticket2 = chr(29) . chr(86) . chr(48)  . chr(0) ;
+$ticket3 = chr(27) . chr(112) . chr(0)  . chr(25) . chr(250);
+
+
 	
-$ticket=iconv('UTF-8', 'ASCII//TRANSLIT', $ticket)   ;
+$ticket=iconv('UTF-8', 'ASCII//TRANSLIT', $ticket);
+#$ticket2=iconv('UTF-8', 'ASCII//TRANSLIT', $ticket2);
+#$ticket3=iconv('UTF-8', 'ASCII//TRANSLIT', $ticket3);
 
 $fp = fopen("LPT1:", "r+");
 fwrite($fp,$ticket);
+fwrite($fp,$ticket2);
+fwrite($fp,$ticket3);
 #fwrite($fp,chr(27) . chr(112) . chr(48)  . chr(100) );	
+
 	
 }
 
