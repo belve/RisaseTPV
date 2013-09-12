@@ -46,7 +46,7 @@ $qty=$values['q']; $pvp=$values['p'];
 $queryp= "INSERT INTO ticket_det (id_ticket,id_tienda,id_articulo,cantidad,importe) values ('$idt', '$id_tienda', '$idart', '$qty', '$pvp');";
 $dbnivel->query($queryp);
 
-$grup=substr($idart, 1,1);
+$grup=substr($idart, 0,1);
 $subgru=substr($idart, 1,1);
 
 $queryp= "select nombre from subgrupos where id_grupo = $grup AND clave=$subgru;";
