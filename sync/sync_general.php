@@ -24,6 +24,13 @@ $queryp= "UPDATE repartir SET estado='F' where id_tienda=$id_tienda AND estado='
 $dbnivelAPP->query($queryp);
 if($debug){echo "$queryp <br><br>";};
 
+$rotos="";
+$queryp= "select codbarras from articulos where stock <= 0 and congelado=0;";
+$dbnivelAPP->query($queryp);
+while ($row = $dbnivelAPP->fetchassoc()){$rotos.=$row['codbarras'] . ",";};
+$rotos=substr($rotos, 0, strlen($rotos)-1);
+if($debug){echo "$queryp <br><br>";};
+
 if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
 
 
@@ -65,10 +72,18 @@ $dbnivel->query($queryp);	$tosync[]=$queryp;
 
 }}
 
+$activos="";
+$queryp= "select codbarras from articulos where congelado=0;";
+$dbnivel->query($queryp);
+while ($row = $dbnivel->fetchassoc()){$activos.=$row['codbarras'] . ",";};
+$activos=substr($activos, 0, strlen($activos)-1);
 
-$queryp= "select cod from stocklocal where stock <= alarma and cod not in(select distinct codbarras from pedidos);";
+
+$queryp= "select cod from stocklocal where stock <= alarma and cod not in(select distinct codbarras from pedidos) AND cod IN ($activos) AND cod NOT IN ($rotos);";
 #$dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){$hazpedidos[$row['cod']]=1;};
+if($debug){echo "$queryp <br><br>";};
+
 
 if(count($hazpedidos)>0){foreach($hazpedidos as $codapedir => $point){
 $queryp= "INSERT INTO pedidos (codbarras) VALUES ($codapedir);";

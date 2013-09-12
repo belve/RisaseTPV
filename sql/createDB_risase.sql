@@ -1,30 +1,37 @@
 /*
 SQLyog Enterprise - MySQL GUI v6.07
-Host - 5.5.32-0ubuntu0.12.04.1 : Database - RisaseTPV
+Host - 5.5.27 : Database - risase
 *********************************************************************
-Server version : 5.5.32-0ubuntu0.12.04.1
+Server version : 5.5.27
 */
 
 /*!40101 SET NAMES utf8 */;
 
 /*!40101 SET SQL_MODE=''*/;
 
-create database if not exists `RisaseTPV`;
+create database if not exists `risase`;
 
-USE `RisaseTPV`;
+USE `risase`;
 
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-/*Table structure for table `actions` */
+/*Table structure for table `agrupedidos` */
 
-DROP TABLE IF EXISTS `actions`;
+DROP TABLE IF EXISTS `agrupedidos`;
 
-CREATE TABLE `actions` (
+CREATE TABLE `agrupedidos` (
   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
-  `accion` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nombre` varchar(255) DEFAULT NULL,
+  `estado` varchar(2) DEFAULT 'P',
+  `tip` int(2) DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nombre` (`nombre`),
+  KEY `estado` (`estado`),
+  KEY `tip` (`tip`),
+  KEY `fecha` (`fecha`)
+) ENGINE=InnoDB AUTO_INCREMENT=14543 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `articulos` */
 
@@ -51,6 +58,7 @@ CREATE TABLE `articulos` (
   `congelado` tinyint(1) DEFAULT NULL,
   `stockini` int(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `codbarras` (`codbarras`),
   KEY `id_proveedor` (`id_proveedor`),
   KEY `id_subgrupo` (`id_subgrupo`),
   KEY `id_color` (`id_color`),
@@ -70,16 +78,21 @@ CREATE TABLE `colores` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=latin1;
 
-/*Table structure for table `config` */
+/*Table structure for table `detreparto` */
 
-DROP TABLE IF EXISTS `config`;
+DROP TABLE IF EXISTS `detreparto`;
 
-CREATE TABLE `config` (
+CREATE TABLE `detreparto` (
   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
-  `var` varchar(255) DEFAULT NULL,
-  `value` varchar(255) DEFAULT NULL,
+  `id_reparto` bigint(50) DEFAULT NULL,
+  `id_articulo` bigint(50) DEFAULT NULL,
+  `id_tienda` int(8) DEFAULT NULL,
+  `cantidad` int(8) DEFAULT NULL,
+  `recibida` int(8) DEFAULT NULL,
+  `stockmin` int(8) DEFAULT NULL,
+  `estado` varchar(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Table structure for table `empleados` */
 
@@ -106,14 +119,39 @@ CREATE TABLE `grupos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+/*Table structure for table `importadores` */
+
+DROP TABLE IF EXISTS `importadores`;
+
+CREATE TABLE `importadores` (
+  `detreparto` bigint(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 /*Table structure for table `pedidos` */
 
 DROP TABLE IF EXISTS `pedidos`;
 
 CREATE TABLE `pedidos` (
-  `codbarras` bigint(255) unsigned NOT NULL,
-  KEY `codbarras` (`codbarras`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
+  `id_articulo` bigint(8) DEFAULT NULL,
+  `id_tienda` bigint(5) DEFAULT NULL,
+  `cantidad` int(5) DEFAULT NULL,
+  `estado` varchar(2) DEFAULT '-',
+  `tip` int(2) DEFAULT NULL,
+  `agrupar` varchar(8) DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  `prov` int(5) DEFAULT NULL,
+  `grupo` int(5) DEFAULT NULL,
+  `subgrupo` int(5) DEFAULT NULL,
+  `codigo` int(5) DEFAULT NULL,
+  `pventa` decimal(8,2) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `agrupar` (`agrupar`),
+  KEY `orden` (`prov`,`grupo`,`subgrupo`,`codigo`),
+  KEY `id_articulo` (`id_articulo`),
+  KEY `tip` (`tip`),
+  KEY `estado` (`estado`)
+) ENGINE=InnoDB AUTO_INCREMENT=1927567 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `proveedores` */
 
@@ -138,17 +176,36 @@ CREATE TABLE `proveedores` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Table structure for table `rebajas` */
+/*Table structure for table `repartir` */
 
-DROP TABLE IF EXISTS `rebajas`;
+DROP TABLE IF EXISTS `repartir`;
 
-CREATE TABLE `rebajas` (
+CREATE TABLE `repartir` (
   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
-  `id_articulo` bigint(20) DEFAULT NULL,
-  `pvp` decimal(8,2) DEFAULT NULL,
-  `fecha_ini` date DEFAULT NULL,
-  `fecha_fin` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `id_articulo` bigint(12) unsigned NOT NULL,
+  `id_tienda` int(5) DEFAULT NULL,
+  `cantidad` int(5) DEFAULT NULL,
+  `stockmin` int(5) DEFAULT NULL,
+  `estado` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_articulo` (`id_articulo`),
+  KEY `id_tienda` (`id_tienda`),
+  KEY `estado` (`estado`)
+) ENGINE=InnoDB AUTO_INCREMENT=1765668 DEFAULT CHARSET=latin1;
+
+/*Table structure for table `repartos` */
+
+DROP TABLE IF EXISTS `repartos`;
+
+CREATE TABLE `repartos` (
+  `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
+  `nomrep` varchar(255) DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  `estado` varchar(2) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `nomrep` (`nomrep`),
+  KEY `fecha` (`fecha`),
+  KEY `estado` (`estado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Table structure for table `roturas` */
@@ -157,25 +214,13 @@ DROP TABLE IF EXISTS `roturas`;
 
 CREATE TABLE `roturas` (
   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
+  `id_tienda` bigint(10) DEFAULT NULL,
   `codbarras` bigint(15) DEFAULT NULL,
+  `modo` varchar(4) DEFAULT NULL,
   `qty` int(10) DEFAULT NULL,
-  `modo` varchar(10) DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Table structure for table `stocklocal` */
-
-DROP TABLE IF EXISTS `stocklocal`;
-
-CREATE TABLE `stocklocal` (
-  `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
-  `cod` bigint(50) DEFAULT NULL,
-  `stock` int(22) DEFAULT NULL,
-  `alarma` int(22) DEFAULT NULL,
-  `pvp` decimal(8,2) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `cod` (`cod`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `subgrupos` */
 
@@ -195,9 +240,10 @@ DROP TABLE IF EXISTS `syncupdate`;
 
 CREATE TABLE `syncupdate` (
   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
+  `id_tiend` int(20) DEFAULT NULL,
   `syncSql` longtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `ticket_det` */
 
@@ -214,7 +260,7 @@ CREATE TABLE `ticket_det` (
   KEY `id_tienda` (`id_tienda`),
   KEY `id_ticket` (`id_ticket`),
   KEY `id_articulo` (`id_articulo`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `tickets` */
 
@@ -233,7 +279,7 @@ CREATE TABLE `tickets` (
   KEY `id_ticket` (`id_ticket`),
   KEY `id_empleado` (`id_empleado`),
   KEY `fecha` (`fecha`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `tiendas` */
 
