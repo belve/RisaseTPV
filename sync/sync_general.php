@@ -1,5 +1,5 @@
 <?php
-$debug=1;
+$debug=0;
 
 if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;}; $hazpedidos=array();$tosync=array();$querys2=array();$querstldone=array();
 
@@ -79,9 +79,9 @@ while ($row = $dbnivel->fetchassoc()){$activos.=$row['codbarras'] . ",";};
 $activos=substr($activos, 0, strlen($activos)-1);
 
 $prev="";
-$queryp= "select cod, (select id from articulos where codbarras=cod) as id from stocklocal where cod not like '%0009999' AND stock <= alarma and cod not in(select distinct codbarras from pedidos) AND cod IN ($activos) AND cod NOT IN ($rotos);";
+$queryp= "select id_art from stocklocal where cod not like '%0009999' AND stock <= alarma and cod not in(select distinct codbarras from pedidos) AND cod IN ($activos) AND cod NOT IN ($rotos);";
 $dbnivel->query($queryp);
-while ($row = $dbnivel->fetchassoc()){$prev.=$row['id'] . ",";};
+while ($row = $dbnivel->fetchassoc()){$prev.=$row['id_art'] . ",";};
 if($debug){echo "$queryp <br><br>";};
 $prev=substr($prev, 0, strlen($prev)-1);
 
@@ -93,15 +93,19 @@ if (!$dbnivel->close()){die($dbnivel->error());};
 
 
 
+if (!$dbnivelAPP->open()){die($dbnivelAPP->error());};
+
+$queryp= "SELECT (select codbarras from articulos where id=id_articulo) as cod from repartir WHERE id_tienda=$id_tienda AND cantidad > 0 AND id_articulo IN ($prev)";
+$dbnivelAPP->query($queryp);
+while ($row = $dbnivelAPP->fetchassoc()){$hazpedidos[$row['cod']]=1;};
+if($debug){echo "$queryp <br><br>"; echo $dbnivelAPP->error();};
+
+if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
+
+
+
+
 if (!$dbnivelBAK->open()){die($dbnivelBAK->error());};
-
-
-$queryp= "SELECT * from repartir WHERE id_tienda=$id_tienda AND id_articulo IN ($prev)";
-#$dbnivelBAK->query($queryp);
-while ($row = $dbnivelBAK->fetchassoc()){$hazpedidos[$row['cod']]=1;};
-if($debug){echo "$queryp <br><br>";};
-
-
 
 if(count($querys2)>0){foreach($querys2 as $idstl => $quer){
 $dbnivelBAK->query($quer);		

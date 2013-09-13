@@ -24,10 +24,10 @@ require_once("../functions/sync.php");
 
 
 include('sync_general.php');
-#include('sync_getpedidos.php');
-#include('sync_ticket.php');
-#include('sync_pedidos.php');
-#include('sync_roturas.php');
+include('sync_getpedidos.php');
+include('sync_ticket.php');
+include('sync_pedidos.php');
+include('sync_roturas.php');
 
 
 
