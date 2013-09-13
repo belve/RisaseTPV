@@ -78,17 +78,13 @@ $dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){$activos.=$row['codbarras'] . ",";};
 $activos=substr($activos, 0, strlen($activos)-1);
 
-
-$queryp= "select cod from stocklocal where stock <= alarma and cod not in(select distinct codbarras from pedidos) AND cod IN ($activos) AND cod NOT IN ($rotos);";
-#$dbnivel->query($queryp);
-while ($row = $dbnivel->fetchassoc()){$hazpedidos[$row['cod']]=1;};
+$prev="";
+$queryp= "select cod, (select id from articulos where codbarras=cod) as id from stocklocal where cod not like '%0009999' AND stock <= alarma and cod not in(select distinct codbarras from pedidos) AND cod IN ($activos) AND cod NOT IN ($rotos);";
+$dbnivel->query($queryp);
+while ($row = $dbnivel->fetchassoc()){$prev.=$row['id'] . ",";};
 if($debug){echo "$queryp <br><br>";};
+$prev=substr($prev, 0, strlen($prev)-1);
 
-
-if(count($hazpedidos)>0){foreach($hazpedidos as $codapedir => $point){
-$queryp= "INSERT INTO pedidos (codbarras) VALUES ($codapedir);";
-$dbnivel->query($queryp);	
-}}
 
 
 
@@ -98,6 +94,15 @@ if (!$dbnivel->close()){die($dbnivel->error());};
 
 
 if (!$dbnivelBAK->open()){die($dbnivelBAK->error());};
+
+
+$queryp= "SELECT * from repartir WHERE id_tienda=$id_tienda AND id_articulo IN ($prev)";
+#$dbnivelBAK->query($queryp);
+while ($row = $dbnivelBAK->fetchassoc()){$hazpedidos[$row['cod']]=1;};
+if($debug){echo "$queryp <br><br>";};
+
+
+
 if(count($querys2)>0){foreach($querys2 as $idstl => $quer){
 $dbnivelBAK->query($quer);		
 if(strlen($dbnivelBAK->error())==0){$querstldone[$idstl]=1;};	
@@ -108,6 +113,14 @@ if (!$dbnivelBAK->close()){die($dbnivelBAK->error());};
 
 
 if (!$dbnivel->open()){die($dbnivel->error());};
+
+if(count($hazpedidos)>0){foreach($hazpedidos as $codapedir => $point){
+$queryp= "INSERT INTO pedidos (codbarras) VALUES ($codapedir);";
+$dbnivel->query($queryp);	
+}}
+
+
+
 if(count($querstldone)>0){foreach($querstldone as $idhecho => $pont){
 $queryp= "delete from syncupdate where id=$idhecho;";
 $dbnivel->query($queryp);	

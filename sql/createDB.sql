@@ -68,7 +68,7 @@ CREATE TABLE `colores` (
   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Table structure for table `config` */
 
@@ -79,7 +79,7 @@ CREATE TABLE `config` (
   `var` varchar(255) DEFAULT NULL,
   `value` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Table structure for table `empleados` */
 
@@ -169,6 +169,7 @@ DROP TABLE IF EXISTS `stocklocal`;
 
 CREATE TABLE `stocklocal` (
   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
+  `id_art` bigint(100) DEFAULT NULL,
   `cod` bigint(50) DEFAULT NULL,
   `stock` int(22) DEFAULT NULL,
   `alarma` int(22) DEFAULT NULL,
@@ -256,7 +257,7 @@ CREATE TABLE `tiendas` (
   KEY `activa` (`activa`),
   KEY `orden` (`orden`),
   KEY `id_tienda` (`id_tienda`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
