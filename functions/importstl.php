@@ -38,13 +38,14 @@ $dbnivelBAK->query($queryp);
 while ($row = $dbnivelBAK->fetchassoc()){
 
 
-$cod=addslashes($row['cod']);                     
+$cod=addslashes($row['cod']); 
+$id_art=addslashes($row['id_art']); 	                    
 $stock=addslashes($row['stock']);           
 $alarma=addslashes($row['alarma']);            
 $pvp=addslashes($row['pvp']);
 
 
-$values .="('$cod','$stock','$alarma','$pvp'),";
+$values .="('$cod','$id_art','$stock','$alarma','$pvp'),";
 	
 }
 }
@@ -56,7 +57,7 @@ if (!$dbnivelBAK->close()){die($dbnivelBAK->error());};
 
 if (!$dbnivel->open()){die($dbnivel->error());};
 
-$queryp= "INSERT INTO stocklocal (cod,stock,alarma,pvp) VALUES $values;";
+$queryp= "INSERT INTO stocklocal (cod,id_art,stock,alarma,pvp) VALUES $values;";
 $dbnivel->query($queryp);
 
 
