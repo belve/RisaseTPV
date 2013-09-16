@@ -53,6 +53,7 @@ function introD(){
 if      (document.getElementById("cajon").style.visibility=='visible'){cobro_hide();}
 else if (document.getElementById("cobrador").style.visibility=='visible'){cobro_calc();}
 else if (document.getElementById("descuento").style.visibility=='visible'){aplydescuent();}
+else if (document.getElementById("vercaja").style.visibility=='visible'){document.getElementById("vercaja").style.visibility='hidden';}
 else{addART();};
 }
 
@@ -138,6 +139,9 @@ if(document.getElementById("cobrador").style.visibility=='visible'){cobro_hide()
 else if
 (document.getElementById("descuento").style.visibility=='visible'){
 document.getElementById("descuento").style.visibility='hidden';
+}else if
+(document.getElementById("vercaja").style.visibility=='visible'){
+document.getElementById("vercaja").style.visibility='hidden';
 }else if
 (document.getElementById("manual").style.visibility=='visible'){
 document.getElementById("manual").style.visibility='hidden';
@@ -380,4 +384,22 @@ document.getElementById("dev_c").innerHTML='MODO DEVOLUCIÓN';
 
 	
 }
+
+
+function vercaja(){
+var url='/ajax/vercaja.php?a=v';
+$.getJSON(url, function(data) {
+$.each(data, function(key, val) {
+if(key=='c'){
+document.getElementById("detcaja").innerHTML=val;	
+document.getElementById("vercaja").style.visibility='visible';
+}
+			
+	
+});
+});	
+	
+}
+
+
 
