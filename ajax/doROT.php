@@ -3,6 +3,7 @@ foreach($_GET as $nombre_campo => $valor){  $asignacion = "\$" . $nombre_campo .
 require_once("../db.php");
 require_once("../variables.php");
 require_once("../functions/sync.php");
+require_once("../functions/print.php");
 
 if (!$dbnivel->open()){die($dbnivel->error());};
 $queryp= "select var, value from config";
@@ -17,6 +18,10 @@ $detalle=$_GET['detROT'];
 if(count($detalle)>0){
 foreach ($detalle as $key => $values) {foreach ($values as $codbarras => $val){
 $qty=$val['q'];$mod=$val['m'];
+	
+$print[$mod][substr($codbarras, 0,1)][substr($codbarras, 1,1)][substr($codbarras, 3,strlen($codbarras)-4)]['q']=$qty;	
+$print[$mod][substr($codbarras, 0,1)][substr($codbarras, 1,1)][substr($codbarras, 3,strlen($codbarras)-4)]['c']=$codbarras;
+	
 $queryp= "INSERT INTO roturas (codbarras,qty,modo) values ('$codbarras','$qty','$mod');";
 $dbnivel->query($queryp);	
 
@@ -26,6 +31,8 @@ $dbnivel->query($queryp);	$tosync[]=$queryp;
 
 		
 }}}
+
+p_roturas($print);
 
 
 if (!$dbnivel->close()){die($dbnivel->error());};
