@@ -177,7 +177,84 @@ Send_print($ticket,$ticket2,$ticket3);
 
 
 
+function p_roturas($datos){if(count($datos)>0){$espacios[0] ="";
+$espacios[1] =" ";
+$espacios[2] ="  ";
+$espacios[3] ="   ";
+$espacios[4] ="    ";
+$espacios[5] ="     ";
+$espacios[6] ="      ";
+$espacios[7] ="       ";
+$espacios[8] ="        ";
+$espacios[9] ="         ";
+$espacios[10]="          ";
+$espacios[11]="           ";
+$espacios[12]="            ";
+$espacios[13]="             ";
+$espacios[14]="              ";
+$espacios[15]="               ";
+$espacios[16]="                ";
+$espacios[17]="                 ";
+$espacios[18]="                  ";
+$espacios[19]="                   ";
+$espacios[20]="                    ";
+$espacios[21]="                     ";
+$espacios[22]="                      ";
+$espacios[23]="                       ";
+$espacios[24]="                        ";
+$espacios[25]="                         ";
+$espacios[26]="                          ";
+$espacios[27]="                           ";
+$espacios[28]="                            ";
+$espacios[29]="                             ";
+$espacios[30]="                              ";
+$espacios[31]="                               ";
+$espacios[32]="                                ";
+$espacios[33]="                                 ";
+$espacios[34]="                                  ";
+$espacios[35]="                                   ";
+$espacios[36]="                                    ";					
+				
+			
+		
+	
+				
+foreach ($datos as $mod => $grupos) {ksort($grupos); foreach ($grupos as $idgrupo => $subgrupos) {ksort($grupos);foreach($subgrupos as $subgrupo => $codigos){ksort($codigos);
+foreach ($codigos as $cod => $codbarras) {
+$agrupacion[$mod][$codbarras['c']]=$codbarras['q'];}}}}			
+		
 
+print_r($agrupacion);
+$ticket="";
+$ticket.="Devoluciones  \n";$d=0;
+foreach ($agrupacion['D'] as $codbarras => $qty) {
+$s=$espacios[22-strlen($codbarras)-strlen($qty)]; $qty=$s . $qty;$d=$d+$qty;
+$ticket.="$codbarras$qty\n";	
+}
+
+
+$ticket.="\nRoturas  \n";$r=0;
+foreach ($agrupacion['R'] as $codbarras => $qty) {
+$s=$espacios[22-strlen($codbarras)-strlen($qty)]; $qty=$s . $qty;$r=$r+$qty;
+$ticket.="$codbarras$qty\n";	
+}
+
+$ticket.="\n";
+
+$ticket.="Devoluciones:$d\n";
+$s=$espacios[9-strlen($d)];
+$ticket.="Roturas:$r\n";
+$s=$espacios[14-strlen($r)];
+
+
+
+$ticket.="\n\n\n\n\n";		
+$ticket2 = chr(29) . chr(86) . chr(48)  . chr(0) ;
+$ticket3 = chr(27) . chr(112) . chr(0)  . chr(25) . chr(250);
+
+
+Send_print($ticket,$ticket2,$ticket3);	
+}}
 
 
 
