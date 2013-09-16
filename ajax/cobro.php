@@ -27,6 +27,10 @@ $idt=$id_nom_tienda . date('d') . date('m') . date('y') . date('G') . date('i') 
 $queryp= "INSERT INTO tickets (id_ticket,id_tienda,id_empleado,fecha,importe,descuento) values ('$idt', '$id_tienda', '$idemp', '$fecha', '$total','$desc');";
 $dbnivel->query($queryp);
 
+$queryp= "INSERT INTO caja (id_empleado,fecha,importe) values ('$idemp', '$fecha', '$total');";
+$dbnivel->query($queryp);
+
+
 foreach ($detalle as $point => $dets){foreach($dets as $idart => $values) {
 	
 $check="";$codba="";

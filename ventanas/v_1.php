@@ -49,12 +49,12 @@
       
       
          case 112:
-           alert('Ver caja');
+           vercaja();
          return false;
          break;
          
          case 114:
-           alert('Desglose de caja');
+           desglosecaja();
          return false;
          break;
       
@@ -200,6 +200,25 @@ F12 Descuento <br>
 
 </div>	
 </div>
+
+
+
+
+
+<div id="vercaja" style="visibility: hidden;">
+<div style=" background-color: #C8C8C8;    height: 341px;    left: 0px;    opacity: 0.6;    position: absolute;    top: 0px;    width: 476px;"></div>
+<div style="background-color: #cccccc;  left: 93px;    padding: 25px;    position: absolute;    top: 84px;    width: 240px; border: 1px solid #666666;">
+
+
+<div id="detcaja">
+	
+	
+</div>
+<div style="clear: both;"></div>
+<div onclick="javascript:escapeD();" style="cursor:pointer; background-color: orange; color: white; text-align: center;margin-top: 10px; padding: 5px; width: 100px; margin-left: 60px; font-weight: bold;">Cerrar</div>
+</div>	
+</div>
+
 
 
 
