@@ -401,5 +401,18 @@ document.getElementById("vercaja").style.visibility='visible';
 	
 }
 
-
+function desglosecaja(){
+var url='/ajax/vercaja.php?a=i';
+$.getJSON(url, function(data) {
+$.each(data, function(key, val) {
+if(key=='c'){
+document.getElementById("detcaja").innerHTML=val;	
+document.getElementById("vercaja").style.visibility='visible';
+}
+			
+	
+});
+});	
+	
+}
 

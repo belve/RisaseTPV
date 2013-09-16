@@ -5,6 +5,7 @@ require_once("../variables.php");
 require_once("../functions/sync.php");
 require_once("../functions/print.php");
 
+$valores=array();$caj=array();
 $fecha=date('Y') . "-" . date('m') . "-" . date('d');
 
 if (!$dbnivel->open()){die($dbnivel->error());};$detcaja="";$tot=0;
@@ -16,14 +17,19 @@ $sum=number_format($sum,2);
 $tot=$tot+$sum;	
 $tot=number_format($tot,2);	
 
+$caj[$nom]=$sum;
+
 $detcaja.="<div style='position:relative; float:left;'>$nom:</div> <div style='position:relative;float:right; text-align:right;'>$sum</div> ";
 };
 
 $detcaja.="<div style='clear:both; border-top:1px solid; width:100%; height: 5px;'></div> ";
 $detcaja.="<div style='position:relative; float:left;'>Total:</div> <div style='position:relative;float:right; text-align:right;'>$tot</div>  ";
 
-
+if($a=='v'){
 $valores['c']=substr($detcaja, 0, strlen($detcaja)-1);
+}else{
+caja($caj);	
+}
 
 if (!$dbnivel->close()){die($dbnivel->error());};
 
