@@ -9,7 +9,7 @@ $dbnivelAPP->query($queryp);
 while ($row = $dbnivelAPP->fetchassoc()){
 $querys[$row['id']]=$row['syncSql'];	
 }
-if($debug){echo "$queryp <br><br>";};
+if($debug){echo "$queryp /n/n";};
 
 
 $queryp= "select id, stockmin, id_articulo, cantidad, (select codbarras from articulos where id=id_articulo) as cod from repartir where id_tienda=$id_tienda AND estado='P';";
@@ -18,18 +18,18 @@ while ($row = $dbnivelAPP->fetchassoc()){
 $alarmas[$row['cod']]=$row['stockmin'];	
 $qants[$row['cod']]=$row['cantidad'];	
 }
-if($debug){echo "$queryp <br><br>";};
+if($debug){echo "$queryp /n/n";};
 
 $queryp= "UPDATE repartir SET estado='F' where id_tienda=$id_tienda AND estado='P';";
 $dbnivelAPP->query($queryp);
-if($debug){echo "$queryp <br><br>";};
+if($debug){echo "$queryp /n/n";};
 
 $rotos="";
 $queryp= "select codbarras from articulos where stock <= 0 and congelado=0;";
 $dbnivelAPP->query($queryp);
 while ($row = $dbnivelAPP->fetchassoc()){$rotos.=$row['codbarras'] . ",";};
 $rotos=substr($rotos, 0, strlen($rotos)-1);
-if($debug){echo "$queryp <br><br>";};
+if($debug){echo "$queryp /n/n";};
 
 if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
 
@@ -45,14 +45,14 @@ $dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){
 $querys2[$row['id']]=$row['syncSql'];	
 }
-if($debug){echo "$queryp <br><br>";};
+if($debug){echo "$queryp /n/n";};
 
 
 if(count($querys)>0){foreach ($querys as $id => $queryp) {
 $dbnivel->query($queryp);
 if(strlen($dbnivel->error())==0){$queryshechas[$id]=1;};
 }}
-if($debug){echo "$queryp <br><br>";};
+if($debug){echo "$queryp /n/n";};
 
 
 if(count($alarmas)>0){foreach ($alarmas as $cod => $alar) {
@@ -82,7 +82,7 @@ $prev="";
 $queryp= "select id_art from stocklocal where cod not like '%0009999' AND stock <= alarma and cod not in(select distinct codbarras from pedidos) AND cod IN ($activos) AND cod NOT IN ($rotos);";
 $dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){$prev.=$row['id_art'] . ",";};
-if($debug){echo "$queryp <br><br>";};
+if($debug){echo "$queryp /n/n";};
 $prev=substr($prev, 0, strlen($prev)-1);
 
 
@@ -98,7 +98,7 @@ if (!$dbnivelAPP->open()){die($dbnivelAPP->error());};
 $queryp= "SELECT (select codbarras from articulos where id=id_articulo) as cod from repartir WHERE id_tienda=$id_tienda AND cantidad > 0 AND id_articulo IN ($prev)";
 $dbnivelAPP->query($queryp);
 while ($row = $dbnivelAPP->fetchassoc()){$hazpedidos[$row['cod']]=1;};
-if($debug){echo "$queryp <br><br>"; echo $dbnivelAPP->error();};
+if($debug){echo "$queryp /n/n"; echo $dbnivelAPP->error();};
 
 if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
 

@@ -47,7 +47,7 @@ $dbnivel->query($queryp);	$tosync[]=$queryp;
 $queryp= "delete from pedidos where codbarras=$cod;";
 $dbnivel->query($queryp);
 
-echo "Envio a tienda: $id .Recibido <br>";
+echo "Envio a tienda: $id .Recibido \n";
 
 $pedfin[$id]=$agr;
 

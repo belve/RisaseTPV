@@ -132,7 +132,7 @@ $dbnivel->query($queryp);
 $queryp= "delete from ticket_det where id_ticket='$idhecho';";
 $dbnivel->query($queryp);	
 
-echo "Procesado Ticket: $idhecho <br>";
+echo "Procesado Ticket: $idhecho \n";
 	
 }
 	

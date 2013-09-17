@@ -155,14 +155,43 @@
 
 
 
-
+<!--
 <iframe style="position: absolute; top:452px; " id="syncro" src="/sync/autoSync.php" width="50" height="50" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>
-
+-->
 
 
 
 <script>
-	owin('v_1','Venta de Artículos','');
+owin('v_1','Venta de Artículos','');
+	
+	
+	
+	
+function sync1(){
+var func='sync2();'
+$.getJSON('/sync/autoSync.php', function(data) {
+$.each(data, function(key, val) {
+});
+});
+
+setTimeout(func, 400000);	
+}	
+
+
+function sync2(){
+var func='sync1();'
+$.getJSON('/sync/autoSync.php', function(data) {
+$.each(data, function(key, val) {
+});
+});
+
+setTimeout(func, 400000);	
+}	
+
+
+
+	
+sync1();	
 </script>
 </body>
 </html>
