@@ -328,7 +328,11 @@ $.each(data, function(key, val) {
 });
 
 
-}	
+}
+
+document.getElementById("impCod").value="";
+document.getElementById("impCod").select();
+	
 }
 
 

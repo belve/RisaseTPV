@@ -155,7 +155,7 @@ if(rot.length>0){var det=rot.split('<>');
 var total=0;
 var code="";
 if(det){
-for (var i = 1; i < det.length; i++) {
+for (var i = 1; i < det.length; i++) {var check=1;
 var deti=det[i];	
 var datos=deti.split('|');
 code=code + '&detROT[' + i + '][' + datos[0] + '][q]=' + datos[1] +
@@ -165,21 +165,21 @@ code=code + '&detROT[' + i + '][' + datos[0] + '][q]=' + datos[1] +
 
 
 
-
+if(check){
 var url='/ajax/doROT.php?emp=' + code;
 $.getJSON(url, function(data) {
 $.each(data, function(key, val) {
-
-			
-	
 });
 });
-
-
-}	
 
 setCookieT('roturas','',1);	
 showRoturas();
+document.getElementById("impCodD").value="";
+document.getElementById("impCodD").select();
+}
+
+}	
+
 
 }
 

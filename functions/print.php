@@ -177,7 +177,7 @@ Send_print($ticket,$ticket2,$ticket3);
 
 
 
-function p_roturas($datos){if(count($datos)>0){$espacios[0] ="";
+function p_roturas($datos,$nt){if(count($datos)>0){$espacios[0] ="";
 $espacios[1] =" ";
 $espacios[2] ="  ";
 $espacios[3] ="   ";
@@ -224,8 +224,16 @@ foreach ($codigos as $cod => $codbarras) {
 $agrupacion[$mod][$codbarras['c']]=$codbarras['q'];}}}}			
 		
 
-print_r($agrupacion);
+#print_r($agrupacion);
 $ticket="";
+
+$fecha=date('d') . "/" . date('m') . "/" . date('Y');
+
+
+$s=$espacios[25-strlen($nt)]; $nt .=$s;
+$ticket ="$nt Fecha:$fecha\n\n";
+
+
 $ticket.="Devoluciones  \n";$d=0;
 foreach ($agrupacion['D'] as $codbarras => $qty) {
 $s=$espacios[22-strlen($codbarras)-strlen($qty)]; $qty=$s . $qty;$d=$d+$qty;

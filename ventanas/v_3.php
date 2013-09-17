@@ -53,7 +53,7 @@
 
 
 <div class="emple wA">Código</div>
-<div class="emple2" id="emple" style="margin-left: 0px;"><input type="text" class="impCod" id="impCodA" onFocus="this.select()"></div>
+<div class="emple2" id="emple" style="margin-left: 0px;"><input type="text" class="impCod3" id="impCodA" onFocus="this.select()"></div>
 
 <div style="clear:both;"></div>
 <div class="emple wA">Grupo</div>
@@ -84,10 +84,14 @@
 <div class="emple2" id="16"></div>
 
 <div style="clear:both;"></div>
-<div id="18" class="detycomen"></div>
+<div style="margin-top: 16px;">
+<div class="emple wA">Detalles</div>
+<div id="18" style="float: none;" class="emple2"></div>
+</div>
 
 <div style="clear:both;"></div>
-<div id="19" class="detycomen"></div>
+<div class="emple wA">Coment</div>
+<div id="19" style="float: none;" class="emple2"></div>
 
 
 <div class="photo">

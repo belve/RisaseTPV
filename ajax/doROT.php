@@ -32,7 +32,7 @@ $dbnivel->query($queryp);	$tosync[]=$queryp;
 		
 }}}
 
-p_roturas($print);
+p_roturas($print,$id_nom_tienda);
 
 
 if (!$dbnivel->close()){die($dbnivel->error());};

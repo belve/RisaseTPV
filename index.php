@@ -174,7 +174,7 @@ $.each(data, function(key, val) {
 });
 });
 
-setTimeout(func, 400000);	
+setTimeout(func, 300000);	
 }	
 
 
@@ -185,7 +185,7 @@ $.each(data, function(key, val) {
 });
 });
 
-setTimeout(func, 400000);	
+setTimeout(func, 300000);	
 }	
 
 
