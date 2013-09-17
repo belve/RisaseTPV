@@ -10,7 +10,9 @@ $.getJSON(url, function(data) {
 $.each(data, function(key, val) {
 
 if(key=="error"){
-alert("Código no encontrado");		
+alert("Código no encontrado");
+document.getElementById("impCodA").value="";
+document.getElementById("impCodA").select();		
 }else if(key=="foto"){
 document.getElementById('foto').src=val;
 }else if(key=="opciones"){

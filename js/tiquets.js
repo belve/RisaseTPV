@@ -113,7 +113,9 @@ $.getJSON(url, function(data) {
 $.each(data, function(key, val) {
 
 if(val=="error"){
-alert("Código no encontrado");		
+alert("Código no encontrado");
+document.getElementById("impCod").value="";
+document.getElementById("impCod").select();		
 }else{
 tiq=tiq + val;	
 }			

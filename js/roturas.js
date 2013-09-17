@@ -70,7 +70,9 @@ $.getJSON(url, function(data) {
 $.each(data, function(key, val) {
 
 if(val=="error"){
-alert("Código no encontrado");		
+alert("Código no encontrado");
+document.getElementById("impCodD").value="";
+document.getElementById("impCodD").select();		
 }else{
 rot=rot + val;	
 }			
