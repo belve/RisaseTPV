@@ -6,7 +6,7 @@
 
 
 
-<title>test</title>
+<title>Aplicación TPV RISASE</title>
 
 
 <script type="text/javascript" src="/jquery/jquery-1.9.0.min.js"></script>
@@ -155,9 +155,9 @@
 
 
 
-<!--
-<iframe style="position: absolute; top:452px; " id="syncro" src="/sync/autoSync.php" width="50" height="50" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>
--->
+
+<iframe style="position: absolute; top:452px; background-color: white; " id="syncro" src="/sync/autoSync.php" width="50" height="50" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>
+
 
 
 
@@ -191,7 +191,7 @@ setTimeout(func, 300000);
 
 
 	
-sync1();	
+//sync1();	
 </script>
 </body>
 </html>

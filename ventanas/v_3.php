@@ -101,6 +101,8 @@
 
 
 
-
+<script>
+	document.getElementById("impCodA").select();
+</script>
 </body>
 </html>

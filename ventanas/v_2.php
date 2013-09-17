@@ -121,7 +121,7 @@
 
 
 <div class="cabDEV">
-	<div class="cabtab_DEV nom_tab_emp">Código</div>
+	<div class="cabtab_DEV nom_tab_emp" style="width: 100px;">Código</div>
 	<div class="cabtab_DEV ap1_tab_DEV">Can</div>
 	<div class="cabtab_DEV ap2_tab_DEV">R/D</div>
 	
