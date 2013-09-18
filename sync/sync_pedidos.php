@@ -1,6 +1,7 @@
 <?php
 
-$debug=0;
+$debug=1;
+if($debug){echo "pedidos ________________________- \n\n";};
 
 $listahago="";$idcapedir="";$yahechos=array();$pedidone=array();$artapedir=array();$relcods=array();$cantidad=0;
 
