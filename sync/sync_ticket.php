@@ -107,7 +107,7 @@ if(!array_key_exists($codbar, $articulos)){$articulos[$codbar]['s']=0;$articulos
 	
 if(($articulos[$codbar]['s'] - $resto <= $articulos[$codbar]['a'])&&($articulos[$codbar]['c']<1)){
 $queryp= "insert into pedidos (codbarras) values ('$codbar');";
-$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};	
+$dbnivel->query($queryp);	if($debug){echo "mete en tabla pedidos:$codbar  \n";}; if($debug){echo "$queryp \n";};	
 } #genera pedido
 
 
