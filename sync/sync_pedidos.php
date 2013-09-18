@@ -63,7 +63,7 @@ foreach ($artapedir as $idar => $values) {if(!array_key_exists($idar, $yahechos)
 
 $queryp= "select cantidad from repartir where id_tienda=$idt AND id_articulo='$idar';";
 $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
-while ($row = $dbnivelAPP->fetchassoc()){$cantidad=$row['cantidad'] - $stockdepedidos[$relcods[$idar]];};
+while ($row = $dbnivelAPP->fetchassoc()){if($row['cantidad']>0){$cantidad=$row['cantidad'] - $stockdepedidos[$relcods[$idar]];}else{$cantidad=0;};};
 
 $prov=$artapedir[$idar]['idp'];
 $grupo=$artapedir[$idar]['idg'];
