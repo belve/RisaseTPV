@@ -15,7 +15,8 @@ if($debug){echo "$queryp /n/n";};
 $queryp= "select id, stockmin, id_articulo, cantidad, (select codbarras from articulos where id=id_articulo) as cod from repartir where id_tienda=$id_tienda AND estado='P';";
 $dbnivelAPP->query($queryp);
 while ($row = $dbnivelAPP->fetchassoc()){
-$alarmas[$row['cod']]=$row['stockmin'];	
+$alarmas[$row['cod']]=$row['stockmin'];
+$idartis[$row['cod']]=$row['id_articulo'];		
 $qants[$row['cod']]=$row['cantidad'];	
 }
 if($debug){echo "$queryp /n/n";};
@@ -62,11 +63,13 @@ $queryp= "select id from stocklocal where cod=$cod;";
 $dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){$id=$row['id'];};
 
+$idarti=$idartis[$cod];
+
 if($id){
 $queryp= "update stocklocal set alarma=$alar where cod=$cod;";
 $dbnivel->query($queryp);$tosync[]=$queryp;
 }else{
-$queryp= "INSERT INTO stocklocal (cod,alarma,stock) VALUES ($cod,$alar,0);";
+$queryp= "INSERT INTO stocklocal (id_art,cod,alarma,stock) VALUES ($idarti,$cod,$alar,0);";
 $dbnivel->query($queryp);	$tosync[]=$queryp;
 }
 

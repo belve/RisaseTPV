@@ -14,12 +14,14 @@ $tickets[$row['id_ticket']]['idt']=$row['id_tienda'];
 $tickets[$row['id_ticket']]['des']=$row['descuento'];	
 };
 
-$queryp= "select id_ticket, id_articulo, cantidad, importe FROM ticket_det;";
+$queryp= "select id_ticket, id_articulo, cantidad, importe, (select id from articulos where codbarras=id_articulo) as idart FROM ticket_det;";
 $dbnivel->query($queryp);$count=0;
 while ($row = $dbnivel->fetchassoc()){$count++;
 $tickets[$row['id_ticket']]['det'][$count][$row['id_articulo']]['qty']=$row['cantidad'];
 $tickets[$row['id_ticket']]['det'][$count][$row['id_articulo']]['imp']=$row['importe'];
 $art .=$row['id_articulo'] . ",";
+
+$idartis2[$row['id_articulo']]=$row['idart'];
 
 if(!array_key_exists($row['id_articulo'], $restos)){$restos[$row['id_articulo']]=0;};
 $restos[$row['id_articulo']]=$restos[$row['id_articulo']] + $row['cantidad'];
@@ -108,13 +110,15 @@ $idstl="";
 $queryp= "select id from stocklocal where cod=$codbar ";
 $dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){$idstl=$row['id'];};
+
+$idart2=$idartis2[$codbar];
 		
 if($idstl){			
 $queryp= "update stocklocal set stock=stock - $resto where cod=$codbar;";
 $dbnivel->query($queryp);	$tosync[]=$queryp;
 }else{
 $resto=$resto * (-1);
-$queryp= "insert into stocklocal (cod,stock,alarma) values ('$codbar','$resto','0');";
+$queryp= "insert into stocklocal (id_art,cod,stock,alarma) values ('$idart2','$codbar','$resto','0');";
 $dbnivel->query($queryp);	$tosync[]=$queryp;
 }
 
