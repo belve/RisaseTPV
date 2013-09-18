@@ -1,6 +1,6 @@
 <?php
 
-$debug=1;
+$debug=0;
 
 $listahago="";$idcapedir="";$yahechos=array();$pedidone=array();$artapedir=array();$relcods=array();$cantidad=0;
 
