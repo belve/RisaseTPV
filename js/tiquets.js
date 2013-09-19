@@ -66,6 +66,7 @@ var tiq=getCookieT('tiq_'+current);
 }
 
 var cod=document.getElementById('impCod').value;
+cod=cod.trim();
 var mod=document.getElementById("dev_h").value;
 
 var check=0;
@@ -174,6 +175,7 @@ var tiq="";
 var current=getCookieT('current_emp');
 setCookieT('tiq_'+ current,tiq,1);	
 showTicket();
+document.getElementById("impCod").value="";
 document.getElementById("impCod").select();
 }
 
