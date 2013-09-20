@@ -336,7 +336,8 @@ $.each(data, function(key, val) {
 
 document.getElementById("impCod").value="";
 document.getElementById("impCod").select();
-	
+document.getElementById("dev_h").value=0;
+document.getElementById("dev_c").innerHTML='';	
 }
 
 
