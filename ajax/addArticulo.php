@@ -22,10 +22,10 @@ if($row['pvp']>0) $pvp=$row['pvp'];
 };
 
 
-$queryp= "select pvp from rebajas where id_articulo=$id AND fecha_ini <= '$hoy' AND fecha_fin >= '$hoy';";
+$queryp= "select precio from det_rebaja where id_articulo=$id AND fecha_ini <= '$hoy' AND fecha_fin >= '$hoy';";
 $dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){
-if($row['pvp']>0) $pvp=$row['pvp'];	
+if($row['precio']>0) $pvp=$row['precio'];	
 
 
 };
