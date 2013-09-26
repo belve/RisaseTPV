@@ -12,7 +12,7 @@ include('sync_getpedidos.php');
 include('sync_ticket.php');
 include('sync_pedidos.php');
 include('sync_roturas.php');
-
+include('sync_fijStock.php');
 
 
 ?>
