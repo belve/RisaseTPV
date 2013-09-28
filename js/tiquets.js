@@ -113,16 +113,22 @@ var url='/ajax/addArticulo.php?cod=' + cod + '&mod=' + mod + '&manual=' + manual
 $.getJSON(url, function(data) {
 $.each(data, function(key, val) {
 
-if(val=="error"){
+if(key=="console"){console.log(val);}
+
+
+if(key=="error"){
 alert("Código no encontrado");
 document.getElementById("impCod").value="";
 document.getElementById("impCod").select();		
-}else{
+}
+
+if(key=="d"){
 tiq=tiq + val;	
 }			
 	
 });
 });
+
 }else{
 tiq=code;	
 }

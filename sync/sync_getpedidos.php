@@ -1,5 +1,5 @@
 <?php
-$debug=0;
+
 if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;};$tosync=array();
 
 $getped=array();$pedfin=array();

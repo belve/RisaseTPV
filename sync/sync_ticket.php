@@ -1,6 +1,6 @@
 <?php
 
-$debug=1;
+
 
 if($debug){echo "ticket ________________________- \n\n";};
 

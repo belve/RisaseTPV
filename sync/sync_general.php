@@ -1,5 +1,5 @@
 <?php
-$debug=1;
+
 
 if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;}; $hazpedidos=array();$tosync=array();$querys2=array();$querstldone=array();
 

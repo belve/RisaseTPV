@@ -16,6 +16,25 @@ $codbarras=$row['codbarras'];	$refprov=$row['refprov']; $pvp=$row['pvp']; $id=$r
 };
 
 
+$queryp= "select pvp from pvp_fijo where id_articulo=$id;";
+$dbnivel->query($queryp);
+while ($row = $dbnivel->fetchassoc()){
+if($row['pvp']>0) $pvp=$row['pvp'];	
+};
+
+
+$queryp= "select precio from det_rebaja where id_articulo=$id AND fecha_ini <= '$hoy' AND fecha_fin >= '$hoy';";
+$dbnivel->query($queryp);
+while ($row = $dbnivel->fetchassoc()){
+if($row['precio']>0) $pvp=$row['precio'];	
+
+
+};
+
+
+
+
+
 
 
 if($codbarras){$datos[]="<>$codbarras|1|$mod";}else{$datos[]="error";};
