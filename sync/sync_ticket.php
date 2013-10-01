@@ -79,7 +79,7 @@ foreach ($tickets[$idhecho]['det'] as $pint => $detallin){foreach($detallin as $
 $catidad=$datos['qty'];
 $importe=$datos['imp'];
 		
-$queryp= "insert into ticket_det (id_tienda, id_ticket, id_articulo, cantidad, importe) values ('$id_tienda', '$idhecho', '$codidbar', '$catidad', '$importe');";
+$queryp= "insert into ticket_det (id_tienda, id_ticket, id_articulo, cantidad, importe, fecha) values ('$id_tienda', '$idhecho', '$codidbar', '$catidad', '$importe', '$fecha');";
 $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
 		
 	

@@ -4,7 +4,14 @@
 set_time_limit(0);
 require_once("../db.php");
 require_once("../variables.php");
+
+$dbnivelAPP=new DB('192.168.1.11','tpv','tpv','risase');
+$dbnivelBAK=new DB('192.168.1.11','tpv','tpv','tpv_backup');
+
 require_once("../functions/sync.php");
+
+
+
 
 $debug=1;
 include('sync_general.php');
