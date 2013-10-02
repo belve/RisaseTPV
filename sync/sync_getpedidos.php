@@ -1,5 +1,7 @@
 <?php
 
+if($debug){echo "getpedidos ________________________- \n\n";}
+
 if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;};$tosync=array();
 
 $getped=array();$pedfin=array();

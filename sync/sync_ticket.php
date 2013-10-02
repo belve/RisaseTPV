@@ -1,7 +1,5 @@
 <?php
 
-
-
 if($debug){echo "ticket ________________________- \n\n";};
 
 $art="";$restos=array();$tickets=array();$pedir=array();$noconectado=0;$tickdone=array();$articulos=array();$tosync=array();
@@ -18,7 +16,7 @@ $tickets[$row['id_ticket']]['idt']=$row['id_tienda'];
 $tickets[$row['id_ticket']]['des']=$row['descuento'];	
 };
 
-if($debug){echo "$queryp \n\n";};
+if($debug){echo "$queryp \n Tickets:\n"; print_r($tickets);};
 
 $queryp= "select id_ticket, id_articulo, cantidad, importe, (select id from articulos where codbarras=id_articulo) as idart FROM ticket_det;";
 $dbnivel->query($queryp);$count=0;if($debug){echo "$queryp \n\n";};
@@ -35,16 +33,14 @@ $restos[$row['id_articulo']]=$restos[$row['id_articulo']] + $row['cantidad'];
 $art=substr($art,0,strlen($art)-1);
 
 $queryp= "select cod, stock, alarma, (select congelado from articulos where codbarras=cod) as congelado from stocklocal where cod IN ($art);";
-$dbnivel->query($queryp);if($debug){echo "$queryp \n\n";};
+$dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){
 $articulos[$row['cod']]['s']=$row['stock'];	
 $articulos[$row['cod']]['a']=$row['alarma'];
 $articulos[$row['cod']]['c']=$row['congelado'];
 }
+if($debug){echo "$queryp \n Tickets:\n"; print_r($tickets); echo "\n Articulos:\n";print_r($articulos);};
 
-#print_r($tickets);
-
-#print_r($articulos);
 
 
 
@@ -64,22 +60,37 @@ foreach ($tickets as $cticket => $valores){
 
 $id_tienda=$valores['idt']; $id_empleado=$valores['emp']; $fecha=$valores['dat']; $importe=$valores['imp']; $desc=$valores['des'];
 
-$queryp= "insert into tickets (id_tienda, id_ticket, id_empleado, fecha, importe, descuento) values ('$id_tienda', '$cticket', '$id_empleado', '$fecha', '$importe', '$desc');";
-$dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
+if(is_numeric(substr($cticket,3,1))){$spos=0;}else{$spos=1;};
+$hora=substr($cticket, (9+$spos), 2);
 
-$queryp="select id_ticket from tickets where id IN(SELECT LAST_INSERT_ID() from tickets);";
+$queryp= "insert into tickets (id_tienda, id_ticket, id_empleado, fecha, hora, importe, descuento) values ('$id_tienda', '$cticket', '$id_empleado', '$fecha', '$hora', '$importe', '$desc');";
 $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
-while ($row = $dbnivelAPP->fetchassoc()){$tickdone[$row['id_ticket']]=1;};
+$queryp="SELECT LAST_INSERT_ID() as lid;";
+$dbnivelAPP->query($queryp);
+while ($row = $dbnivelAPP->fetchassoc()){$lastid=$row['lid'];};
+if($debug){echo "$queryp \n lastid: $lastid\n";};
+
+$queryp="select id_ticket from tickets where id = $lastid;";
+$dbnivelAPP->query($queryp);
+while ($row = $dbnivelAPP->fetchassoc()){$tickdone[$row['id_ticket']]=$lastid;};
 }
+if($debug){echo "$queryp \n $tickdone:\n"; print_r($tickdone);};
+
+
 
 if(count($tickdone)>0){
-foreach ($tickdone as $idhecho => $point){
+foreach ($tickdone as $idhecho => $idti){
 foreach ($tickets[$idhecho]['det'] as $pint => $detallin){foreach($detallin as $codidbar => $datos){
 
 $catidad=$datos['qty'];
 $importe=$datos['imp'];
+
+if(is_numeric(substr($idhecho,3,1))){$spos=0;}else{$spos=1;};
+$hora=substr($idhecho, (9+$spos), 2);
+$g=substr($codidbar, 0,1);
+$sg=substr($codidbar, 1,1);
 		
-$queryp= "insert into ticket_det (id_tienda, id_ticket, id_articulo, cantidad, importe, fecha) values ('$id_tienda', '$idhecho', '$codidbar', '$catidad', '$importe', '$fecha');";
+$queryp= "insert into ticket_det (id_tienda, idt, id_ticket, id_articulo, g, sg, cantidad, importe, fecha, hora) values ('$id_tienda', $idti, '$idhecho', '$codidbar', $g, $sg, '$catidad', '$importe', '$fecha', '$hora');";
 $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
 		
 	
