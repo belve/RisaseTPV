@@ -8,14 +8,17 @@ if($debug){echo "fijStock ________________________- \n\n";};
 if (!$dbnivelAPP->open()){die($dbnivelAPP->error());};
 $cuales="";$sloc=array();$cbr=array();$pas1=array();$pas2=array();
 $fijos=array();
+$bds=array();
+$almacen=array();
 
-
-$queryp= "select * from fij_stock WHERE id_tienda=$id_tienda;";
+$queryp= "select * from fij_stock WHERE id_tienda=$id_tienda AND bd < 2;";
 $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
 while ($row = $dbnivelAPP->fetchassoc()){
 $fijos[$row['id']]['ida']=$row['id_articulo'];
 $fijos[$row['id']]['fij']=$row['fijo'];	
-$fijos[$row['id']]['sum']=$row['suma'];		
+$fijos[$row['id']]['sum']=$row['suma'];	
+$fijos[$row['id']]['alm']=$row['alm'];	
+$fijos[$row['id']]['bd']=$row['bd'];		
 $cuales.=$row['id_articulo'] . ",";
 
 }
@@ -48,7 +51,7 @@ if($debug){echo "DATOS LOCALES__ \$cbr __  \n"; print_r($cbr);  echo "\n\n"; };
 $pas1=array();
 if(count($fijos)>0){ foreach ($fijos as $idd => $arti) {
 
-$ida=$arti['ida']; $fij=$arti['fij']; $sum=$arti['sum'];	$idaL="";
+$ida=$arti['ida']; $fij=$arti['fij']; $sum=$arti['sum']; $alm=$arti['alm']; $bd=$arti['bd'];	$idaL="";
 
 if(!array_key_exists($ida, $sloc)){
 $cod=$cbr[$ida];	$sloc[$ida]=0;
@@ -63,6 +66,8 @@ $queryp= "UPDATE stocklocal SET stock=$fij WHERE id_art=$ida;";
 $dbnivel->query($queryp);if($debug){echo "$queryp \n\n";};	
 if(strlen($dbnivel->error())==0){$pas1[$idd]['a']=$ida;$pas1[$idd]['c']=$fij;};
 }else{
+if($alm){$almacen[$idd][$ida]=$sum;};
+if($bd){$bds[$idd]=1;};
 $sum=$sloc[$ida] + ($sum*1);	
 $queryp= "UPDATE stocklocal SET stock=$sum  WHERE id_art=$ida;";
 $dbnivel->query($queryp);if($debug){echo "$queryp \n\n";};
@@ -125,9 +130,24 @@ if($debug){echo "DATOS HECHOS REMOTAMENTE \$pas2 __  \n"; print_r($pas2);  echo 
 
 if (!$dbnivelAPP->open()){die($dbnivelAPP->error());};
 
+
+if(count($almacen)>0){ foreach ($almacen as $idd => $articul) { foreach ($articul as $ida => $value) {
+$queryp= "UPDATE articulos SET stock=stock - $value WHERE id=$ida;";
+$dbnivelAPP->query($queryp);if($debug){echo "$queryp \n";};		
+}}}
+
+
 if(count($pas2)>0){ foreach ($pas2 as $idd => $point) {
-$queryp= "DELETE FROM fij_stock WHERE id=$idd;";
+
+if(array_key_exists($idd, $bds)){	
+$queryp= "UPDATE fij_stock SET bd=2 WHERE id=$idd;";
 $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n";};	
+}else{
+$queryp= "DELETE FROM fij_stock WHERE id=$idd AND bd < 2;";
+$dbnivelAPP->query($queryp);if($debug){echo "$queryp \n";};	
+	
+}
+
 }}
 
 
