@@ -83,7 +83,9 @@ $file = fopen ("http://192.168.1.11/ajax/getimage.php?codbarras=$codbarras", "r"
 while (!feof ($file)) { $fotos = fgets ($file, 1024);};
 fclose($file);
 
-$afotos=json_decode($fotos);
+$dfotos=json_decode($fotos, true);
+$afotos=$dfotos['img'];
+$acodes=$dfotos['cod'];
 
 if(array_key_exists(0, $afotos)){
 $valores['foto']=str_replace($pathimages, $urlimages, $afotos[0]);
@@ -92,8 +94,8 @@ $valores['foto']= $urlimages . "nodisp.jpg";
 }
 
 
-if(count($afotos)>0){foreach($afotos as $noot => $fot){
-$valores['opciones'].="$fot <br>";
+if(count($acodes)>0){foreach($acodes as $fot => $noot){
+$valores['opciones'].=$fot . "<br>";
 	
 }}
 

@@ -16,7 +16,7 @@ document.getElementById("impCodA").select();
 }else if(key=="foto"){
 document.getElementById('foto').src=val;
 }else if(key=="opciones"){
-//document.getElementById('opciones').innerHTML=val;
+document.getElementById('opciones').innerHTML=val;
 }else{
 
 if(document.getElementById(key)){
