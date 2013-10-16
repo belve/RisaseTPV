@@ -11,7 +11,7 @@ $dbnivelAPP=new DB('192.168.1.11','tpv','tpv','risase');
 $dbnivelBAK=new DB('192.168.1.11','tpv','tpv','tpv_backup');
 
 
-$debug=0;
+$debug=1;
 include('sync_general.php');
 include('sync_getpedidos.php');
 include('sync_ticket.php');
