@@ -60,6 +60,20 @@ CREATE TABLE `articulos` (
   KEY `pvp` (`pvp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+/*Table structure for table `caja` */
+
+DROP TABLE IF EXISTS `caja`;
+
+CREATE TABLE `caja` (
+  `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
+  `fecha` date DEFAULT NULL,
+  `id_empleado` bigint(10) DEFAULT NULL,
+  `importe` decimal(8,2) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fecha` (`fecha`),
+  KEY `id_empleado` (`id_empleado`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+
 /*Table structure for table `colores` */
 
 DROP TABLE IF EXISTS `colores`;
@@ -68,7 +82,7 @@ CREATE TABLE `colores` (
   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `config` */
 
@@ -78,6 +92,20 @@ CREATE TABLE `config` (
   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
   `var` varchar(255) DEFAULT NULL,
   `value` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+/*Table structure for table `det_rebaja` */
+
+DROP TABLE IF EXISTS `det_rebaja`;
+
+CREATE TABLE `det_rebaja` (
+  `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
+  `id_rebaja` bigint(255) DEFAULT NULL,
+  `id_articulo` bigint(50) DEFAULT NULL,
+  `precio` decimal(8,2) DEFAULT NULL,
+  `fecha_ini` date DEFAULT NULL,
+  `fecha_fin` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -138,16 +166,14 @@ CREATE TABLE `proveedores` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Table structure for table `rebajas` */
+/*Table structure for table `pvp_fijo` */
 
-DROP TABLE IF EXISTS `rebajas`;
+DROP TABLE IF EXISTS `pvp_fijo`;
 
-CREATE TABLE `rebajas` (
+CREATE TABLE `pvp_fijo` (
   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
   `id_articulo` bigint(20) DEFAULT NULL,
   `pvp` decimal(8,2) DEFAULT NULL,
-  `fecha_ini` date DEFAULT NULL,
-  `fecha_fin` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -176,7 +202,7 @@ CREATE TABLE `stocklocal` (
   `pvp` decimal(8,2) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cod` (`cod`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=97430 DEFAULT CHARSET=latin1;
 
 /*Table structure for table `subgrupos` */
 
@@ -198,7 +224,7 @@ CREATE TABLE `syncupdate` (
   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
   `syncSql` longtext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Table structure for table `ticket_det` */
 
@@ -253,11 +279,12 @@ CREATE TABLE `tiendas` (
   `telefonoConex` varchar(12) DEFAULT NULL,
   `activa` tinyint(1) DEFAULT NULL,
   `orden` int(12) DEFAULT NULL,
+  `franquicia` int(2) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `activa` (`activa`),
   KEY `orden` (`orden`),
   KEY `id_tienda` (`id_tienda`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
