@@ -136,7 +136,8 @@ if (!$dbnivel->open()){die($dbnivel->error());};
 
 if(count($hazpedidos)>0){foreach($hazpedidos as $codapedir => $point){
 $queryp= "INSERT INTO pedidos (codbarras) VALUES ($codapedir);";
-$dbnivel->query($queryp);	
+$dbnivel->query($queryp);
+if($debug){echo "$queryp \n creopedidos: \n";  echo $dbnivelAPP->error();};	
 }}
 
 
