@@ -1,7 +1,7 @@
 <?php
 
 
-$debug=1;
+$debug=0;
 $point=0;
 foreach($_GET as $nombre_campo => $valor){  $asignacion = "\$" . $nombre_campo . "='" . $valor . "';";   eval($asignacion);};
 
