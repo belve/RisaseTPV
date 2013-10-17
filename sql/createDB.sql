@@ -72,7 +72,7 @@ CREATE TABLE `caja` (
   PRIMARY KEY (`id`),
   KEY `fecha` (`fecha`),
   KEY `id_empleado` (`id_empleado`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Table structure for table `colores` */
 
@@ -82,7 +82,7 @@ CREATE TABLE `colores` (
   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Table structure for table `config` */
 
@@ -93,7 +93,7 @@ CREATE TABLE `config` (
   `var` varchar(255) DEFAULT NULL,
   `value` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Table structure for table `det_rebaja` */
 
@@ -202,7 +202,7 @@ CREATE TABLE `stocklocal` (
   `pvp` decimal(8,2) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cod` (`cod`)
-) ENGINE=InnoDB AUTO_INCREMENT=97430 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Table structure for table `subgrupos` */
 
@@ -284,7 +284,7 @@ CREATE TABLE `tiendas` (
   KEY `activa` (`activa`),
   KEY `orden` (`orden`),
   KEY `id_tienda` (`id_tienda`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
