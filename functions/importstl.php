@@ -1,7 +1,7 @@
 <?php
 
 
-
+$debug=1;
 $point=0;
 foreach($_GET as $nombre_campo => $valor){  $asignacion = "\$" . $nombre_campo . "='" . $valor . "';";   eval($asignacion);};
 
@@ -14,7 +14,8 @@ $dbnivelBAK=new DB('192.168.1.11','tpv','tpv','tpv_backup');
 
 if (!$dbnivel->open()){die($dbnivel->error());};
 $queryp= "SELECT max(id) as point from stocklocal;";
-$dbnivel->query($queryp);echo $dbnivel->error();
+$dbnivel->query($queryp);
+if($debug){echo "$queryp \n\n"; echo $dbnivel->error();};
 while ($row = $dbnivel->fetchassoc()){$point=$row['point'];};
 if (!$dbnivel->close()){die($dbnivel->error());};
 $point++;
@@ -27,7 +28,7 @@ if (!$dbnivelBAK->open()){die($dbnivelBAK->error());};
 
 
 $queryp= "select max(id) as total from stocklocal_$idt;";
-$dbnivelBAK->query($queryp);
+$dbnivelBAK->query($queryp);if($debug){echo "$queryp \n\n"; echo $dbnivelBAK->error();};
 while ($row = $dbnivelBAK->fetchassoc()){$total=$row['total'];};
 
 
@@ -35,7 +36,7 @@ if($point < $total){
 	
 $values="";
 $queryp= "select * from stocklocal_$idt where id >= $point limit 5000;";
-$dbnivelBAK->query($queryp);
+$dbnivelBAK->query($queryp);if($debug){echo "$queryp \n\n"; echo $dbnivelBAK->error();};
 while ($row = $dbnivelBAK->fetchassoc()){
 
 
@@ -59,11 +60,11 @@ if (!$dbnivelBAK->close()){die($dbnivelBAK->error());};
 if (!$dbnivel->open()){die($dbnivel->error());};
 
 $queryp= "INSERT INTO stocklocal (cod,id_art,stock,alarma,pvp) VALUES $values;";
-$dbnivel->query($queryp);
+$dbnivel->query($queryp);if($debug){echo "$queryp \n\n"; echo $dbnivel->error();};
 
 
 $queryp= "SELECT max(id) as point from stocklocal;";
-$dbnivel->query($queryp);
+$dbnivel->query($queryp); if($debug){echo "$queryp \n\n"; echo $dbnivel->error();};
 while ($row = $dbnivel->fetchassoc()){$point=$row['point'];};
 
 if (!$dbnivel->close()){die($dbnivel->error());};
