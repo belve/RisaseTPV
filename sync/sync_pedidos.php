@@ -53,7 +53,7 @@ $idcapedir .=$row['id'] . ",";
 
 $idcapedir=substr($idcapedir,0,strlen($idcapedir)-1);
 
-$queryp= "select id_articulo, id, estado from pedidos where id_tienda=$idt AND (estado NOT LIKE 'F') AND id_articulo IN($idcapedir);";
+$queryp= "select id_articulo, id, estado from pedidos where id_tienda=$idt AND (estado = '-' or estado = 'P') AND id_articulo IN($idcapedir);";
 $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
 while ($row = $dbnivelAPP->fetchassoc()){$yahechos[$row['id_articulo']]=$row['id'];$estados[$row['id_articulo']]=$row['estado'];};
 
