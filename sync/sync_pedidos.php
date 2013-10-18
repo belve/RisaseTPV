@@ -57,13 +57,24 @@ $queryp= "select id_articulo, id, estado from pedidos where id_tienda=$idt AND (
 $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
 while ($row = $dbnivelAPP->fetchassoc()){$yahechos[$row['id_articulo']]=$row['id'];$estados[$row['id_articulo']]=$row['estado'];};
 
-if(count($artapedir)>0){
-foreach ($artapedir as $idar => $values) {if(!array_key_exists($idar, $yahechos)){
-	
-$repi=0;
-$queryp= "select sum(cantidad) as rep from pedidos where id_tienda=$idt AND id_articulo='$idar' AND (estado='A' OR estado='T');";
+
+
+$repids=array();
+$queryp= "select id_articulo, sum(cantidad) as rep from pedidos where id_tienda=$idt AND (estado='A' OR estado='T') AND id_articulo IN($idcapedir) GROUP BY id_articulo;";
 $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
-while ($row = $dbnivelAPP->fetchassoc()){$repi=$row['rep'];}; 
+while ($row = $dbnivelAPP->fetchassoc()){$repids[$row['id_articulo']]=$row['rep'];}; 
+
+
+if(count($artapedir)>0){
+
+	
+foreach ($artapedir as $idar => $values) {
+
+if(array_key_exists($idar, $repids)){$repi=$repids[$idar];}else{$repi=0;};			
+		
+if(!array_key_exists($idar, $yahechos)){
+	
+
 
 
 $queryp= "select cantidad from repartir where id_tienda=$idt AND id_articulo='$idar';";
@@ -91,10 +102,7 @@ $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
 	
 $idpedidoup=$yahechos[$idar];
 ############# actualiza pedido existente	
-$repi=0;
-$queryp= "select sum(cantidad) as rep from pedidos where id_tienda=$idt AND id_articulo='$idar' AND (estado='A' OR estado='T');";
-$dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
-while ($row = $dbnivelAPP->fetchassoc()){$repi=$row['rep'];}; 
+
 
 $queryp= "select cantidad from repartir where id_tienda=$idt AND id_articulo='$idar';";
 $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
