@@ -68,13 +68,18 @@ $idarti=$idartis[$cod];
 
 if($id){
 $queryp= "update stocklocal set alarma=$alar where cod=$cod;";
-$dbnivel->query($queryp);$tosync[]=$queryp;
+$dbnivel->query($queryp); $tosync[]=$queryp;
 }else{
 $queryp= "INSERT INTO stocklocal (id_art,cod,alarma,stock) VALUES ($idarti,$cod,$alar,0);";
 $dbnivel->query($queryp);	$tosync[]=$queryp;
 }
 
 }}
+
+
+echo "------ to sync ----- \n";
+print_r($tosync);
+echo "------ to sync ----- \n";
 
 
 $activos="";

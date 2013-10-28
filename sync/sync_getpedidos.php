@@ -40,10 +40,10 @@ while ($row = $dbnivel->fetchassoc()){$idstl=$row['id'];};
 		
 if($idstl){			
 $queryp= "update stocklocal set stock=stock+$qty where cod=$cod;";
-$dbnivel->query($queryp);	$tosync[]=$queryp;if($debug){echo "$queryp \n\n";};
+$dbnivel->query($queryp);	$tosync[]=$queryp; if($debug){echo "$queryp \n\n";};
 }else{
 $queryp= "insert into stocklocal (id_art,cod,stock,alarma) values ('$ida','$cod','$qty','$alm');";
-$dbnivel->query($queryp);	$tosync[]=$queryp;if($debug){echo "$queryp \n\n";};
+$dbnivel->query($queryp);	$tosync[]=$queryp; if($debug){echo "$queryp \n\n";};
 }
 
 $queryp= "delete from pedidos where codbarras=$cod;";
@@ -58,6 +58,16 @@ $pedfin[$id]=$agr;
 
 }
 }
+
+
+
+echo "------ to sync ----- \n";
+print_r($tosync);
+echo "------ to sync ----- \n";
+
+
+
+
 
 
 if (!$dbnivel->close()){die($dbnivel->error());};
