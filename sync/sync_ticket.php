@@ -2,7 +2,7 @@
 
 if($debug){echo "ticket ________________________- \n\n";};
 
-$art="";$restos=array();$tickets=array();$pedir=array();$noconectado=0;$tickdone=array();$articulos=array();$tosync=array();
+$art="";$restos=array();$tickets=array();$pedir=array();$noconectado=0;$tickdone=array();$articulos=array();
 
 if (!$dbnivel->open()){die($dbnivel->error());};
 

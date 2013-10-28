@@ -6,6 +6,7 @@ require_once("../db.php");
 require_once("../variables.php");
 require_once("../functions/sync.php");
 
+$tosync=array();
 
 $dbnivelAPP=new DB('192.168.1.11','tpv','tpv','risase');
 $dbnivelBAK=new DB('192.168.1.11','tpv','tpv','tpv_backup');

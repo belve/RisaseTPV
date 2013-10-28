@@ -2,7 +2,7 @@
 
 if($debug){echo "getpedidos ________________________- \n\n";}
 
-if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;};$tosync=array();
+if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;};
 
 $getped=array();$pedfin=array();
 
