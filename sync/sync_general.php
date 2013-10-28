@@ -124,7 +124,7 @@ if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
 if (!$dbnivelBAK->open()){die($dbnivelBAK->error());};
 
 if(count($querys2)>0){foreach($querys2 as $idstl => $quer){
-$dbnivelBAK->query($quer);		
+$dbnivelBAK->query($quer);	if($debug){echo "$quer \n\n"; echo $dbnivelBAK->error();};	
 if(strlen($dbnivelBAK->error())==0){$querstldone[$idstl]=1;};	
 }}
 
