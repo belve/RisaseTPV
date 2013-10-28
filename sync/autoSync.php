@@ -21,6 +21,9 @@ include('sync_fijStock.php');
 include('sync_fijPVP.php');
 
 
+echo "------ to sync FINAL ----- \n";
+print_r($tosync);
+echo "------ to sync FINAL ----- \n";
 
 
 if(count($tosync)>0){foreach ($tosync as $point => $sql){
