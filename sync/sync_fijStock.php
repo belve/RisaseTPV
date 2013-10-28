@@ -64,16 +64,16 @@ if($fij){
 	
 $queryp= "UPDATE stocklocal SET stock=$fij WHERE id_art=$ida;";
 $dbnivel->query($queryp);  $tosync[]=$queryp;   if($debug){echo "$queryp \n\n";};	
-if(strlen($dbnivel->error())==0){$pas1[$idd]['a']=$ida;$pas1[$idd]['c']=$fij;};
+if(strlen($dbnivel->error())==0){$pas1[$idd]['a']=$ida; $pas1[$idd]['c']=$fij;};
 }else{
 if($alm){$almacen[$idd][$ida]=$sum;};
 if($bd){$bds[$idd]=1;};
 $sum=$sloc[$ida] + ($sum*1);	
 $queryp= "UPDATE stocklocal SET stock=$sum  WHERE id_art=$ida;";
 $dbnivel->query($queryp);  $tosync[]=$queryp;  if($debug){echo "$queryp \n\n";};
-if(strlen($dbnivel->error())==0){$pas1[$idd]['a']=$ida;$pas1[$idd]['c']=$sum;};	
+if(strlen($dbnivel->error())==0){$pas1[$idd]['a']=$ida; $pas1[$idd]['c']=$sum;};	
 }
-
+$pas2[$idd]=1;
 
 }}
 
