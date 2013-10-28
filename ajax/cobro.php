@@ -42,7 +42,12 @@ $dbnivel->query($queryp); echo $queryp;
 while ($row = $dbnivel->fetchassoc()){$check=$row['cod'];};
 
 if(!$check){
-$queryp= "INSERT INTO stocklocal (cod,stock,alarma) values ($idart,0,0);";
+	
+$queryp= "select id, codbarras from articulos where codbarras = $idart;";
+$dbnivel->query($queryp); echo $queryp;
+while ($row = $dbnivel->fetchassoc()){$cbc=$row['codbarras'];$idc=$row['id'];};		
+	
+$queryp= "INSERT INTO stocklocal (id_art,cod,stock,alarma) values ($idc,$cbc,0,0);";
 $dbnivel->query($queryp); echo $queryp;	$tosync[]=$queryp;
 }
 	
