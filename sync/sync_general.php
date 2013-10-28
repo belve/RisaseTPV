@@ -51,10 +51,15 @@ if($debug){echo "$queryp \n querys2:\n "; print_r($querys2);};
 
 
 if(count($querys)>0){foreach ($querys as $id => $queryp) {
-$dbnivel->query($queryp);
+$dbnivel->query($queryp); echo "\n" . $dbnivel->error() . "\n";
 if(strlen($dbnivel->error())==0){$queryshechas[$id]=1;};
 }}
 if($debug){echo "$queryp \n\n";};
+echo "------ to queryshechas ----- \n";
+print_r($queryshechas);
+echo "------ to queryshechas ----- \n";
+
+
 
 
 if(count($alarmas)>0){foreach ($alarmas as $cod => $alar) {
