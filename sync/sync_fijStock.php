@@ -49,7 +49,7 @@ if($debug){echo "DATOS LOCALES__ \$sloc __  \n"; print_r($sloc); echo "\n\n"; };
 if($debug){echo "DATOS LOCALES__ \$cbr __  \n"; print_r($cbr);  echo "\n\n"; };
 
 $pas1=array();
-if(count($fijos)>0){ foreach ($fijos as $idd => $arti) {
+if(count($fijos)>0){ foreach ($fijos as $idd => $arti) {$fij="";
 
 $ida=$arti['ida']; $fij=$arti['fij']; $sum=$arti['sum']; $alm=$arti['alm']; $bd=$arti['bd'];	$idaL="";
 
@@ -60,7 +60,7 @@ $dbnivel->query($queryp); $tosync[]=$queryp;  if($debug){echo "$queryp \n\n";};
 if($debug){echo "DATOS LOCALES__ \$sloc __  \n"; print_r($sloc);  echo "\n\n";};	
 }
 
-if($fij){
+if($fij!=""){
 	
 $queryp= "UPDATE stocklocal SET stock=$fij WHERE id_art=$ida;";
 $dbnivel->query($queryp);  $tosync[]=$queryp;   if($debug){echo "$queryp \n\n";};	
