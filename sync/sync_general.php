@@ -161,10 +161,13 @@ if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;};
 
 
 
+echo "------ to queryshechas ----- \n";
+print_r($queryshechas);
+echo "------ to queryshechas ----- \n";
 
 if(count($queryshechas)>0){foreach ($queryshechas as $idhecho => $nada) {
 $queryp= "delete from syncupdate where id=$idhecho;";
-$dbnivelAPP->query($queryp);
+$dbnivelAPP->query($queryp); echo $dbnivelAPP->error();
 }}
 
 
