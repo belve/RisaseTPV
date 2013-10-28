@@ -20,6 +20,14 @@ include('sync_roturas.php');
 include('sync_fijStock.php');
 include('sync_fijPVP.php');
 
+
+
+
+if(count($tosync)>0){foreach ($tosync as $point => $sql){
+SyncModBD($sql,$id_tienda);
+}}
+
+
 ?>
 
 

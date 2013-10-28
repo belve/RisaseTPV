@@ -88,9 +88,6 @@ $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
 if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
 
 
-if(count($tosync)>0){foreach ($tosync as $point => $sql){
-SyncModBD($sql,$id_tienda);
-}}
 
 
 

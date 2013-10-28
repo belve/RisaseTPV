@@ -36,4 +36,6 @@ $dbnivel->query($queryp);if($debug){echo "$queryp \n\n";};
 
 if (!$dbnivel->close()){die($dbnivel->error());};
 
+
+
 ?>

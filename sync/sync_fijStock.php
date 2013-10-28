@@ -56,21 +56,21 @@ $ida=$arti['ida']; $fij=$arti['fij']; $sum=$arti['sum']; $alm=$arti['alm']; $bd=
 if(!array_key_exists($ida, $sloc)){
 $cod=$cbr[$ida];	$sloc[$ida]=0;
 $queryp= "INSERT INTO stocklocal (id_art,cod,stock,alarma,pvp) VALUES ($ida,$cod,0,0,0);";
-$dbnivel->query($queryp);if($debug){echo "$queryp \n\n";};
+$dbnivel->query($queryp); $tosync[]=$queryp;  if($debug){echo "$queryp \n\n";};
 if($debug){echo "DATOS LOCALES__ \$sloc __  \n"; print_r($sloc);  echo "\n\n";};	
 }
 
 if($fij){
 	
 $queryp= "UPDATE stocklocal SET stock=$fij WHERE id_art=$ida;";
-$dbnivel->query($queryp);if($debug){echo "$queryp \n\n";};	
+$dbnivel->query($queryp);  $tosync[]=$queryp;   if($debug){echo "$queryp \n\n";};	
 if(strlen($dbnivel->error())==0){$pas1[$idd]['a']=$ida;$pas1[$idd]['c']=$fij;};
 }else{
 if($alm){$almacen[$idd][$ida]=$sum;};
 if($bd){$bds[$idd]=1;};
 $sum=$sloc[$ida] + ($sum*1);	
 $queryp= "UPDATE stocklocal SET stock=$sum  WHERE id_art=$ida;";
-$dbnivel->query($queryp);if($debug){echo "$queryp \n\n";};
+$dbnivel->query($queryp);  $tosync[]=$queryp;  if($debug){echo "$queryp \n\n";};
 if(strlen($dbnivel->error())==0){$pas1[$idd]['a']=$ida;$pas1[$idd]['c']=$sum;};	
 }
 
@@ -83,7 +83,7 @@ if($debug){echo "DATOS HECHOS LOCALMENTE__ \$pas1 __  \n"; print_r($pas1);  echo
 
 
 
-
+/*
 if (!$dbnivelBAK->open()){die($dbnivelBAK->error());};
 
 if(count($pas1)>0){
@@ -98,11 +98,11 @@ while ($row = $dbnivelBAK->fetchassoc()){$idb=$row['id'];};
 if(!$idb){
 $cod=$cod=$cbr[$ida];	
 $queryp= "INSERT INTO stocklocal_$id_tienda (id_art,cod,stock,alarma,pvp) VALUES ($ida,$cod,$cant,0,0);";
-$dbnivelBAK->query($queryp);if($debug){echo "$queryp \n\n";};	
+$dbnivelBAK->query($queryp);  if($debug){echo "$queryp \n\n";};	
 if(strlen($dbnivel->error())==0){$pas2[$idd]=1;};		
 }else{
 $queryp= "UPDATE stocklocal_$id_tienda SET stock=$cant WHERE id_art=$ida;";
-$dbnivelBAK->query($queryp);if($debug){echo "$queryp \n\n";};		
+$dbnivelBAK->query($queryp); if($debug){echo "$queryp \n\n";};		
 if(strlen($dbnivel->error())==0){$pas2[$idd]=1;};	
 }	
 	
@@ -116,7 +116,7 @@ if (!$dbnivelBAK->close()){die($dbnivelBAK->error());};
 
 if($debug){echo "DATOS HECHOS REMOTAMENTE \$pas2 __  \n"; print_r($pas2);  echo "\n\n"; };
 
-
+*/
 
 
 
