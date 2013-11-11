@@ -129,7 +129,7 @@
 
 <div style="clear:both;"></div>	
 <div style="float:left">
-<iframe id="dettiq" src="/ajax/det_ticket.php" width="364" height="230" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>
+<iframe id="dettiq" src="/ajax/det_ticket.php" width="400" height="230" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>
 </div>
 
 <div style="float:left">
