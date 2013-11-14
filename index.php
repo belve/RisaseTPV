@@ -155,9 +155,9 @@
 
 
 
-
+<!--
 <iframe style="position: absolute; top:452px; background-color: white; " id="syncro" src="/sync/autoSync.php" width="50" height="50" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>
-
+-->
 
 
 
@@ -174,7 +174,7 @@ $.each(data, function(key, val) {
 });
 });
 
-setTimeout(func, 300000);	
+setTimeout(func, 600000);	
 }	
 
 
@@ -185,13 +185,13 @@ $.each(data, function(key, val) {
 });
 });
 
-setTimeout(func, 300000);	
+setTimeout(func, 600000);	
 }	
 
 
 
 	
-//sync1();	
+sync1();	
 </script>
 </body>
 </html>
