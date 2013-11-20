@@ -298,7 +298,7 @@ CREATE TABLE `tickets` (
 
 DROP TABLE IF EXISTS `dev_tickets`;
 
-CREATE TABLE `tickets` (
+CREATE TABLE `dev_tickets` (
   `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
   `id_tienda` bigint(255) DEFAULT NULL,
   `id_ticket` varchar(255) DEFAULT NULL,
