@@ -4,6 +4,93 @@
 
 
 
+
+
+
+
+function ticketRegalo($nt,$dr,$id_tienda,$idt){
+
+$espacios[0] ="";
+$espacios[1] =" ";
+$espacios[2] ="  ";
+$espacios[3] ="   ";
+$espacios[4] ="    ";
+$espacios[5] ="     ";
+$espacios[6] ="      ";
+$espacios[7] ="       ";
+$espacios[8] ="        ";
+$espacios[9] ="         ";
+$espacios[10]="          ";
+$espacios[11]="           ";
+$espacios[12]="            ";
+$espacios[13]="             ";
+$espacios[14]="              ";
+$espacios[15]="               ";
+$espacios[16]="                ";
+$espacios[17]="                 ";
+$espacios[18]="                  ";
+$espacios[19]="                   ";
+$espacios[20]="                    ";
+$espacios[21]="                     ";
+$espacios[22]="                      ";
+$espacios[23]="                       ";
+$espacios[24]="                        ";
+$espacios[25]="                         ";
+
+$fecha=date('d') . "/" . date('m') . "/" . date('Y');
+$ticket ="RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
+
+$s=$espacios[42-strlen($nt)-strlen($dr)]; $dr=$s . $dr;
+$ticket.= $nt . $dr ."\n\n";
+
+
+$ticket.="------------------------------------------\n";
+$ticket.="             TICKET REGALO                \n";
+$ticket.="------------------------------------------\n";
+
+$ticket.="             " . $idt ."\n";
+ 
+
+
+
+
+$toti=0;
+
+
+
+
+
+
+
+$total=number_format($total, 2);
+
+$s=$espacios[7-strlen($total)]; $total=$s . $total;
+
+
+
+$ticket.="------------------------------------------\n";
+
+$ticket.="           www.debisuteria.com            \n";
+$ticket.="visitenos en internet y obtenga descuentos\n";
+
+$ticket.="\n\n\n\n\n";
+
+
+
+$ticket2 = chr(29) . chr(86) . chr(48)  . chr(0) ;
+$ticket3 = chr(27) . chr(112) . chr(0)  . chr(25) . chr(250);
+
+
+Send_print($ticket,$ticket2,$ticket3);
+
+}
+
+
+
+
+
+
+
 function ticket($tifprint,$nt,$dr,$id_tienda,$idt){
 
 $espacios[0] ="";
@@ -24,6 +111,14 @@ $espacios[14]="              ";
 $espacios[15]="               ";
 $espacios[16]="                ";
 $espacios[17]="                 ";
+$espacios[18]="                  ";
+$espacios[19]="                   ";
+$espacios[20]="                    ";
+$espacios[21]="                     ";
+$espacios[22]="                      ";
+$espacios[23]="                       ";
+$espacios[24]="                        ";
+$espacios[25]="                         ";
 
 $fecha=date('d') . "/" . date('m') . "/" . date('Y');
 $ticket ="RISASE,S.A. (A-78088176)  Fecha:$fecha\n";

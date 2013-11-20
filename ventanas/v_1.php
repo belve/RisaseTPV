@@ -151,7 +151,7 @@ F12 Descuento <br>
 <div class="total" id="total">0.00 €</div>
 
 <div id="cobrador" style="visibility: hidden;">
-<div style=" background-color: #C8C8C8;    height: 341px;    left: 0px;    opacity: 0.6;    position: absolute;    top: 0px;    width: 476px;"></div>
+<div style=" background-color: #C8C8C8;    height: 341px;    left: 0px;    opacity: 0.6;    position: absolute;    top: 0px;    width: 560px;"></div>
 <div style="background-color: #cccccc;    height: 87px;    left: 93px;    padding: 35px;    position: absolute;    top: 84px;    width: 201px; border: 1px solid #666666;">
 	
 <div class="emple">Importe: </div><input type="text" class="impCod2" style="margin-left: 31px; border:0px; background-color: #cccccc; color:green;" id="do_tot">
@@ -166,8 +166,14 @@ F12 Descuento <br>
 
 
 <div style="background-color: #cccccc; padding: 35px; position: absolute; z-index: 100; height: 17px; top: 90px; width: 195px; left: 96px; visibility: hidden; " id="cajon">
+
+<!--
+<div style="background-color: orange; color: white; text-align: center; padding: 5px; width: 100px; margin-left: 47px; font-weight: bold; cursor: pointer;  margin-top: -20px; margin-bottom: 10px;" onclick="javascript:regalo();">T. Regalo</div>	
+-->
+
+<input type="hidden" id='tregalo' value='' />
 	
-<div style="background-color: orange; color: white; text-align: center; padding: 5px; width: 100px; margin-left: 47px; font-weight: bold;" onclick="javascript:escapeD();">Cerrar</div>	
+<div style="background-color: orange; color: white; text-align: center; padding: 5px; width: 100px; margin-left: 47px; font-weight: bold; cursor: pointer;" onclick="javascript:escapeD();">Cerrar</div>	
 	
 </div>
 
@@ -176,7 +182,7 @@ F12 Descuento <br>
 
 
 <div id="descuento" style="visibility: hidden;">
-<div style=" background-color: #C8C8C8;    height: 341px;    left: 0px;    opacity: 0.6;    position: absolute;    top: 0px;    width: 476px;"></div>
+<div style=" background-color: #C8C8C8;    height: 341px;    left: 0px;    opacity: 0.6;    position: absolute;    top: 0px;    width: 560px;"></div>
 <div style="background-color: #cccccc;    height: 87px;    left: 93px;    padding: 35px;    position: absolute;    top: 84px;    width: 201px; border: 1px solid #666666;">
 	
 <input type="hidden" id="descount_H" value="">
@@ -190,7 +196,7 @@ F12 Descuento <br>
 
 
 <div id="manual" style="visibility: hidden;">
-<div style=" background-color: #C8C8C8;    height: 341px;    left: 0px;    opacity: 0.6;    position: absolute;    top: 0px;    width: 476px;"></div>
+<div style=" background-color: #C8C8C8;    height: 341px;    left: 0px;    opacity: 0.6;    position: absolute;    top: 0px;    width: 560px;"></div>
 <div style="background-color: #cccccc;    height: 36px;    left: 93px;    padding: 35px;    position: absolute;    top: 84px;    width: 150px; border: 1px solid #666666;">
 
 
@@ -206,7 +212,7 @@ F12 Descuento <br>
 
 
 <div id="vercaja" style="visibility: hidden;">
-<div style=" background-color: #C8C8C8;    height: 341px;    left: 0px;    opacity: 0.6;    position: absolute;    top: 0px;    width: 476px;"></div>
+<div style=" background-color: #C8C8C8;    height: 341px;    left: 0px;    opacity: 0.6;    position: absolute;    top: 0px;    width: 560px;"></div>
 <div style="background-color: #cccccc;  left: 93px;    padding: 25px;    position: absolute;    top: 84px;    width: 240px; border: 1px solid #666666;">
 
 

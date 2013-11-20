@@ -42,6 +42,11 @@ if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
 if (!$dbnivel->open()){die($dbnivel->error());};
 
 
+$queryp= "DELETE FROM dev_ticket_det WHERE id_ticket IN (SELECT id_ticket FROM dev_tickets WHERE fecha <= '$bttDEV');";
+$dbnivel->query($queryp);if($debug){echo "\n $queryp \n";};
+$queryp= "DELETE FROM dev_tickets WHERE fecha <= '$bttDEV';";
+$dbnivel->query($queryp);if($debug){echo "$queryp \n\n";};
+
 $queryp= "select * from syncupdate;";
 $dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){

@@ -332,7 +332,7 @@ var url='/ajax/cobro.php?emp=' + emp + '&desc=' + desc + '&total=' + total + cod
 $.getJSON(url, function(data) {
 $.each(data, function(key, val) {
 
-			
+if(key=='t'){document.getElementById("tregalo").value=val;}			
 	
 });
 });
@@ -346,7 +346,16 @@ document.getElementById("dev_h").value=0;
 document.getElementById("dev_c").innerHTML='';	
 }
 
-
+function regalo(){
+var t=document.getElementById("tregalo").value;
+var url='/ajax/regalo.php?t=' + t;
+$.getJSON(url, function(data) {
+$.each(data, function(key, val) {
+	
+});
+});
+	
+}
 
 function loop_emp(){
 var current=getCookieT('current_emp');	

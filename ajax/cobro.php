@@ -27,6 +27,10 @@ $idt=$id_nom_tienda . date('d') . date('m') . date('y') . date('G') . date('i') 
 $queryp= "INSERT INTO tickets (id_ticket,id_tienda,id_empleado,fecha,importe,descuento) values ('$idt', '$id_tienda', '$idemp', '$fecha', '$total','$desc');";
 $dbnivel->query($queryp);
 
+$queryp= "INSERT INTO dev_tickets (id_ticket,id_tienda,id_empleado,fecha,importe,descuento) values ('$idt', '$id_tienda', '$idemp', '$fecha', '$total','$desc');";
+$dbnivel->query($queryp);
+
+
 $queryp= "INSERT INTO caja (id_empleado,fecha,importe) values ('$idemp', '$fecha', '$total');";
 $dbnivel->query($queryp);
 
@@ -38,13 +42,13 @@ $check="";$codba="";
 
 
 $queryp= "select cod from stocklocal where cod = $idart;";
-$dbnivel->query($queryp); echo $queryp;
+$dbnivel->query($queryp); 
 while ($row = $dbnivel->fetchassoc()){$check=$row['cod'];};
 
 if(!$check){
 	
 $queryp= "select id, codbarras from articulos where codbarras = $idart;";
-$dbnivel->query($queryp); echo $queryp;
+$dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){$cbc=$row['codbarras'];$idc=$row['id'];};		
 	
 $queryp= "INSERT INTO stocklocal (id_art,cod,stock,alarma) values ($idc,$cbc,0,0);";
@@ -54,12 +58,15 @@ $dbnivel->query($queryp); echo $queryp;	$tosync[]=$queryp;
 $qty=$values['q']; $pvp=$values['p'];	
 $queryp= "INSERT INTO ticket_det (id_ticket,id_tienda,id_articulo,cantidad,importe) values ('$idt', '$id_tienda', '$idart', '$qty', '$pvp');";
 $dbnivel->query($queryp);
+$queryp= "INSERT INTO dev_ticket_det (id_ticket,id_tienda,id_articulo,cantidad,importe) values ('$idt', '$id_tienda', '$idart', '$qty', '$pvp');";
+$dbnivel->query($queryp);
+
 
 $grup=substr($idart, 0,1);
 $subgru=substr($idart, 1,1);
 
 $queryp= "select nombre from subgrupos where id_grupo = $grup AND clave=$subgru;";
-$dbnivel->query($queryp); echo $queryp;
+$dbnivel->query($queryp); 
 while ($row = $dbnivel->fetchassoc()){$ngru=$row['nombre'];};
 
 global $id_tienda;
@@ -85,8 +92,8 @@ if(count($tosync)>0){foreach ($tosync as $point => $sql){
 SyncModBD($sql,$id_tienda);
 }}
 
-
-
+$v['t']=$idt;
+echo json_encode($v);
 
 ?>
 
