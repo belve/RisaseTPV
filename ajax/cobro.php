@@ -77,7 +77,7 @@ $queryp= "select ciudad, direccion from tiendas where id=$id_tienda;";
 $dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){$nt=$row['ciudad']; $dr=$row['direccion'];};
 
-ticket($tifprint,$nt,$dr,$id_tienda);
+ticket($tifprint,$nt,$dr,$id_tienda,$idt);
 
 if (!$dbnivel->close()){die($dbnivel->error());};
 

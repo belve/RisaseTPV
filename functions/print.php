@@ -4,7 +4,7 @@
 
 
 
-function ticket($tifprint,$nt,$dr,$id_tienda){
+function ticket($tifprint,$nt,$dr,$id_tienda,$idt){
 
 $espacios[0] ="";
 $espacios[1] =" ";
@@ -31,7 +31,7 @@ $ticket ="RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
 $s=$espacios[42-strlen($nt)-strlen($dr)]; $dr=$s . $dr;
 $ticket.= $nt . $dr ."\n\n";
 
-
+$ticket.=$idt ."\n";
  
 
 $ticket.="Articulo       Codigo  Cant  Precio  Total\n";
