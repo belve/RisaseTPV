@@ -226,6 +226,11 @@ CREATE TABLE `syncupdate` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+
+
+
+
 /*Table structure for table `ticket_det` */
 
 DROP TABLE IF EXISTS `ticket_det`;
@@ -242,6 +247,29 @@ CREATE TABLE `ticket_det` (
   KEY `id_ticket` (`id_ticket`),
   KEY `id_articulo` (`id_articulo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+/*Table structure for table `dev_ticket_det` */
+
+DROP TABLE IF EXISTS `dev_ticket_det`;
+
+CREATE TABLE `dev_ticket_det` (
+  `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
+  `id_tienda` bigint(255) DEFAULT NULL,
+  `id_ticket` varchar(255) DEFAULT NULL,
+  `id_articulo` bigint(255) DEFAULT NULL,
+  `cantidad` int(10) DEFAULT NULL,
+  `importe` decimal(8,2) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_tienda` (`id_tienda`),
+  KEY `id_ticket` (`id_ticket`),
+  KEY `id_articulo` (`id_articulo`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
 
 /*Table structure for table `tickets` */
 
@@ -261,6 +289,33 @@ CREATE TABLE `tickets` (
   KEY `id_empleado` (`id_empleado`),
   KEY `fecha` (`fecha`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+
+/*Table structure for table `dev_tickets` */
+
+DROP TABLE IF EXISTS `dev_tickets`;
+
+CREATE TABLE `tickets` (
+  `id` bigint(255) unsigned NOT NULL AUTO_INCREMENT,
+  `id_tienda` bigint(255) DEFAULT NULL,
+  `id_ticket` varchar(255) DEFAULT NULL,
+  `id_empleado` int(30) DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  `importe` decimal(8,2) DEFAULT NULL,
+  `descuento` decimal(8,2) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_tienda` (`id_tienda`),
+  KEY `id_ticket` (`id_ticket`),
+  KEY `id_empleado` (`id_empleado`),
+  KEY `fecha` (`fecha`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
 
 /*Table structure for table `tiendas` */
 
