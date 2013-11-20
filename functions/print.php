@@ -376,7 +376,6 @@ fwrite($fp,$ticket3);
 }
 
 
-
 function Send_print2($ticket,$ticket2,$ticket3){
 	
 $ticket=urlencode($ticket . $ticket2 . $ticket3);
