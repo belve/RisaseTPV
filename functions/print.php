@@ -175,15 +175,16 @@ $s=$espacios[7-strlen($total)]; $total=$s . $total;
 
 $ticket.="I.V.A. Incluido        Total euros:$total\n";
 
-$ticket.="------------------------------------------\n";
 $ticket.="GRACIAS POR SU COMPRA                     \n";
 $ticket.="------------------------------------------\n";
-
+$ticket.="Plazo máximo para el cambio 15 dias.      \n";
+$ticket.="Presentando ticket de compra.No se admiten\n";
+$ticket.="devoluciones salvo tara o defecto.        \n";
+$ticket.="------------------------------------------\n";
 $ticket.="           www.debisuteria.com            \n";
 $ticket.="visitenos en internet y obtenga descuentos\n";
 
 $ticket.="\n\n\n\n\n";
-
 
 
 $ticket2 = chr(29) . chr(86) . chr(48)  . chr(0) ;
@@ -373,6 +374,7 @@ fwrite($fp,$ticket3);
 
 	
 }
+
 
 
 function Send_print2($ticket,$ticket2,$ticket3){
