@@ -177,7 +177,7 @@ $ticket.="I.V.A. Incluido        Total euros:$total\n";
 
 $ticket.="GRACIAS POR SU COMPRA                     \n";
 $ticket.="------------------------------------------\n";
-$ticket.="Plazo máximo para el cambio 15 dias.      \n";
+$ticket.="Plazo maximo para el cambio 15 dias.      \n";
 $ticket.="Presentando ticket de compra.No se admiten\n";
 $ticket.="devoluciones salvo tara o defecto.        \n";
 $ticket.="------------------------------------------\n";
