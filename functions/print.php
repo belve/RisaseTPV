@@ -367,8 +367,8 @@ function Send_print($ticket,$ticket2,$ticket3){
 $ticket=iconv('UTF-8', 'ASCII//TRANSLIT', $ticket);
 
 $fp = fopen("LPT1:", "r+");
-#fwrite($fp,$ticket);
-#fwrite($fp,$ticket2);
+fwrite($fp,$ticket);
+fwrite($fp,$ticket2);
 fwrite($fp,$ticket3);
 
 
@@ -386,9 +386,6 @@ fclose($file);
 	
 }
 
-function openCAJ(){
-	
-}
 
 
 ?>

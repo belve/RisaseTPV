@@ -44,6 +44,12 @@
          return false;
          break;
          
+          case 113:
+           opencaj();
+         return false;
+         break;
+         
+         
          case 114:
            alert('Desglose de caja');
          return false;

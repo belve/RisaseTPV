@@ -425,6 +425,20 @@ document.getElementById("vercaja").style.visibility='visible';
 	
 }
 
+
+function opencaj(){
+var url='/ajax/openCAJ.php';
+$.getJSON(url, function(data) {
+$.each(data, function(key, val) {
+	
+});
+});	
+	
+}
+
+
+
+
 function desglosecaja(){
 var url='/ajax/vercaja.php?a=i';
 $.getJSON(url, function(data) {
