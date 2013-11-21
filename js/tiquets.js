@@ -249,7 +249,15 @@ document.getElementById('do_tot').value=importe + " €";
 }
 
 function cobro(){
+
+var tiq="";	
+var current=getCookieT('current_emp');
+if(getCookieT('tiq_'+current)){
+var tiq=getCookieT('tiq_'+current);
+}
+if(tiq){
 show_cobro_do();
+}
 
 }
 
