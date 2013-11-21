@@ -60,8 +60,11 @@ foreach ($tickets as $cticket => $valores){
 
 $id_tienda=$valores['idt']; $id_empleado=$valores['emp']; $fecha=$valores['dat']; $importe=$valores['imp']; $desc=$valores['des'];
 
-if(is_numeric(substr($cticket,3,1))){$spos=0;}else{$spos=1;};
+if(strlen($cticket)==15){$spos=0;}else{$spos=1;};
 $hora=substr($cticket, (9+$spos), 2);
+
+
+
 
 $queryp= "insert into tickets (id_tienda, id_ticket, id_empleado, fecha, hora, importe, descuento) values ('$id_tienda', '$cticket', '$id_empleado', '$fecha', '$hora', '$importe', '$desc');";
 $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
