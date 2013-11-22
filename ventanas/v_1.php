@@ -1,3 +1,18 @@
+<?php
+
+require_once("../db.php");
+require_once("../variables.php");
+
+
+if (!$dbnivel->open()){die($dbnivel->error());};
+$queryp= "select var, value from config";
+$dbnivel->query($queryp);
+while ($row = $dbnivel->fetchassoc()){$config = "\$" . $row['var'] . "='" . $row['value'] . "';";   eval($config);};
+
+if (!$dbnivel->close()){die($dbnivel->error());};
+
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <head>
@@ -32,7 +47,7 @@
    // Register keypress events on the whole document
    $(document).keypress(function(e) {
    	
-   
+   //alert(e.keyCode);
       switch(e.keyCode) { 
         
          case 13:
@@ -40,6 +55,16 @@
          return false;	
          break;
       
+		 
+		 case 38:
+         movF('up');
+         return false;	
+         break;
+		
+		  case 40:
+         movF('dw');
+         return false;	
+         break;
 		 
          case 27:
          escapeD();
@@ -76,6 +101,12 @@
 		 case 116:
          return false;
          break;
+
+		 case 117:
+          vregalo();
+         return false;
+         break;
+         
 
          case 118:
            cobro();
@@ -143,10 +174,12 @@
 <div style="float:left">
 <div class="keys">
 F1 Ver Caja <br>	
+F2 Abrir cajón <br>
 F3 Desglose Caja <br>
 F4 Cambiar Empleado <br>
 <br>
 <br>
+F6 Ticket regalo <br>
 F7,F8,F9 Cobrar Ticket <br>
 F11 Devoluciones <br>
 F12 Descuento <br>	
@@ -157,6 +190,22 @@ F12 Descuento <br>
 <div style="clear:both;"></div>	
 <div class="emple">Importe</div>
 <div class="total" id="total">0.00 €</div>
+
+
+<div id="vregalo" style="visibility: hidden;">
+<div style=" background-color: #C8C8C8;    height: 341px;    left: 0px;    opacity: 0.6;    position: absolute;    top: 0px;    width: 560px;"></div>
+<div style="background-color: #cccccc;    height: 130px;    left: 150px;    padding: 25px;    position: absolute;    top: 84px;    width: 201px; border: 1px solid #666666;">
+
+<div id="contREG">
+		
+</div>
+
+<div id="busqT" class="tforREL tfrIN"  style='background-color: white;' >
+	<input onkeyup="chkREG();" type="text" id='searchT' class="inpbti" value="">
+	<input type="hidden" id="idnt" value="<?php echo $id_nom_tienda; ?>">
+</div>
+		
+</div>
 
 <div id="cobrador" style="visibility: hidden;">
 <div style=" background-color: #C8C8C8;    height: 341px;    left: 0px;    opacity: 0.6;    position: absolute;    top: 0px;    width: 560px;"></div>

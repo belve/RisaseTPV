@@ -51,6 +51,7 @@ show_emp(1);
 
 function introD(){
 if      (document.getElementById("cajon").style.visibility=='visible'){cobro_hide();}
+else if (document.getElementById("vregalo").style.visibility=='visible'){printREG();}
 else if (document.getElementById("cobrador").style.visibility=='visible'){cobro_calc();}
 else if (document.getElementById("descuento").style.visibility=='visible'){aplydescuent();}
 else if (document.getElementById("vercaja").style.visibility=='visible'){document.getElementById("vercaja").style.visibility='hidden';}
@@ -143,14 +144,21 @@ document.getElementById("impCod").select();
 }
 
 
+
 function escapeD(){
 if(document.getElementById("cobrador").style.visibility=='visible'){cobro_hide();}
 else if
 (document.getElementById("descuento").style.visibility=='visible'){
 document.getElementById("descuento").style.visibility='hidden';
+document.getElementById("impCod").select();
+}else if
+(document.getElementById("vregalo").style.visibility=='visible'){
+document.getElementById("vregalo").style.visibility='hidden';
+document.getElementById("impCod").select();
 }else if
 (document.getElementById("vercaja").style.visibility=='visible'){
 document.getElementById("vercaja").style.visibility='hidden';
+document.getElementById("impCod").select();
 }else if
 (document.getElementById("manual").style.visibility=='visible'){
 document.getElementById("manual").style.visibility='hidden';
@@ -247,6 +255,121 @@ importe = importe.toFixed(2);
 
 document.getElementById('do_tot').value=importe + " €";
 }
+
+
+function movF(w){
+if(document.getElementById("vregalo").style.visibility=='visible'){
+
+window.top.tickSEARCH=0;	
+document.getElementById('busqT').setAttribute("style", "background-color:white;");
+document.getElementById('searchT').value="";
+
+var p=window.top.tregalsSEL;
+var t=window.top.tregals[p];
+if(document.getElementById(t)){document.getElementById(t).setAttribute("style", "background-color:white;");};
+
+if(w=='up'){p=p-1;};	
+if(w=='dw'){p=p+1;};
+if(p<0){p=3;};if(p>3){p=0;};
+
+window.top.tregalsSEL=p;
+var t=window.top.tregals[p];
+if(document.getElementById(t)){document.getElementById(t).setAttribute("style", "background-color:orange;");}
+
+}}
+
+
+function chkREG(){
+
+
+document.getElementById('searchT').setAttribute("style", "color:black;");
+document.getElementById('busqT').setAttribute("style", "background-color:white;");
+window.top.tickSEARCH=0;
+	
+var it=document.getElementById('searchT').value; it=it.toUpperCase();
+var indt=document.getElementById('idnt').value;
+var imn=it.replace(indt,"");
+
+if(it.length>=1){
+if(window.top.tregalsSEL>=0){	
+var p=window.top.tregalsSEL;
+var t=window.top.tregals[p];
+if(document.getElementById(t)){document.getElementById(t).setAttribute("style", "background-color:white;");};	
+window.top.tregalsSEL=-1;
+}}
+
+
+if(imn.length==12){
+
+var url="/ajax/chkTICK.php?idt=" + it;
+$.getJSON(url, function(data) {
+$.each(data, function(key, val) {
+if(key=='no'){document.getElementById('searchT').setAttribute("style", "color:red;");	}	
+
+if(key=='ok'){
+document.getElementById('busqT').setAttribute("style", "background-color:orange;");
+document.getElementById('searchT').setAttribute("style", "color:black;");
+window.top.tickSEARCH=val;
+}
+	
+});
+});
+	
+}
+
+
+	
+	
+}
+
+function vregalo(){	
+var current=getCookieT('current_emp');	
+var emp=getCookieT('empK_' + current);	
+window.top.tregals=new Array();
+window.top.tregalsSEL=0;
+
+document.getElementById("vregalo").style.visibility='visible';
+
+var url="/ajax/contREG.php?idemp=" + emp;
+$.getJSON(url, function(data) {
+$.each(data, function(key, val) {
+
+if(key=='html'){document.getElementById("contREG").innerHTML=val;}else{
+
+window.top.tregals.push(val);
+
+	
+}			
+	
+});
+});
+
+document.getElementById('busqT').setAttribute("style", "background-color:white;");
+document.getElementById('searchT').value="";
+$('#searchT').focus();
+
+
+}
+
+
+function printREG(){
+var t="";	
+if(window.top.tregalsSEL>=0){		
+var p=window.top.tregalsSEL;
+var t=window.top.tregals[p];
+} else if (window.top.tickSEARCH) {
+t=window.top.tickSEARCH;}
+
+
+if(t){
+var url='/ajax/regalo.php?t=' + t;
+$.getJSON(url, function(data) {
+$.each(data, function(key, val) {
+	
+});
+});
+	
+}}
 
 function cobro(){
 

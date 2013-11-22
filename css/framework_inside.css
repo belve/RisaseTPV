@@ -297,11 +297,21 @@ height:15px; width:96%; padding-left:3px; cursor:pointer;
 
 
 
+.tforREL{
+  border: 1px solid #333333;
+    height: 14px;
+    left: 27px;
+    padding: 4px;
+    position: relative;
+    text-align: center;
+    width: 138px;
+    margin-top:-1px;
+	
+}
 
+.tfrIN {margin-top:10px !important;}
 
-
-
-
+.inpbti{border: 0px; font-family: Arial;    font-size: 12px;    text-align: center;    text-transform: uppercase;    width: 123px; background-color:transparent; }
 
 
 

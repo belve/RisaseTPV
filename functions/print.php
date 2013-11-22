@@ -67,11 +67,14 @@ $total=number_format($total, 2);
 $s=$espacios[7-strlen($total)]; $total=$s . $total;
 
 
-
 $ticket.="------------------------------------------\n";
-
+$ticket.="Plazo maximo para el cambio 15 dias.      \n";
+$ticket.="Presentando este ticket. No se admiten    \n";
+$ticket.="devoluciones salvo tara o defecto.        \n";
+$ticket.="------------------------------------------\n";
 $ticket.="           www.debisuteria.com            \n";
 $ticket.="visitenos en internet y obtenga descuentos\n";
+
 
 $ticket.="\n\n\n\n\n";
 
