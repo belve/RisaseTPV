@@ -20,9 +20,10 @@ $tosync=array();
 $fecha=date('Y') . "-" . date('m') . "-" . date('d');
 
 
+$horr=date('G');
+if($horr <= 9){$horr='0' . $horr;};
 
-
-$idt=$id_nom_tienda . date('d') . date('m') . date('y') . date('G') . date('i') . date('s');
+$idt=$id_nom_tienda . date('d') . date('m') . date('y') . $horr . date('i') . date('s');
 
 $queryp= "INSERT INTO tickets (id_ticket,id_tienda,id_empleado,fecha,importe,descuento) values ('$idt', '$id_tienda', '$idemp', '$fecha', '$total','$desc');";
 $dbnivel->query($queryp);
