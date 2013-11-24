@@ -291,9 +291,22 @@ height:15px; width:96%; padding-left:3px; cursor:pointer;
 .photo {  background-color: #FFFFFF;    height: 207px;    left: 251px;    position: absolute;    top: 0px;    width: 275px;}
 
 
-
-
-
+.modDEVT { left: 355px;
+    position: absolute;
+    top: 3px;}
+    
+.tforRELM{
+border: 1px solid #333333;
+    height: 14px;
+    left: 27px;
+    margin-top: -1px;
+    padding: 4px;
+    position: absolute;
+    top: 13px;
+    width: 138px;
+	
+}
+.tfrINM {margin-top:10px !important;}
 
 
 
@@ -313,9 +326,9 @@ height:15px; width:96%; padding-left:3px; cursor:pointer;
 
 .inpbti{border: 0px; font-family: Arial;    font-size: 12px;    text-align: center;    text-transform: uppercase;    width: 123px; background-color:transparent; }
 
+.modDEV {float:left; margin-left: 20px; color:red;  font-size: 16px;}
 
-
-
+.ffDvt {color: #0000FF;  font-size: 12px;  font-weight: bold; position: relative; float: left; }
 
 
 

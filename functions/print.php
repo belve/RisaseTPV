@@ -8,7 +8,7 @@
 
 
 
-function ticketRegalo($nt,$dr,$id_tienda,$idt){
+function ticketRegalo($tifprint,$nt,$dr,$id_tienda,$idt){
 
 $espacios[0] ="";
 $espacios[1] =" ";
@@ -51,10 +51,24 @@ $ticket.="------------------------------------------\n";
 $ticket.="             " . $idt ."\n";
  
 
-
-
-
+$ticket.="Articulo       Codigo  Cant               \n";
 $toti=0;
+if(count($tifprint)>0){foreach($tifprint as $point => $det){foreach($det as $cod => $vals){
+
+$art=$vals['n'];	
+					$s=$espacios[21-strlen($cod)-strlen($art)]; $cod=$s . $cod;
+$can=$vals['q'];	$s=$espacios[6-strlen($can)]; $can=$s . $can;
+$pun=$vals['p'];	$s=$espacios[8-strlen($pun)]; $pun=$s . $pun;	
+$pto=$can*$pun;
+$pto=number_format($pto, 2);		$s=$espacios[7-strlen($pto)]; $pto=$s . $pto;
+
+$ticket.=$art . $cod . $can .  "\n";
+
+$total=$vals['t'];
+$descuento=$vals['d'];
+$toti=$toti+$pto;
+
+}}}
 
 
 
@@ -81,7 +95,7 @@ $ticket.="\n\n\n\n\n";
 
 
 $ticket2 = chr(29) . chr(86) . chr(48)  . chr(0) ;
-$ticket3 = chr(27) . chr(112) . chr(0)  . chr(25) . chr(250);
+$ticket3 ="";# chr(27) . chr(112) . chr(0)  . chr(25) . chr(250);
 
 
 Send_print($ticket,$ticket2,$ticket3);

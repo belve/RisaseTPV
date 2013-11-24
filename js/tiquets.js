@@ -51,6 +51,7 @@ show_emp(1);
 
 function introD(){
 if      (document.getElementById("cajon").style.visibility=='visible'){cobro_hide();}
+else if ((document.getElementById("dev_c").style.visibility=='visible')&&(window.top.combo==2)){if(window.top.tickSEARCH2){showDEV();}}
 else if (document.getElementById("vregalo").style.visibility=='visible'){printREG();}
 else if (document.getElementById("cobrador").style.visibility=='visible'){cobro_calc();}
 else if (document.getElementById("descuento").style.visibility=='visible'){aplydescuent();}
@@ -144,26 +145,33 @@ document.getElementById("impCod").select();
 }
 
 
-
 function escapeD(){
 if(document.getElementById("cobrador").style.visibility=='visible'){cobro_hide();}
 else if
 (document.getElementById("descuento").style.visibility=='visible'){
 document.getElementById("descuento").style.visibility='hidden';
-document.getElementById("impCod").select();
+document.getElementById("impCod").select();window.top.tregalsSEL=1;
 }else if
 (document.getElementById("vregalo").style.visibility=='visible'){
 document.getElementById("vregalo").style.visibility='hidden';
+document.getElementById("impCod").select();window.top.tregalsSEL=1;
+}else if
+(document.getElementById("devti").style.visibility=='visible'){
+document.getElementById("devti").style.visibility='hidden';
 document.getElementById("impCod").select();
+document.getElementById('searchT2').setAttribute("style", "color:black;");
+document.getElementById('searchT2').value="";window.top.combo=1;
+document.getElementById('busqT2').setAttribute("style", "background-color:white;");
+window.top.tickSEARCH2=0;
 }else if
 (document.getElementById("vercaja").style.visibility=='visible'){
 document.getElementById("vercaja").style.visibility='hidden';
-document.getElementById("impCod").select();
+document.getElementById("impCod").select();window.top.tregalsSEL=1;
 }else if
 (document.getElementById("manual").style.visibility=='visible'){
 document.getElementById("manual").style.visibility='hidden';
 document.getElementById("manual_i").value='';
-document.getElementById("impCod").select();
+document.getElementById("impCod").select();window.top.tregalsSEL=1;
 }
 else{delTicket();};
 
@@ -207,6 +215,7 @@ innerDoc.getElementById('tiqcode').innerHTML='';
 
 if(tiq.length>0){var det=tiq.split('<>');}
 
+var Dtotal=0;
 var total=0;
 var code="";
 if(det){
@@ -218,6 +227,7 @@ code=code + '<div class="tCod">' + datos[0] + '</div>' +
 '<div class="tCan">' + datos[2] + '</div>' +
 '<div class="tpre">' + datos[3] + '</div> <div style="clear:both;"></div>';
 total=(total*1)+(datos[3]*datos[2]);
+if(datos[2]<0){Dtotal=(Dtotal*1)+(datos[3]*datos[2]);};
 }
 }else{
 code='<div class="tCod"></div><div class="tArt"></div><div class="tCan"></div><div class="tpre"></div><div style="clear:both;"></div>';
@@ -227,6 +237,7 @@ innerDoc.getElementById('tiqcode').innerHTML=code;
 total = total.toFixed(2);
 document.getElementById('total').innerHTML=total + " €";
 document.getElementById('do_tot_H').value=total;
+document.getElementById('do_Dtot_H').value=Dtotal;
 }
 
 function showdescount(){
@@ -246,16 +257,32 @@ function show_cobro_do(){
 document.getElementById("cobrador").style.visibility='visible';
 document.getElementById("do_pag").select();
 
-var importe=document.getElementById('do_tot_H').value
+var importe=(document.getElementById('do_tot_H').value)*1;
+var Dimporte=(document.getElementById('do_Dtot_H').value)*1;
 
 if(document.getElementById("descount_H").value > 0){
+	
+importe=importe-Dimporte;	
 importe =importe -(importe * document.getElementById("descount_H").value / 100);
+importe=importe+Dimporte;
 importe = importe.toFixed(2);	
 }
 
 document.getElementById('do_tot').value=importe + " €";
 }
 
+
+function movC(W){
+if(document.getElementById("dev_c").style.visibility=='visible'){	
+var p=window.top.combo; 	
+if(W=='ri'){p=p+1;};	
+if(W=='le'){p=p-1;};	
+if(p<1){p=2;};
+if(p>2){p=1;};
+if(p==1){$('#impCod').focus().select();  };
+if(p==2){$('#searchT2').focus().select();  };	
+window.top.combo=p;
+}}
 
 function movF(w){
 if(document.getElementById("vregalo").style.visibility=='visible'){
@@ -278,6 +305,43 @@ if(document.getElementById(t)){document.getElementById(t).setAttribute("style", 
 
 }}
 
+
+function showDEV(){
+var t=window.top.tickSEARCH2;
+document.getElementById("dettiqq").src='/ajax/det_ticket_dev.php?t=' +t;
+document.getElementById("devti").style.visibility='visible';	
+}
+
+
+function chkREG2(){
+document.getElementById('searchT2').setAttribute("style", "color:black;");
+document.getElementById('busqT2').setAttribute("style", "background-color:white;");
+window.top.tickSEARCH2=0;	
+
+var it=document.getElementById('searchT2').value; it=it.toUpperCase();
+var indt=document.getElementById('idnt').value;
+var imn=it.replace(indt,"");
+
+if(it.length>=3){
+	
+var url="/ajax/chkTICK2.php?idt=" + it;
+$.getJSON(url, function(data) {
+$.each(data, function(key, val) {
+if((key=='no')&&(val < 1)){document.getElementById('searchT2').setAttribute("style", "color:red;");	}	
+if((key=='no')&&(val > 0)){document.getElementById('searchT2').setAttribute("style", "color:black;");	}	
+
+if(key=='ok'){
+document.getElementById('busqT2').setAttribute("style", "background-color:orange;");
+document.getElementById('searchT2').setAttribute("style", "color:black;");
+window.top.tickSEARCH2=val;
+}
+	
+});
+});	
+	
+	
+}
+}
 
 function chkREG(){
 
@@ -386,10 +450,12 @@ show_cobro_do();
 
 
 function cambi(){
-var total=document.getElementById('do_tot_H').value;
-
+var total=(document.getElementById('do_tot_H').value)*1;
+var Dtotal=(document.getElementById('do_Dtot_H').value)*1;
 if(document.getElementById("descount_H").value > 0){
+total=total-Dtotal;	
 total =total -(total * document.getElementById("descount_H").value / 100);
+total=total+Dtotal;
 total = total.toFixed(2);	
 }
 	
@@ -403,9 +469,12 @@ document.getElementById("do_cam").value=cambio;
 
 function cobro_calc(){
 var total=document.getElementById('do_tot_H').value;
+var Dtotal=(document.getElementById('do_Dtot_H').value)*1;
 
 if(document.getElementById("descount_H").value > 0){
+total=total-Dtotal;	
 total =total -(total * document.getElementById("descount_H").value / 100);
+total=total+Dtotal;	
 total = total.toFixed(2);	
 }
 
@@ -413,7 +482,7 @@ total = total.toFixed(2);
 	
 var pagado=	document.getElementById("do_pag").value;
 var cambio=(total*1)-(pagado*1);var check=cambio;
-
+console.log('check:' + check);
 if(check <= 0){
 cambio = cambio.toFixed(2) + ' €';
 document.getElementById("do_cam").value=cambio;
@@ -441,6 +510,7 @@ innerDoc.getElementById('tiqcode').innerHTML='';
 if(tiq.length>0){var det=tiq.split('<>');
 
 var total=0;
+var Dtotal=0;
 var code="";
 if(det){
 for (var i = 1; i < det.length; i++) {
@@ -448,13 +518,16 @@ var deti=det[i];
 var datos=deti.split('|');
 code=code + '&detTick[' + i + '][' + datos[0] + '][q]=' + datos[2] +
 			'&detTick[' + i + '][' + datos[0] + '][p]=' + datos[3]; 
-total=(total*1)+(datos[3]*datos[2]);			
+total=(total*1)+(datos[3]*datos[2]);
+if(datos[2]<0){Dtotal=(Dtotal*1)+(datos[3]*datos[2]);};			
 }}
 
 var desc=0;
 if(document.getElementById("descount_H").value > 0){
 desc=document.getElementById("descount_H").value;	
+total=total-Dtotal;
 total =total -(total * document.getElementById("descount_H").value / 100);
+total=total+Dtotal;
 total = total.toFixed(2);	
 }
 
@@ -474,7 +547,7 @@ if(key=='t'){document.getElementById("tregalo").value=val;}
 document.getElementById("impCod").value="";
 document.getElementById("impCod").select();
 document.getElementById("dev_h").value=0;
-document.getElementById("dev_c").innerHTML='';	
+document.getElementById("dev_c").style.visibility='hidden';
 }
 
 function regalo(){
@@ -501,7 +574,7 @@ document.getElementById('emple').innerHTML=getCookieT('empN_' + numemp);
 document.getElementById("impCod").value="";
 document.getElementById("impCod").select();
 document.getElementById("dev_h").value=0;
-document.getElementById("dev_c").innerHTML='';	
+document.getElementById("dev_c").style.visibility='hidden';	
 
 
 showTicket();
@@ -523,7 +596,7 @@ innerDoc.getElementById('emple').innerHTML=getCookieT('empN_' + numemp);
 innerDoc.getElementById("impCod").value="";	
 innerDoc.getElementById("impCod").select();	
 innerDoc.getElementById("dev_h").value=0;
-innerDoc.getElementById("dev_c").innerHTML='';	
+innerDoc.getElementById("dev_c").style.visibility='hidden';
 		
 }
 
@@ -531,10 +604,14 @@ function devolucion(){
 
 if(document.getElementById("dev_h").value==1){
 document.getElementById("dev_h").value=0;
-document.getElementById("dev_c").innerHTML='';	
+document.getElementById("dev_c").style.visibility='hidden';
+window.top.combo=1;
+$('#impCod').focus().select();  
 }else{
 document.getElementById("dev_h").value=1;
-document.getElementById("dev_c").innerHTML='MODO DEVOLUCIÓN';	
+document.getElementById("dev_c").style.visibility='visible';
+window.top.combo=2;
+$('#searchT2').focus().select(); 	
 }
 
 	

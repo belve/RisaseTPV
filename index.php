@@ -197,7 +197,7 @@ setTimeout(func, 600000);
 
 
 	
-sync1();	
+//sync1();	
 </script>
 </body>
 </html>

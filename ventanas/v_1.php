@@ -42,7 +42,7 @@ if (!$dbnivel->close()){die($dbnivel->error());};
 <script type="text/javascript">
 
     
-    
+window.top.combo=1;    
 
    // Register keypress events on the whole document
    $(document).keypress(function(e) {
@@ -56,6 +56,17 @@ if (!$dbnivel->close()){die($dbnivel->error());};
          break;
       
 		 
+		
+		 case 39:
+         movC('ri');
+         return false;	
+         break;
+		
+		 case 37:
+         movC('le');
+         return false;	
+         break;
+		
 		 case 38:
          movF('up');
          return false;	
@@ -102,10 +113,10 @@ if (!$dbnivel->close()){die($dbnivel->error());};
          return false;
          break;
 
-		 //case 117:
-         // vregalo();
-         //return false;
-         //break;
+		 case 117:
+         vregalo();
+         return false;
+         break;
          
 
          case 118:
@@ -153,7 +164,18 @@ if (!$dbnivel->close()){die($dbnivel->error());};
 <div class="emple2" id="emple"><input type="text" class="impCod" id="impCod" onFocus="this.select()"></div>
 
 <input type="hidden" value="0" id="dev_h">
-<div id="dev_c" style="float:left; margin-left: 20px; color:red;  font-size: 16px;"></div>
+
+
+<div id="dev_c" style="visibility: hidden;" class="modDEVT">
+
+<div class="modDEV">MODO DEVOLUCIÓN</div> 
+
+<div id="busqT2" class="tforRELM tfrINM"  style='background-color: white;' >
+<input onkeyup="chkREG2();" type="text" id='searchT2' class="inpbti" value="">
+</div>
+		
+
+</div>
 
 <div style="clear:both;"></div>	
 
@@ -207,6 +229,60 @@ F12 Descuento <br>
 		
 </div>
 
+
+
+<div id="devti" style="visibility: hidden;">
+
+<div style=" background-color: #C8C8C8;    height: 341px;    left: 0px;    opacity: 0.6;    position: absolute;    top: 0px;    width: 560px;"></div>
+<div style="  background-color: #CCCCCC;    border: 1px solid #666666;    height: 236px;    left: 68px;    padding: 25px;    position: absolute;    top: 21px;    width: 362px;">
+
+<div style="position:relative">
+<div style="color: #0000FF;  font-size: 12px;  font-weight: bold; position: relative; float: left; " id="ntick"></div>
+<div style="color: #0000FF;  font-size: 12px;  font-weight: bold; position: relative; float: right; " id="nemp"></div>
+</div>
+
+<div style="position:relative">
+<div class="cabemp" style=" position: absolute;    top: 23px;    width: 363px;">
+	<div class="cabtab_emp nom_tab_emp" style=" width: 75px;">Código</div>
+	<div class="cabtab_emp ap1_tab_emp" style=" width: 162px;">Artículo</div>
+	<div class="cabtab_emp trbj_tab_emp" style=" width: 40px;" >€</div>
+	<div class="cabtab_emp ap2_tab_emp" style=" width: 35px;">Cant</div>
+	<div class="cabtab_emp ap2_tab_emp" style=" width: 43px;">Dev</div>
+	
+</div>
+</div>
+
+<div style="position: absolute; top:74px;">
+<iframe id="dettiqq" src="/ventanas/blank.html" width="380" height="170" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>	
+</div>
+
+<div style="position: absolute; top:247px;width: 356px;">
+
+<div style="position:relative">
+<div class="ffDvt" id="ftqq">12/05/2013</div>
+<div style="color: #0000FF;  font-size: 12px;  font-weight: bold; position: relative; float: right; " id="dtoAPP"></div>
+</div>
+	
+</div>
+
+
+<div style="position: absolute; top:267px;width: 356px;">
+
+<div style="position:relative">
+<div class="ffDvt" id="mftqq">12/05/2013</div>
+<div style="color: #0000FF;  font-size: 12px;  font-weight: bold; position: relative; float: right; " id="itotT"></div>
+</div>
+	
+</div>
+
+
+
+</div>
+
+</div>
+
+
+
 <div id="cobrador" style="visibility: hidden;">
 <div style=" background-color: #C8C8C8;    height: 341px;    left: 0px;    opacity: 0.6;    position: absolute;    top: 0px;    width: 560px;"></div>
 <div style="background-color: #cccccc;    height: 87px;    left: 93px;    padding: 35px;    position: absolute;    top: 84px;    width: 201px; border: 1px solid #666666;">
@@ -218,6 +294,7 @@ F12 Descuento <br>
 <div class="emple">Cambio:</div><input type="text" class="impCod2" id="do_cam" style="margin-left: 31px; border:0px; background-color: #cccccc; color:red;">	
 
 <input type="hidden" id="do_tot_H" value="">
+<input type="hidden" id="do_Dtot_H" value="">
 
 </div>	
 
