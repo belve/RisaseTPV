@@ -14,7 +14,7 @@ while ($row = $dbnivel->fetchassoc()){$nt=$row['ciudad']; $dr=$row['direccion'];
 $queryp= "select id_articulo, 
 cantidad, 
 (select nombre from subgrupos where id_grupo = (substring(id_articulo,1,1)) AND clave=(substring(id_articulo,2,1)) ) as ngru
- from dev_ticket_det where id_ticket='$t';"; 
+ from dev_ticket_det where id_ticket='$t' AND cantidad > 0;"; 
 $dbnivel->query($queryp);$point=0;
 while ($row = $dbnivel->fetchassoc()){$point++;
 
