@@ -201,7 +201,7 @@ F3 Desglose Caja <br>
 F4 Cambiar Empleado <br>
 <br>
 <br>
-
+F6 Ticket Regalo<br>
 F7,F8,F9 Cobrar Ticket <br>
 F11 Devoluciones <br>
 F12 Descuento <br>	
