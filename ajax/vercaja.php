@@ -19,7 +19,7 @@ $tot=number_format($tot,2);
 
 $caj[$nom]=$sum;
 
-$detcaja.="<div style='position:relative; float:left;'>$nom:</div> <div style='position:relative;float:right; text-align:right;'>$sum</div> ";
+$detcaja.="<div style='position:relative; float:left;'>$nom:</div> <div style='position:relative;float:right; text-align:right;'>$sum</div> <div style='clear:both'></div> ";
 };
 
 $detcaja.="<div style='clear:both; border-top:1px solid; width:100%; height: 5px;'></div> ";
