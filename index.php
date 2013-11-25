@@ -120,10 +120,11 @@
         </ul>
 	</li>
     
-    <li><a>Comprobar</a>
+    <li><a>Utilidades</a>
     	<ul class="submenu">
         	
         	<li onclick="javascript:owin('v_3','Comprobar Artículo','');"><a>Comprobar Artículo</a></li>
+        	<li onclick="javascript:owin('v_4','Vales','');"><a>Vales</a></li>
         </ul>
     	
     </li>
@@ -197,7 +198,7 @@ setTimeout(func, 600000);
 
 
 	
-//sync1();	
+sync1();	
 </script>
 </body>
 </html>

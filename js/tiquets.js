@@ -568,6 +568,23 @@ $.each(data, function(key, val) {
 	
 }
 
+
+function vale(){
+var f=document.getElementById("maxF").value;
+var i=document.getElementById("imp").value;
+
+if((f)&&(i)){
+var url='/ajax/vale.php?f=' + f + '&i=' + i; 
+$.getJSON(url, function(data) {
+$.each(data, function(key, val) {
+	
+});
+});
+}else{alert('Debe indicar validez e importe');}
+	
+}
+
+
 function loop_emp(){
 var current=getCookieT('current_emp');	
 var total=getCookieT('num_emp');	
