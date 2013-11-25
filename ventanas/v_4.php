@@ -19,7 +19,25 @@ $maxF= $fecha->format('d/m/Y');
 <link rel='stylesheet' type='text/css' href='/css/tiquets.css' />
 
 
-
+<script>
+	
+	$(document).keypress(function(e) {
+   	
+   //alert(e.keyCode);
+      switch(e.keyCode) { 
+        
+         case 13:
+         vale();
+         return false;	
+         break;
+      
+	       
+      }
+   });
+   
+	
+	
+</script>
 
 </head>
 
@@ -34,7 +52,7 @@ $maxF= $fecha->format('d/m/Y');
 Valido hasta:	
 
 <br>
-<input style="width:100px; margin-left: -2px" type="text" id='maxF' value="<?php echo $maxF; ?>"/>
+<input  onkeyup="tabF(this.id)" style="width:100px; margin-left: -2px" type="text" id='maxF' value="<?php echo $maxF; ?>"/>
 </div> 
 
 
@@ -48,6 +66,19 @@ Cantidad:
 </div> 
 
 <div onclick="vale();" style="position: absolute; top: 52px; left: 36px; width: 80px; height: 17px; background-color: orange; border: 1px solid #888888; cursor:pointer; padding: 3px; text-align: center;">Imprimir</div>
+
+<script>
+$('#imp').focus();
+
+function tabF(id){
+var fech=document.getElementById(id).value;
+if(fech.length==2){fech=fech + '/';};
+if(fech.length==5){fech=fech + '/';};
+var fech=fech.replace("//","/");
+document.getElementById(id).value=fech;	
+}
+	
+</script>
 
 </body>
 </html>
