@@ -66,10 +66,11 @@ $dbnivel->query($queryp);
 $grup=substr($idart, 0,1);
 $subgru=substr($idart, 1,1);
 
+
 $queryp= "select nombre from subgrupos where id_grupo = $grup AND clave=$subgru;";
 $dbnivel->query($queryp); 
 while ($row = $dbnivel->fetchassoc()){$ngru=$row['nombre'];};
-
+if($ngru==""){$ngru="GENERICO";};
 global $id_tienda;
 $tifprint[$point][$idart]['n']=$ngru;
 $tifprint[$point][$idart]['q']=$qty;

@@ -20,6 +20,9 @@ while ($row = $dbnivel->fetchassoc()){$point++;
 
 $idart=$row['id_articulo'];  $ngru=$row['ngru']; $qty=$row['cantidad']; 
 
+if($ngru==""){$ngru="GENERICO";};
+
+
 $tifprint[$point][$idart]['n']=$ngru;
 $tifprint[$point][$idart]['q']=$qty;
 $tifprint[$point][$idart]['p']='';

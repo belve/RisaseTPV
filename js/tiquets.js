@@ -241,9 +241,16 @@ document.getElementById('do_Dtot_H').value=Dtotal;
 }
 
 function showdescount(){
+var tiq="";	
+var current=getCookieT('current_emp');
+if(getCookieT('tiq_'+current)){
+var tiq=getCookieT('tiq_'+current);
+}
+	
+if(tiq){	
 document.getElementById("descuento").style.visibility='visible';
 document.getElementById("descount").select();
-	
+}	
 }
 
 function aplydescuent(){
