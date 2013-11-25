@@ -379,7 +379,7 @@ Send_print($ticket,$ticket2,$ticket3);
 
 
 
-function Send_print2($ticket,$ticket2,$ticket3){
+function Send_print($ticket,$ticket2,$ticket3){
 
 $ticket=iconv('UTF-8', 'ASCII//TRANSLIT', $ticket);
 
@@ -393,7 +393,7 @@ fwrite($fp,$ticket3);
 }
 
 
-function Send_print($ticket,$ticket2,$ticket3){
+function Send_print2($ticket,$ticket2,$ticket3){
 	
 $ticket=urlencode($ticket . $ticket2 . $ticket3);
 
