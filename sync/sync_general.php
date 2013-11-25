@@ -121,6 +121,9 @@ echo "Prev: \n $prev \n\n";
 
 if (!$dbnivel->close()){die($dbnivel->error());};
 
+if(count($tosync)>0){foreach ($tosync as $point => $sql){
+SyncModBD($sql,$id_tienda);
+}}$tosync=array();
 
 
 

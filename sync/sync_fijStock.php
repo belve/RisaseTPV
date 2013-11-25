@@ -81,6 +81,9 @@ if (!$dbnivel->close()){die($dbnivel->error());};
 
 if($debug){echo "DATOS HECHOS LOCALMENTE__ \$pas1 __  \n"; print_r($pas1);  echo "\n\n"; };
 
+if(count($tosync)>0){foreach ($tosync as $point => $sql){
+SyncModBD($sql,$id_tienda);
+}}$tosync=array();
 
 
 /*

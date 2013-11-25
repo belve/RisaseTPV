@@ -37,7 +37,7 @@ echo "------ to sync FINAL ----- \n";
 
 if(count($tosync)>0){foreach ($tosync as $point => $sql){
 SyncModBD($sql,$id_tienda);
-}}
+}}$tosync=array();
 
 
 ?>
