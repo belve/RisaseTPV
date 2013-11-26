@@ -3,15 +3,13 @@ set_time_limit(0);
 ini_set("memory_limit", "-1");
 
 require_once("../db.php");
-require_once("../variables.php");
+//require_once("../variables.php");
 require_once("../functions/sync.php");
 
 $debug=1;
 
 ###### a quitar 
-$id_tienda=39;
-$id_nom_tienda='vAG';
-$ip='192.168.1.123';
+$ip='192.168.1.202';
 $doit=1;
 ###############
 
@@ -24,20 +22,19 @@ $dbnivelBAK=new DB('192.168.1.11','tpv','tpv','tpv_backup');
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 if (!$dbnivel->open()){die($dbnivel->error());};
+
+
+$queryp= "select var, value from config";
+$dbnivel->query($queryp);
+while ($row = $dbnivel->fetchassoc()){
+$config = "\$" . $row['var'] . "='" . $row['value'] . "';";
+eval($config);
+}
+
+
+
+
 $listahago="";
 $cc=0;
 $queryp= "select id_art, cod, count(id_art) as C from stocklocal GROUP by id_art ORDER BY C DESC limit 2000;";

@@ -77,7 +77,7 @@ $queryp="select id_ticket from tickets where id = $lastid;";
 $dbnivelAPP->query($queryp);
 while ($row = $dbnivelAPP->fetchassoc()){$tickdone[$row['id_ticket']]=$lastid;};
 }
-if($debug){echo "$queryp \n $tickdone:\n"; print_r($tickdone);};
+if($debug){echo "$queryp \n "; print_r($tickdone);};
 
 
 
