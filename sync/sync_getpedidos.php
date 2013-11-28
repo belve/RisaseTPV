@@ -32,6 +32,8 @@ foreach ($getped as $id => $values) {
 $qty='0'; $alm='0';
 $ida=$values['ida']; $qty=$values['qty']; $alm=$values['alm']; $agr=$values['agr']; $cod=$values['cod']; $tip=$values['tip'];	
 
+if(!$alm){$alm='0';};
+if(!$qty){$qty='0';};
 
 
 $idstl="";
@@ -40,7 +42,7 @@ $dbnivel->query($queryp);if($debug){echo "$queryp \n\n";};
 while ($row = $dbnivel->fetchassoc()){$idstl=$row['id'];};
 		
 if($idstl){			
-$queryp= "update stocklocal set stock=stock+$qty, alarma=$alm where cod=$cod;";
+$queryp= "update stocklocal set stock=stock+$qty, alarma='$alm where cod=$cod;";
 $dbnivel->query($queryp);	$tosync[]=$queryp; if($debug){echo "$queryp \n\n";};
 }else{
 $queryp= "insert into stocklocal (id_art,cod,stock,alarma) values ('$ida','$cod','$qty','$alm');";
