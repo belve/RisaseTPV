@@ -29,10 +29,10 @@ if (!$dbnivel->open()){die($dbnivel->error());};
 
 if(count($getped)>0){
 foreach ($getped as $id => $values) {
-
+$qty='0'; $alm='0';
 $ida=$values['ida']; $qty=$values['qty']; $alm=$values['alm']; $agr=$values['agr']; $cod=$values['cod']; $tip=$values['tip'];	
 
-$qty=0; $alm=0;
+
 
 $idstl="";
 $queryp= "select id from stocklocal where cod=$cod ";
