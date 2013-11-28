@@ -20,7 +20,7 @@ $fecha = new DateTime($hoy);
 $fecha->sub(new DateInterval('P60D'));
 $bttDEV= $fecha->format('Y-m-d');
 
-
+include('sync_cuadra.php');
 include('sync_general.php');
 include('sync_getpedidos.php');
 include('sync_ticket.php');

@@ -9,7 +9,7 @@ require_once("../functions/sync.php");
 $debug=1;
 
 ###### a quitar 
-$ip='192.168.1.202';
+$ip='192.168.1.117';
 $doit=1;
 ###############
 
@@ -113,14 +113,23 @@ while ($row = $dbnivelBAK->fetchassoc()){$TTtpvB[$row['id_art']]=$row['stock'];}
 
 
 foreach ($TTtpv as $ida => $stl) {
-	
+
+if(array_key_exists($ida, $TTtpvB))	{
 if($TTtpvB[$ida]!=$stl){
+	
 $al=$alarma[$ida];	
 $queryp= "UPDATE stocklocal_$id_tienda SET stock=$stl, alarma=$al WHERE id_art=$ida;";
 $dbnivelBAK->query($queryp); if($debug){echo "$queryp <br>\n\n";};	
 
 $distintos[$ida]="$stl | " . $TTtpvB[$ida];	
+}}else{
+	
+$al=$alarma[$ida];	
+$queryp= "INSERT INTO stocklocal_$id_tienda (id_art,stock,alarma) VALUES ($ida,$stl,$al);";
+$dbnivelBAK->query($queryp); if($debug){echo "$queryp <br>\n\n";};	
+	
 }
+
 
 }	
 
