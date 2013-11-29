@@ -2,7 +2,9 @@
 if($debug){echo "cuadra ________________________- \n\n";}
 if (!$dbnivelAPP->open()){die($dbnivelAPP->error());}; 
 $horr=date('G');
-$ip = $_SERVER['REMOTE_ADDR'];
+$ip = $_SERVER['SERVER_ADDR'];
+
+
 
 $ldoneP=0;
 
