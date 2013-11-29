@@ -50,6 +50,10 @@ show_emp(1);
 
 
 function introD(){
+
+if(document.activeElement.id=='impCod'){window.top.combo=1;}
+if(document.activeElement.id=='searchT2'){window.top.combo=2;}
+	
 if      (document.getElementById("cajon").style.visibility=='visible'){cobro_hide();}
 else if ((document.getElementById("dev_c").style.visibility=='visible')&&(window.top.combo==2)){if(window.top.tickSEARCH2){showDEV();}}
 else if (document.getElementById("vregalo").style.visibility=='visible'){printREG();}
