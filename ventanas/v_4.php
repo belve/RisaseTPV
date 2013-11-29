@@ -58,7 +58,7 @@ Valido hasta:
 
 
 <div style="color: #0000FF;    float: left;    font-size: 13px;    font-weight: bold;">
-Cantidad:	
+Importe:	
 
 <br>
 

@@ -141,15 +141,15 @@ $ticket ="RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
 $s=$espacios[42-strlen($nt)-strlen($dr)]; $dr=$s . $dr;
 $ticket.= $nt . $dr ."\n\n";
 
-$s=$espacios[42-strlen($i . ' Euros. Valido durante 3 meses.')]; $i =$i . ' Euros. Valido durante 3 meses.' . $s;
-$s=$espacios[42-strlen('Valido hasta: ' . $f)]; $f ='Valido hasta: ' . $f . $s;
+$s=$espacios[42-strlen($i . ' Euros. ' . 'Valido hasta: ' . $f)]; $i =$i . ' Euros. ' . 'Valido hasta: ' . $f . $s;
+#$s=$espacios[42-strlen('Valido hasta: ' . $f)]; $f ='Valido hasta: ' . $f . $s;
 
 
 
 $ticket.="------------------------------------------\n";
 $ticket.="Vale de compra por el importe de          \n";
 $ticket.=$i . "\n";
-$ticket.=$f . "\n";
+#$ticket.=$f . "\n";
 $ticket.="------------------------------------------\n";
 $ticket.="                                          \n";
 $ticket.="                                          \n";
