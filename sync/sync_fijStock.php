@@ -137,7 +137,13 @@ if (!$dbnivelAPP->open()){die($dbnivelAPP->error());};
 if(count($almacen)>0){ foreach ($almacen as $idd => $articul) { foreach ($articul as $ida => $value) {
 $queryp= "UPDATE articulos SET stock=stock - $value WHERE id=$ida;";
 $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n";};		
-}}}
+}}
+
+####aqui deberia resetear stocks menores a 0
+############# pongo a 0 stock de almacen roto
+$queryp= "UPDATE articulos SET stock=0 WHERE stock < 0;";
+$dbnivelAPP->query($queryp);
+}
 
 
 if(count($pas2)>0){ foreach ($pas2 as $idd => $point) {
