@@ -9,8 +9,8 @@ require_once("../functions/sync.php");
 $debug=1;
 
 ###### a quitar 
-$ip='192.168.1.117';
-$doit=1;
+$ip='192.168.1.202';
+$doit=0;
 ###############
 
 
@@ -58,7 +58,8 @@ $listahago=substr($listahago, 0,-1);
 
 
 $queryp= "DELETE from stocklocal WHERE id IN ($listahago);";
-$dbnivel->query($queryp);if($debug){echo "$queryp <br>\n\n";};
+$dbnivel->query($queryp);
+if($debug){echo "$queryp <br>\n\n";};
 
 
 if (!$dbnivel->close()){die($dbnivel->error());};
