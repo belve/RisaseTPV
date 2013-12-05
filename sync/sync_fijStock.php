@@ -84,7 +84,7 @@ $sum1 .=$ida . ",";
 }else{
 	
 if($alm){$almacen[$idd][$ida]=$sum;};
-if($bd){$bds[$idd]=1;};
+if($bd){$bds[$ida][$idd]=1;};
 $sum=$sloc[$ida] + ($sum*1);	
 $querySUM2.= "WHEN id_art = $ida THEN $sum
 ";
@@ -228,12 +228,13 @@ $sum4="";$sum5="";
 
 if($debug){echo "borrado fijstock--- doDEL: $doDEL \n";  echo "\n\n"; };
 print_r($pas2);
+print_r($bds);
 
-
+$idupp2="";
 if((count($pas2)>0)&&($doDEL==0)){
 		foreach ($pas2 as $idd => $point) {
 			if(array_key_exists($idd, $bds)){	
-			$sum4.= $idd . ",";	
+			$sum4.= $idd . ",";	 foreach ($bds[$idd] as $iduppi => $value) {$idupp2.=$iduppi . ",";};
 			}else{
 			$sum5.= $idd . ",";		
 			}
@@ -241,15 +242,17 @@ if((count($pas2)>0)&&($doDEL==0)){
 	
 	
 	if($sum4){
-	$sum4=substr($sum4, 0,-1);
-	$queryp= "UPDATE fij_stock SET bd=2 WHERE id_articulo IN ($sum4) AND id IN ($idupp);";
-	$dbnivelAPP->query($queryp);if($debug){echo "$queryp \n";};	
+	$sum4=substr($sum4, 0,-1);$idupp2=substr($idupp2, 0,-1);
+	$queryp= "UPDATE fij_stock SET bd=2 WHERE id_articulo IN ($sum4) AND id IN ($idupp2);";
+	$dbnivelAPP->query($queryp);
+	if($debug){echo "$queryp \n";};	
 	}
 	
 	if($sum5){
 	$sum5=substr($sum5, 0,-1);
 	$queryp= "DELETE FROM fij_stock WHERE id_articulo IN ($sum5) AND id IN ($idupp) AND bd < 2;";
-	$dbnivelAPP->query($queryp);if($debug){echo "$queryp \n";};	
+	$dbnivelAPP->query($queryp);
+	if($debug){echo "$queryp \n";};	
 	}
 }
 
