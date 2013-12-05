@@ -11,7 +11,7 @@ $fijos=array();
 $bds=array();
 $almacen=array();
 $doDEL=0;$idupp="";
-$queryp= "select * from fij_stock WHERE id_tienda=$id_tienda AND bd < 2 limit 5000";
+$queryp= "select * from fij_stock WHERE id_tienda=$id_tienda AND bd < 2 limit 1000";
 $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
 while ($row = $dbnivelAPP->fetchassoc()){
 $fijos[$row['id']]['ida']=$row['id_articulo'];
