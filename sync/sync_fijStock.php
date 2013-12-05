@@ -195,11 +195,16 @@ print_r($almacen);
 
 
 $sum3="";
-$queryp= "UPDATE articulos SET stock= = CASE ";
+$queryp= "UPDATE articulos SET stock = CASE ";
 if(count($almacen)>0){ foreach ($almacen as $idd => $articul) { foreach ($articul as $ida => $value) {
-$queryp.= "WHEN id = $ida THEN stock - $value
+$value=$value*1;	
+if($value>0){$value="- $value";		
+	
+$queryp.= "WHEN id = $ida THEN stock $value
 ";
 $sum3.= $ida . ",";	
+}
+
 }}
 
 $sum3=substr($sum3, 0,-1);
