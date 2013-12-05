@@ -5,7 +5,7 @@ if($debug){echo "general ________________________- \n\n";}
 if (!$dbnivelAPP->open()){die($dbnivelAPP->error()); $noconectado=1;}; $hazpedidos=array();$querys2=array();$querstldone=array();
 
 $querys=array();$queryshechas=array(); $alarmas=array();
-$queryp= "select * from syncupdate where id_tiend=$id_tienda;";
+$queryp= "select * from syncupdate where id_tiend=$id_tienda limit 300;";
 $dbnivelAPP->query($queryp);
 while ($row = $dbnivelAPP->fetchassoc()){
 $querys[$row['id']]=$row['syncSql'];	
