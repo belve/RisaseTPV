@@ -55,7 +55,11 @@ window.top.combo=1;
          return false;	
          break;
       
-		 
+		 case 9:
+         loopSS();
+         return false;	
+         break;
+       
 		
 		 case 39:
          movC('ri');
@@ -157,7 +161,7 @@ window.top.combo=1;
 
 <div class="emple">Empleado</div>
 <div class="emple2" id="emple"></div>
-
+<div class="subcar" id="sc">A</div>
 <div style="clear:both;"></div>
 
 <div class="emple">Código</div>

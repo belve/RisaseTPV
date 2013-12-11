@@ -65,11 +65,15 @@ else{addART();};
 
 
 function addART(){$.ajaxSetup({'async': false});
+
 var tiq="";	
 var current=getCookieT('current_emp');
-if(getCookieT('tiq_'+current)){
-var tiq=getCookieT('tiq_'+current);
+if(getCookieT('tiq_'+current + '_' + window.top.subcarr)){
+var tiq=getCookieT('tiq_'+current + '_' + window.top.subcarr);
 }
+
+
+
 
 var cod=document.getElementById('impCod').value;
 cod=cod.trim();
@@ -140,7 +144,7 @@ tiq=code;
 }
 
 
-setCookieT('tiq_'+ current,tiq,1);	
+setCookieT('tiq_'+current + '_' + window.top.subcarr,tiq,1);	
 showTicket();
 document.getElementById("impCod").select();
 }
@@ -199,7 +203,7 @@ document.getElementById("descount").value='';
 function delTicket(){
 var tiq="";	
 var current=getCookieT('current_emp');
-setCookieT('tiq_'+ current,tiq,1);	
+setCookieT('tiq_'+current + '_' + window.top.subcarr,tiq,1);	
 showTicket();
 document.getElementById("impCod").value="";
 document.getElementById("impCod").select();
@@ -208,8 +212,8 @@ document.getElementById("impCod").select();
 function showTicket(){
 var tiq="";	
 var current=getCookieT('current_emp');
-if(getCookieT('tiq_'+current)){
-var tiq=getCookieT('tiq_'+current);
+if(getCookieT('tiq_'+current + '_' + window.top.subcarr)){
+var tiq=getCookieT('tiq_'+current + '_' + window.top.subcarr);
 }
 
 
@@ -247,8 +251,8 @@ document.getElementById('do_Dtot_H').value=Dtotal;
 function showdescount(){
 var tiq="";	
 var current=getCookieT('current_emp');
-if(getCookieT('tiq_'+current)){
-var tiq=getCookieT('tiq_'+current);
+if(getCookieT('tiq_'+current + '_' + window.top.subcarr)){
+var tiq=getCookieT('tiq_'+current + '_' + window.top.subcarr);
 }
 	
 if(tiq){	
@@ -450,8 +454,8 @@ function cobro(){
 
 var tiq="";	
 var current=getCookieT('current_emp');
-if(getCookieT('tiq_'+current)){
-var tiq=getCookieT('tiq_'+current);
+if(getCookieT('tiq_'+current + '_' + window.top.subcarr)){
+var tiq=getCookieT('tiq_'+current + '_' + window.top.subcarr);
 }
 if(tiq){
 show_cobro_do();
@@ -509,8 +513,8 @@ var tiq="";
 var current=getCookieT('current_emp');
 var emp=getCookieT('empK_' + current);
 
-if(getCookieT('tiq_'+current)){
-var tiq=getCookieT('tiq_'+current);
+if(getCookieT('tiq_'+current + '_' + window.top.subcarr)){
+var tiq=getCookieT('tiq_'+current + '_' + window.top.subcarr);
 }
 
 
@@ -588,8 +592,23 @@ $.each(data, function(key, val) {
 	
 }
 
+function loopSS(){
+if(!window.top.subcarr){window.top.subcarr='A';}
+
+if(window.top.subcarr=='A'){window.top.subcarr='B';}
+else if(window.top.subcarr=='B'){window.top.subcarr='A';};
+
+loopSub(window.top.subcarr);	
+}
+
+function loopSub(S){
+window.top.subcarr=S; document.getElementById('sc').innerHTML=S;
+console.log(window.top.subcarr);	
+showTicket();
+}
 
 function loop_emp(){
+loopSub('A');	
 var current=getCookieT('current_emp');	
 var total=getCookieT('num_emp');	
 if(current==total){current=1;}else{current++;};
@@ -597,6 +616,8 @@ show_emp(current)	;
 }
 
 function show_emp(numemp){
+
+	
 setCookieT('current_emp',numemp,1);
 document.getElementById('emple').innerHTML=getCookieT('empN_' + numemp);
 document.getElementById("impCod").value="";

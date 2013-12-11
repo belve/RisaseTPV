@@ -9,7 +9,16 @@ body {
                   
 
 
-
+.subcar {border: 2px solid #0000FF;
+    font-size: 18px;
+    font-weight: bold;
+    height: 21px;
+    left: 294px;
+    padding: 6px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 20px; color:blue;}
 
 .blnco_limpio{
 	border: 1px solid #888888;
