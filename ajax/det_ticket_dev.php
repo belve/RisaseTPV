@@ -301,7 +301,7 @@ $('#impCod').focus().select();
 
 <style>
 .body {margin:0px;font-family: Arial;}
-.tCod {padding-top:2px; width:70px; height:18px;  border-right: 1px solid #888888; font-size: 11px; float:left; border-bottom: 1px solid #888888;border-left: 1px solid #888888; padding-left: 5px; background-color: white; }
+.tCod {overflow: hidden; text-align:center; padding-top:2px; width:72px; height:18px;  border-right: 1px solid #888888; font-size: 10px; float:left; border-bottom: 1px solid #888888;border-left: 1px solid #888888; padding-left: 3px; background-color: white; }
 .tArt {padding-top:2px; width:159px; height:18px; border-right: 1px solid #888888; font-size: 10px; float:left;  border-bottom: 1px solid #888888;padding-left: 3px; background-color: white;}
 .tCan {padding-top:2px; width:32px; height:18px;  border-right: 1px solid #888888; font-size: 12px; float:left;text-align: right; border-bottom: 1px solid #888888;padding-right: 3px; background-color: white;}
 .tpre {padding-top:2px; width:35px; height:18px;  font-size: 12px; float:left; text-align: right; border-bottom: 1px solid #888888;border-right: 1px solid #888888; padding-right: 5px; background-color: white;}
