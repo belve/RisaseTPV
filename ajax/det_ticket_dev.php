@@ -183,8 +183,8 @@ window.top.devuCANT=devuCANT;
 if(noo==0){
 var tiq="";	
 var current=getCookieT('current_emp');
-if(getCookieT('tiq_'+current)){
-var tiq=getCookieT('tiq_'+current);
+if(getCookieT('tiq_'+current + '_' + window.top.subcarr)){
+var tiq=getCookieT('tiq_'+current + '_' + window.top.subcarr);
 }
 
 console.log(tiq);
@@ -230,7 +230,7 @@ var a=nodo.indexOf(devuCODS[i]);
 
 
 
-setCookieT('tiq_'+ current,code,1);	
+setCookieT('tiq_'+current + '_' + window.top.subcarr,code,1);	
 showTicket();
 console.log(code);
 }}
@@ -240,8 +240,8 @@ console.log(code);
 function showTicket(){
 var tiq="";	
 var current=getCookieT('current_emp');
-if(getCookieT('tiq_'+current)){
-var tiq=getCookieT('tiq_'+current);
+if(getCookieT('tiq_'+current + '_' + window.top.subcarr)){
+var tiq=getCookieT('tiq_'+current + '_' + window.top.subcarr);
 }
 
 
