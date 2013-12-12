@@ -603,7 +603,7 @@ loopSub(window.top.subcarr);
 
 function loopSub(S){
 window.top.subcarr=S; document.getElementById('sc').innerHTML=S;
-console.log(window.top.subcarr);	
+console.log(window.top.subcarr);	document.getElementById('impCod').value="";$('#impCod').focus().select(); 
 showTicket();
 }
 
