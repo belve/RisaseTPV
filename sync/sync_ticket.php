@@ -6,7 +6,7 @@ $art="";$restos=array();$tickets=array();$pedir=array();$noconectado=0;$tickdone
 
 if (!$dbnivel->open()){die($dbnivel->error());};
 
-$queryp= "select * from tickets limit 50;";
+$queryp= "select * from tickets;";
 $dbnivel->query($queryp); 
 while ($row = $dbnivel->fetchassoc()){
 $tickets[$row['id_ticket']]['emp']=$row['id_empleado'];
@@ -20,13 +20,13 @@ if($debug){echo "$queryp \n Tickets:\n"; print_r($tickets);};
 
 $queryp= "select id_ticket, id_articulo, cantidad, importe, (select id from articulos where codbarras=id_articulo) as idart FROM ticket_det;";
 $dbnivel->query($queryp);$count=0;if($debug){echo "$queryp \n\n";};
-while ($row = $dbnivel->fetchassoc()){$count++;
+while ($row = $dbnivel->fetchassoc()){ $count++;
 $tickets[$row['id_ticket']]['det'][$count][$row['id_articulo']]['qty']=$row['cantidad'];
 $tickets[$row['id_ticket']]['det'][$count][$row['id_articulo']]['imp']=$row['importe'];
 $art .=$row['id_articulo'] . ",";
 
 $idartis2[$row['id_articulo']]=$row['idart'];
-
+}
 
 
 
@@ -110,7 +110,7 @@ $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
 	
 }}
 
-}}
+}
 
 
 

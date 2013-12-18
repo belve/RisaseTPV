@@ -72,6 +72,41 @@ $ccD++;
 };
 $insTD=substr($insTD, 0,-1) . ";";
 
+
+$qreb="";
+$queryp= "select id, tiendas from rebajas;";
+$dbnivelAPP->query($queryp);
+while ($row = $dbnivelAPP->fetchassoc()){
+$id=$row['id']; $tiends=$row['tiendas']; $ati=explode(' ',$tiends);
+foreach ($ati as $key => $itt) {if($itt==$id_tienda){$qreb.=$id . ",";}};		
+}
+
+$qreb=substr($qreb, 0,-1);
+echo "<br>___________________<br>";
+echo "importo rebajas: $qreb";
+
+$ccRE=0;
+if($qreb){
+$insRE="INSERT INTO det_rebaja (id_rebaja,id_articulo,precio,fecha_ini,fecha_fin) VALUES "; $ccD=0;	
+$queryp= "select * from det_rebaja where id_rebaja IN ($qreb);";
+$dbnivelAPP->query($queryp);
+while ($row = $dbnivelAPP->fetchassoc()){
+$id_rebaja=$row['id_rebaja'];	
+$id_articulo=$row['id_articulo'];
+$precio=$row['precio'];
+$fecha_ini=$row['fecha_ini'];
+$fecha_fin=$row['fecha_fin'];
+
+$insRE.="($id_rebaja,'$id_articulo','$precio','$fecha_ini','$fecha_fin'),";
+$ccRE++;	
+
+}	
+$insRE=substr($insRE, 0,-1) . ";";	
+}
+
+
+
+
 if (!$dbnivelAPP->close()){die($dbnivelAPP->error());};
 
 
@@ -88,7 +123,7 @@ $dbnivel->query($insT); echo "Insertados $cc tickets. <br>";
 
 $dbnivel->query($insTD); echo "Insertados $ccD Detalles de ticket. <br>";
 
-
+if($qreb){$dbnivel->query($insRE); echo "Insertados $ccRE Detalles de rebajas. <br>";}
 
 if (!$dbnivel->close()){die($dbnivel->error());};
 
@@ -96,5 +131,6 @@ if (!$dbnivel->close()){die($dbnivel->error());};
 
 
 
-
+echo "<br>___________________<br>";
+echo "PVP fijo se importa en la proxima sincro";
 ?>
