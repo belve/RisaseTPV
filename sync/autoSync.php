@@ -17,7 +17,7 @@ $debug=1;
 
 $hoy=date('Y') . "-" . date('m') . '-' . date('d');
 $fecha = new DateTime($hoy);
-$fecha->sub(new DateInterval('P60D'));
+$fecha->sub(new DateInterval('P90D'));
 $bttDEV= $fecha->format('Y-m-d');
 
 include('sync_cuadra.php');       echo "__________________________________________________ 1 \n ";

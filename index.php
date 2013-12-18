@@ -133,6 +133,8 @@
 
    
 </ul>
+<div style="color:blue;" class="fdate" id="date"><?php echo date('d') . "/" . date('m') . "/" . date('Y'); ?></div>
+
 </div>
 
 
@@ -197,8 +199,37 @@ setTimeout(func, 600000);
 
 
 
+function dtime1(){
+
+$.getJSON('/sync/getDate.php', function(data) {
+$.each(data, function(key, val) {
+if(key==1){document.getElementById("date").innerHTML=val; document.getElementById("date").setAttribute("style", "color:red;");};
+if(key==2){document.getElementById("date").innerHTML=val; document.getElementById("date").setAttribute("style", "color:blue;");};	
+});
+});
 	
-sync1();	
+
+setTimeout('dtime2();', 500000);	
+}
+
+
+function dtime2(){
+
+$.getJSON('/sync/getDate.php', function(data) {
+$.each(data, function(key, val) {
+if(key==1){document.getElementById("date").innerHTML=val; document.getElementById("date").setAttribute("style", "color:red;");};
+if(key==2){document.getElementById("date").innerHTML=val; document.getElementById("date").setAttribute("style", "color:blue;");};
+});
+});
+
+
+
+setTimeout('dtime1();', 500000);	
+}
+
+
+dtime1();	
+//sync1();	
 </script>
 </body>
 </html>

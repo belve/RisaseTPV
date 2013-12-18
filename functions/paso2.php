@@ -31,7 +31,7 @@ while ($row = $dbnivelAPP->fetchassoc()){$mf=$row['f'];};
 
 
 $fecha = new DateTime($mf);
-$fecha->sub(new DateInterval('P35D'));
+$fecha->sub(new DateInterval('P90D'));
 $topf= $fecha->format('Y-m-d');
 
 $queryp= "select min(id) as m from tickets where id_tienda=$id_tienda and fecha > '$topf';";
