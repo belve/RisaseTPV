@@ -2,11 +2,11 @@
 
 if($debug){echo "ticket ________________________- \n\n";};
 
-$art="";$restos=array();$tickets=array();$pedir=array();$noconectado=0;$tickdone=array();$articulos=array();
+$art="";$restos=array();$tickets=array();$pedir=array();$noconectado=0;$tickdone=array();$articulos=array();$tickdone2=array();
 
 if (!$dbnivel->open()){die($dbnivel->error());};
 
-$queryp= "select * from tickets;";
+$queryp= "select * from tickets limit 50;";
 $dbnivel->query($queryp); 
 while ($row = $dbnivel->fetchassoc()){
 $tickets[$row['id_ticket']]['emp']=$row['id_empleado'];
@@ -27,9 +27,9 @@ $art .=$row['id_articulo'] . ",";
 
 $idartis2[$row['id_articulo']]=$row['idart'];
 
-if(!array_key_exists($row['id_articulo'], $restos)){$restos[$row['id_articulo']]=0;};
-$restos[$row['id_articulo']]=$restos[$row['id_articulo']] + $row['cantidad'];
-};
+
+
+
 $art=substr($art,0,strlen($art)-1);
 
 $queryp= "select cod, stock, alarma, (select congelado from articulos where codbarras=cod) as congelado from stocklocal where cod IN ($art);";
@@ -63,9 +63,13 @@ $id_tienda=$valores['idt']; $id_empleado=$valores['emp']; $fecha=$valores['dat']
 if(strlen($cticket)==15){$spos=0;}else{$spos=1;};
 $hora=substr($cticket, (9+$spos), 2);
 
+$nodot='';
+$queryp="select id_ticket from tickets where id_ticket = '$cticket' AND id_tienda=$id_tienda AND id_empleado=$id_empleado;";
+$dbnivelAPP->query($queryp);
+while ($row = $dbnivelAPP->fetchassoc()){$tickdone2[$row['id_ticket']]=1; $nodot=$row['id_ticket'];};
 
 
-
+if(!$nodot){
 $queryp= "insert into tickets (id_tienda, id_ticket, id_empleado, fecha, hora, importe, descuento) values ('$id_tienda', '$cticket', '$id_empleado', '$fecha', '$hora', '$importe', '$desc');";
 $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
 $queryp="SELECT LAST_INSERT_ID() as lid;";
@@ -76,6 +80,9 @@ if($debug){echo "$queryp \n lastid: $lastid\n";};
 $queryp="select id_ticket from tickets where id = $lastid;";
 $dbnivelAPP->query($queryp);
 while ($row = $dbnivelAPP->fetchassoc()){$tickdone[$row['id_ticket']]=$lastid;};
+}
+
+
 }
 if($debug){echo "$queryp \n "; print_r($tickdone);};
 
@@ -92,6 +99,10 @@ if(is_numeric(substr($idhecho,3,1))){$spos=0;}else{$spos=1;};
 $hora=substr($idhecho, (9+$spos), 2);
 $g=substr($codidbar, 0,1);
 $sg=substr($codidbar, 1,1);
+
+if(!array_key_exists($codidbar, $restos)){$restos[$codidbar]=0;};
+$restos[$codidbar]=$restos[$codidbar] + $catidad;
+};
 		
 $queryp= "insert into ticket_det (id_tienda, idt, id_ticket, id_articulo, g, sg, cantidad, importe, fecha, hora) values ('$id_tienda', $idti, '$idhecho', '$codidbar', $g, $sg, '$catidad', '$importe', '$fecha', '$hora');";
 $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
@@ -160,7 +171,19 @@ echo "Procesado Ticket: $idhecho \n";
 	
 }
 	
+foreach ($tickdone2 as $idhecho => $point){
 	
+$queryp= "delete from tickets where id_ticket='$idhecho';";
+$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};
+
+$queryp= "delete from ticket_det where id_ticket='$idhecho';";
+$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};
+
+echo "Procesado Ticket: $idhecho \n";
+	
+}
+	
+		
 
 if (!$dbnivel->close()){die($dbnivel->error());};
 
