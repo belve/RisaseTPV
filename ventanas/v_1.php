@@ -238,7 +238,7 @@ F12 Descuento <br>
 <div id="devti" style="visibility: hidden;">
 
 <div style=" background-color: #C8C8C8;    height: 341px;    left: 0px;    opacity: 0.6;    position: absolute;    top: 0px;    width: 560px;"></div>
-<div style="  background-color: #CCCCCC;    border: 1px solid #666666;    height: 236px;    left: 68px;    padding: 25px;    position: absolute;    top: 21px;    width: 362px;">
+<div style="  background-color: #CCCCCC;    border: 1px solid #666666;    height: 236px;    left: 68px;    padding: 25px;    position: absolute;    top: 21px;    width: 400px;">
 
 <div style="position:relative">
 <div style="color: #0000FF;  font-size: 12px;  font-weight: bold; position: relative; float: left; " id="ntick"></div>
@@ -257,7 +257,7 @@ F12 Descuento <br>
 </div>
 
 <div style="position: absolute; top:74px;">
-<iframe id="dettiqq" src="/ventanas/blank.html" width="380" height="170" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>	
+<iframe id="dettiqq" src="/ventanas/blank.html" width="390" height="170" border="0" frameborder="0" marginheight="0" scrolling="auto"></iframe>	
 </div>
 
 <div style="position: absolute; top:247px;width: 356px;">
