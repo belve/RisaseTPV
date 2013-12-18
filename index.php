@@ -229,7 +229,7 @@ setTimeout('dtime1();', 500000);
 
 
 dtime1();	
-//sync1();	
+sync1();	
 </script>
 </body>
 </html>
