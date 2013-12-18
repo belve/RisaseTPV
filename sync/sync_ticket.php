@@ -95,7 +95,9 @@ foreach ($tickets[$idhecho]['det'] as $pint => $detallin){foreach($detallin as $
 $catidad=$datos['qty'];
 $importe=$datos['imp'];
 
-if(is_numeric(substr($idhecho,3,1))){$spos=0;}else{$spos=1;};
+if(strlen($idhecho)==15){$spos=0;}else{$spos=1;};
+
+
 $hora=substr($idhecho, (9+$spos), 2);
 $g=substr($codidbar, 0,1);
 $sg=substr($codidbar, 1,1);
