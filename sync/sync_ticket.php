@@ -18,19 +18,24 @@ $tickets[$row['id_ticket']]['des']=$row['descuento'];
 
 if($debug){echo "$queryp \n Tickets:\n"; print_r($tickets);};
 
-$queryp= "select id_ticket, id_articulo, cantidad, importe, fecha, hora, (select id from articulos where codbarras=id_articulo) as idart FROM ticket_det;";
+$queryp= "select id_ticket, id_articulo, cantidad, importe, (select id from articulos where codbarras=id_articulo) as idart FROM ticket_det;";
 $dbnivel->query($queryp);$count=0;if($debug){echo "$queryp \n\n";};
 while ($row = $dbnivel->fetchassoc()){ $count++;
 $tickets[$row['id_ticket']]['det'][$count][$row['id_articulo']]['qty']=$row['cantidad'];
 $tickets[$row['id_ticket']]['det'][$count][$row['id_articulo']]['imp']=$row['importe'];
-$tickets[$row['id_ticket']]['det'][$count][$row['id_articulo']]['dat']=$row['fecha'];
-$tickets[$row['id_ticket']]['det'][$count][$row['id_articulo']]['hor']=$row['hora'];
+$tickets[$row['id_ticket']]['det'][$count][$row['id_articulo']]['dat']=$tickets[$row['id_ticket']]['dat'];
+
+
+if(strlen($row['id_ticket'])==15){$spos=0;}else{$spos=1;};
+$hora3=substr($row['id_ticket'], (9+$spos), 2);
+
+$tickets[$row['id_ticket']]['det'][$count][$row['id_articulo']]['hor']=$hora3;
 $art .=$row['id_articulo'] . ",";
 
 $idartis2[$row['id_articulo']]=$row['idart'];
 }
 
-
+if($debug){echo "$queryp \n Tickets:\n"; print_r($tickets);};
 
 $art=substr($art,0,strlen($art)-1);
 
@@ -168,10 +173,10 @@ $dbnivel->query($queryp);	$tosync[]=$queryp;if($debug){echo "$queryp \n\n";};
 foreach ($tickdone as $idhecho => $point){
 	
 $queryp= "delete from tickets where id_ticket='$idhecho';";
-$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};
+//$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};
 
 $queryp= "delete from ticket_det where id_ticket='$idhecho';";
-$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};
+//$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};
 
 echo "Procesado Ticket: $idhecho \n";
 	
@@ -180,10 +185,10 @@ echo "Procesado Ticket: $idhecho \n";
 foreach ($tickdone2 as $idhecho => $point){
 	
 $queryp= "delete from tickets where id_ticket='$idhecho';";
-$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};
+//$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};
 
 $queryp= "delete from ticket_det where id_ticket='$idhecho';";
-$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};
+//$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};
 
 echo "Procesado Ticket: $idhecho \n";
 	
