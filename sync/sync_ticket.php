@@ -173,10 +173,10 @@ $dbnivel->query($queryp);	$tosync[]=$queryp;if($debug){echo "$queryp \n\n";};
 foreach ($tickdone as $idhecho => $point){
 	
 $queryp= "delete from tickets where id_ticket='$idhecho';";
-//$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};
+$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};
 
 $queryp= "delete from ticket_det where id_ticket='$idhecho';";
-//$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};
+$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};
 
 echo "Procesado Ticket: $idhecho \n";
 	
@@ -185,10 +185,10 @@ echo "Procesado Ticket: $idhecho \n";
 foreach ($tickdone2 as $idhecho => $point){
 	
 $queryp= "delete from tickets where id_ticket='$idhecho';";
-//$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};
+$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};
 
 $queryp= "delete from ticket_det where id_ticket='$idhecho';";
-//$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};
+$dbnivel->query($queryp);	if($debug){echo "$queryp \n\n";};
 
 echo "Procesado Ticket: $idhecho \n";
 	
