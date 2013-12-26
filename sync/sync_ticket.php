@@ -18,11 +18,13 @@ $tickets[$row['id_ticket']]['des']=$row['descuento'];
 
 if($debug){echo "$queryp \n Tickets:\n"; print_r($tickets);};
 
-$queryp= "select id_ticket, id_articulo, cantidad, importe, (select id from articulos where codbarras=id_articulo) as idart FROM ticket_det;";
+$queryp= "select id_ticket, id_articulo, cantidad, importe, fecha, hora, (select id from articulos where codbarras=id_articulo) as idart FROM ticket_det;";
 $dbnivel->query($queryp);$count=0;if($debug){echo "$queryp \n\n";};
 while ($row = $dbnivel->fetchassoc()){ $count++;
 $tickets[$row['id_ticket']]['det'][$count][$row['id_articulo']]['qty']=$row['cantidad'];
 $tickets[$row['id_ticket']]['det'][$count][$row['id_articulo']]['imp']=$row['importe'];
+$tickets[$row['id_ticket']]['det'][$count][$row['id_articulo']]['dat']=$row['fecha'];
+$tickets[$row['id_ticket']]['det'][$count][$row['id_articulo']]['hor']=$row['hora'];
 $art .=$row['id_articulo'] . ",";
 
 $idartis2[$row['id_articulo']]=$row['idart'];
@@ -64,7 +66,7 @@ if(strlen($cticket)==15){$spos=0;}else{$spos=1;};
 $hora=substr($cticket, (9+$spos), 2);
 
 $nodot='';
-$queryp="select id_ticket from tickets where id_ticket = '$cticket' AND id_tienda=$id_tienda AND id_empleado=$id_empleado;";
+$queryp="select id_ticket from tickets where id_ticket = '$cticket';";
 $dbnivelAPP->query($queryp);
 while ($row = $dbnivelAPP->fetchassoc()){$tickdone2[$row['id_ticket']]=1; $nodot=$row['id_ticket'];};
 
@@ -94,6 +96,8 @@ foreach ($tickets[$idhecho]['det'] as $pint => $detallin){foreach($detallin as $
 
 $catidad=$datos['qty'];
 $importe=$datos['imp'];
+$fecha2=$datos['dat'];
+$hora2=$datos['hor'];
 
 if(strlen($idhecho)==15){$spos=0;}else{$spos=1;};
 
@@ -106,7 +110,7 @@ if(!array_key_exists($codidbar, $restos)){$restos[$codidbar]=0;};
 $restos[$codidbar]=$restos[$codidbar] + $catidad;
 };
 		
-$queryp= "insert into ticket_det (id_tienda, idt, id_ticket, id_articulo, g, sg, cantidad, importe, fecha, hora) values ('$id_tienda', $idti, '$idhecho', '$codidbar', $g, $sg, '$catidad', '$importe', '$fecha', '$hora');";
+$queryp= "insert into ticket_det (id_tienda, idt, id_ticket, id_articulo, g, sg, cantidad, importe, fecha, hora) values ('$id_tienda', $idti, '$idhecho', '$codidbar', $g, $sg, '$catidad', '$importe', '$fecha2', '$hora2');";
 $dbnivelAPP->query($queryp);if($debug){echo "$queryp \n\n";};
 		
 	
