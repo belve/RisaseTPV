@@ -2,7 +2,13 @@
 if($debug){echo "cuadra ________________________- \n\n";}
 if (!$dbnivelAPP->open()){die($dbnivelAPP->error());}; 
 $horr=date('G');
-$ip = $_SERVER['SERVER_ADDR'];
+
+
+$file = fopen ("http://cursodecursos.com:8080/test.php", "r");
+while (!feof ($file)) { $ip = fgets ($file, 1024);};
+fclose($file);
+
+
 
 
 
