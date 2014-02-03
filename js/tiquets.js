@@ -32,12 +32,12 @@ $.getJSON(url, function(data) {
 var count=0;	
 $.each(data, function(key, val) {
 if(key=='count'){
-	setCookieT('num_emp',val,1);
+	setCookieT('num_emp',val,10);
 }else{
 count++;
 
-setCookieT('empK_' + count,key,1);
-setCookieT('empN_' + count,val,1);
+setCookieT('empK_' + count,key,10);
+setCookieT('empN_' + count,val,10);
 	
 }
 
