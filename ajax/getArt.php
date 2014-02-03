@@ -77,9 +77,11 @@ if($row['pvp']>0) $valores[16]=$row['pvp'];
 
 
 
-
+if( @fsockopen ("192.168.1.11", 80) ){
 
 $file = fopen ("http://192.168.1.11/ajax/getimage.php?codbarras=$codbarras", "r");
+
+
 while (!feof ($file)) { $fotos = fgets ($file, 1024);};
 fclose($file);
 
@@ -96,12 +98,17 @@ $valores['foto']= $urlimages . "nodisp.jpg";
 
 if(count($acodes)>0){foreach($acodes as $fot => $noot){
 $valores['opciones'].=$fot . "<br>";
-	
 }}
+
+
+}
+
+
 
 }else{
 $valores['error']=1;
 }
+
 
 if (!$dbnivel->close()){die($dbnivel->error());};
 
