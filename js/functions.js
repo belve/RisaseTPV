@@ -49,7 +49,18 @@ function focusW(value){
 			}
 
 	document.getElementById(value).style.display = "block";
-	document.getElementById("m_"+value).setAttribute("class", "minimi_on");  
+	document.getElementById("m_"+value).setAttribute("class", "minimi_on"); 
+	
+	
+	var iframe = document.getElementById("f_"+value);
+	var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+	
+	if(innerDoc.getElementById('impCod')){innerDoc.getElementById('impCod').focus();}
+	if(innerDoc.getElementById('impCodD')){innerDoc.getElementById('impCodD').focus();} 
+	if(innerDoc.getElementById('impCodA')){innerDoc.getElementById('impCodA').focus();}
+	if(innerDoc.getElementById('imp')){innerDoc.getElementById('imp').focus();}
+	
+	
 }
 
 
@@ -71,6 +82,10 @@ function owin(value,tit,param){
 	if(document.getElementById(value)) {
 	document.getElementById(value).style.display = "block"; 
 	document.getElementById("m_"+value).setAttribute("class", "minimi_on");  	
+	
+	
+	
+	
 	}else{
 	var html='<div id="' + value +'" class="'+ value  + '"><div class="contenedor gris2_BG shadow"><div class="cabcontenerdor"><div class="tit_contenedor">'+ tit +
 	'</div><div class="iconos closeW" onclick="javascript:cwin(\'' +	 value + '\')"></div></div><div class="iframe"><iframe id="f_' + value + '" src="/ventanas/'+ value +'.php' + param + '" width="100%" height="100%" border="0" frameborder="0" marginheight="0" scrolling="no"></iframe></div></div></div>';
