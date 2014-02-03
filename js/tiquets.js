@@ -618,7 +618,7 @@ show_emp(current)	;
 function show_emp(numemp){
 
 	
-setCookieT('current_emp',numemp,1);
+setCookieT('current_emp',numemp,10);
 document.getElementById('emple').innerHTML=getCookieT('empN_' + numemp);
 document.getElementById("impCod").value="";
 document.getElementById("impCod").select();
@@ -638,7 +638,7 @@ show_emp2(current)	;
 }
 
 function show_emp2(numemp){
-setCookieT('current_emp',numemp,1);
+setCookieT('current_emp',numemp,10);
 var iframe = document.getElementById('f_v_1');
 var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
 innerDoc.getElementById('emple').innerHTML=getCookieT('empN_' + numemp);
