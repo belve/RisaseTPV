@@ -258,9 +258,9 @@ $ticket.="\n";
 
 $total=number_format($total, 2);
 
-$s=$espacios[7-strlen($total)]; $total=$s . $total;
+$s=$espacios[2-strlen($total)]; $total=$s . $total;
 
-$ticket.="I.V.A. Incluido        Total euros:$total\n";
+$ticket.="I.V.A.(21%) Incluido   Total euros:$total\n";
 
 $ticket.="GRACIAS POR SU COMPRA                     \n";
 $ticket.="------------------------------------------\n";
