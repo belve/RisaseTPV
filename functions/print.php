@@ -276,9 +276,9 @@ $ticket.="Total euros:        $total\n";
 
 $ticket.="GRACIAS POR SU COMPRA                     \n";
 $ticket.="------------------------------------------\n";
-$ticket.="Los articulos se cambian por otro articulo\n";
-$ticket.="o por un vale sin caducidad en un plazo   \n";
-$ticket.="maximo de 15 dias.                        \n";
+$ticket.="Los articulos se cambian en un plazo      \n";
+$ticket.="maximo de 15 dias por otro articulo       \n";
+$ticket.="o por un vale sin caducidad.              \n";
 $ticket.="No se devuelve el dinero.                 \n";
 $ticket.="------------------------------------------\n";
 $ticket.="           www.debisuteria.com            \n";
