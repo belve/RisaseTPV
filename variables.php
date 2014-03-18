@@ -1,5 +1,5 @@
 <?php
-
+global $iva;
 $iva=21;
 
 
