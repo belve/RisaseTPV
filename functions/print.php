@@ -256,7 +256,7 @@ $ticket.="                      Descuento:$descuento%$idesc\n";
 
 $ticket.="\n";
 
-$baseimp=$total / (1/$iva);
+$baseimp=$total / (((1/100)*$iva)+1);
 $impiva=$total - $baseimp;
 
 $baseimp=number_format($baseimp, 2);
