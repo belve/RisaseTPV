@@ -178,7 +178,7 @@ Send_print($ticket,$ticket2,$ticket3);
 
 
 
-function ticket($tifprint,$nt,$dr,$id_tienda,$idt){
+function ticket($tifprint,$nt,$dr,$id_tienda,$idt){global $iva; $iva=21;
 
 $espacios[0] ="";
 $espacios[1] =" ";
@@ -256,17 +256,30 @@ $ticket.="                      Descuento:$descuento%$idesc\n";
 
 $ticket.="\n";
 
+$baseimp=$total / (1/$iva);
+$impiva=$total - $baseimp;
+
+$baseimp=number_format($baseimp, 2);
+$impiva=number_format($impiva, 2);
 $total=number_format($total, 2);
 
-$s=$espacios[2-strlen($total)]; $total=$s . $total;
+$s=$espacios[20-strlen($baseimp)]; $baseimp=$s . $baseimp;
+$ticket.="Base Imponible:     $baseimp\n";
+$s=$espacios[20-strlen($impiva)]; $impiva=$s . $impiva;
+$ticket.="I.V.A.(21%):        $impiva\n";
 
-$ticket.="I.V.A.(21%) Incluido   Total euros:$total\n";
+$s=$espacios[20-strlen($total)]; $total=$s . $total;
+$ticket.="Total euros:        $total\n";
+
+
+
 
 $ticket.="GRACIAS POR SU COMPRA                     \n";
 $ticket.="------------------------------------------\n";
-$ticket.="Plazo maximo para el cambio 15 dias.      \n";
-$ticket.="Presentando ticket de compra.No se admiten\n";
-$ticket.="devoluciones salvo tara o defecto.        \n";
+$ticket.="Los articulos se cambian por otro articulo\n";
+$ticket.="o por un vale sin caducidad en un plazo   \n";
+$ticket.="maximo de 15 dias.                        \n";
+$ticket.="No se devuelve el dinero.                 \n";
 $ticket.="------------------------------------------\n";
 $ticket.="           www.debisuteria.com            \n";
 $ticket.="visitenos en internet y obtenga descuentos\n";
