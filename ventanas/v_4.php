@@ -48,16 +48,9 @@ $maxF= $fecha->format('d/m/Y');
 <body>
 
  
-<div style="color: #0000FF;    float: left;    font-size: 13px;    font-weight: bold;">
-Valido hasta:	
-
-<br>
-<input  onkeyup="tabF(this.id)" style="width:100px; margin-left: -2px" type="text" id='maxF' value="<?php echo $maxF; ?>"/>
-</div> 
 
 
-
-<div style="color: #0000FF;    float: left;    font-size: 13px;    font-weight: bold;">
+<div style="color: #0000FF;    float: left;    font-size: 13px;    font-weight: bold; margin-left: 53px;">
 Importe:	
 
 <br>

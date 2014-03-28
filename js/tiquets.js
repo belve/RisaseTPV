@@ -578,17 +578,17 @@ $.each(data, function(key, val) {
 
 
 function vale(){
-var f=document.getElementById("maxF").value;
+//var f=document.getElementById("maxF").value;
 var i=document.getElementById("imp").value;
 
-if((f)&&(i)){
-var url='/ajax/vale.php?f=' + f + '&i=' + i; 
+if(i){
+var url='/ajax/vale.php?i=' + i; 
 $.getJSON(url, function(data) {
 $.each(data, function(key, val) {
 	
 });
 });
-}else{alert('Debe indicar validez e importe');}
+}else{alert('Debe indicar el importe');}
 	
 }
 

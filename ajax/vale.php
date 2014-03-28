@@ -10,7 +10,7 @@ $queryp= "select ciudad, direccion from tiendas where id=$id_tienda;";
 $dbnivel->query($queryp);
 while ($row = $dbnivel->fetchassoc()){$nt=$row['ciudad']; $dr=$row['direccion'];};
 
-vale($f,$i,$nt,$dr,$id_tienda);
+vale($i,$nt,$dr,$id_tienda);
 
 
 ?>

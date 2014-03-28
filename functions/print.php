@@ -106,7 +106,7 @@ Send_print($ticket,$ticket2,$ticket3);
 
 
 
-function vale($f,$i,$nt,$dr,$id_tienda){
+function vale($i,$nt,$dr,$id_tienda){
 
 $espacios[0] ="";
 $espacios[1] =" ";
@@ -141,7 +141,7 @@ $ticket ="RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
 $s=$espacios[42-strlen($nt)-strlen($dr)]; $dr=$s . $dr;
 $ticket.= $nt . $dr ."\n\n";
 
-$s=$espacios[42-strlen($i . ' Euros. ' . 'Valido hasta: ' . $f)]; $i =$i . ' Euros. ' . 'Valido hasta: ' . $f . $s;
+$s=$espacios[32-strlen($i . ' Euros.           ')]; $i =$i . ' Euros. ' . $s;
 #$s=$espacios[42-strlen('Valido hasta: ' . $f)]; $f ='Valido hasta: ' . $f . $s;
 
 
