@@ -20,7 +20,7 @@ $fecha = new DateTime($hoy);
 $fecha->sub(new DateInterval('P90D'));
 $bttDEV= $fecha->format('Y-m-d');
 
-include('sync_cuadra.php');       echo "__________________________________________________ 1 \n ";
+
 include('sync_general.php');      echo "__________________________________________________ 2 \n ";
 include('sync_getpedidos.php');
 include('sync_ticket.php');  
@@ -29,6 +29,7 @@ include('sync_roturas.php');
 include('sync_fijStock.php');  echo "__________________________________________________ 3 \n ";
 include('sync_fijPVP.php');
 
+include('sync_cuadra.php');       echo "__________________________________________________ 1 \n ";
 
 echo "------ to sync FINAL ----- \n";
 print_r($tosync);
