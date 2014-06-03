@@ -36,7 +36,13 @@ $espacios[24]="                        ";
 $espacios[25]="                         ";
 
 $fecha=date('d') . "/" . date('m') . "/" . date('Y');
-$ticket ="RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
+//$ticket ="RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
+//$ticket ="                          Fecha:$fecha\n";
+
+//$ticke="RISASE,S.A. (A-78088176)                  \n";
+$ticket ="TOUCH, S.A. (A-28817419)                  \n";
+$ticket.="Fecha:$fecha\n";
+
 
 $s=$espacios[42-strlen($nt)-strlen($dr)]; $dr=$s . $dr;
 $ticket.= $nt . $dr ."\n\n";
@@ -136,7 +142,10 @@ $espacios[24]="                        ";
 $espacios[25]="                         ";
 
 $fecha=date('d') . "/" . date('m') . "/" . date('Y');
-$ticket ="RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
+//$ticket ="RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
+//$ticke="RISASE,S.A. (A-78088176)                  \n";
+$ticket ="TOUCH, S.A. (A-28817419)                  \n";
+$ticket.="Fecha:$fecha\n";
 
 $s=$espacios[42-strlen($nt)-strlen($dr)]; $dr=$s . $dr;
 $ticket.= $nt . $dr ."\n\n";
@@ -208,7 +217,10 @@ $espacios[24]="                        ";
 $espacios[25]="                         ";
 
 $fecha=date('d') . "/" . date('m') . "/" . date('Y');
-$ticket ="RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
+//$ticket ="RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
+//$ticke="RISASE,S.A. (A-78088176)                  \n";
+$ticket ="TOUCH, S.A. (A-28817419)                  \n";
+$ticket.="Fecha:$fecha\n";
 
 $s=$espacios[42-strlen($nt)-strlen($dr)]; $dr=$s . $dr;
 $ticket.= $nt . $dr ."\n\n";
