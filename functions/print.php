@@ -40,7 +40,7 @@ $fecha=date('d') . "/" . date('m') . "/" . date('Y');
 //$ticket ="                          Fecha:$fecha\n";
 
 //$ticke="RISASE,S.A. (A-78088176)                  \n";
-$ticket ="EMILIA CORDERO CAMINERO (51.333.277-Z)    \n";
+$ticket ="JUAN MANUEL DEL RIO MENENDEZ(50.788.839-D)\n";
 $ticket.="Fecha:$fecha\n";
 
 
