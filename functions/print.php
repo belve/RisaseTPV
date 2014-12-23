@@ -46,7 +46,7 @@ $fecha=date('d') . "/" . date('m') . "/" . date('Y');
 //$ticket ="E.C.C. Complementos, S.L.   (B-87029724)\n";
 //$ticket ="JUAN MANUEL DEL RIO MENENDEZ(50.788.839-D)\n";
 
-    $ticket ="JUAN MANUEL DEL RIO MENENDEZ(50.788.839-D)\n";
+    $ticket ="E.C.C. Complementos, S.L.   (B-87029724)\n";
 $ticket.="Fecha:$fecha\n";
 $s=$espacios[42-strlen($nt)-strlen($dr)]; $dr=$s . $dr;
 
@@ -148,7 +148,7 @@ $espacios[25]="                         ";
 $fecha=date('d') . "/" . date('m') . "/" . date('Y');
 //$ticket ="RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
 //$ticke="RISASE,S.A. (A-78088176)                  \n";
-    $ticket ="JUAN MANUEL DEL RIO MENENDEZ(50.788.839-D)\n";
+    $ticket ="E.C.C. Complementos, S.L.   (B-87029724)\n";
 $ticket.="Fecha:$fecha\n";
 
 $s=$espacios[42-strlen($nt)-strlen($dr)]; $dr=$s . $dr;
@@ -223,7 +223,7 @@ $espacios[25]="                         ";
 $fecha=date('d') . "/" . date('m') . "/" . date('Y');
 //$ticket ="RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
 //$ticke="RISASE,S.A. (A-78088176)                  \n";
-    $ticket ="JUAN MANUEL DEL RIO MENENDEZ(50.788.839-D)\n";
+    $ticket ="E.C.C. Complementos, S.L.   (B-87029724)\n";
 $ticket.="Fecha:$fecha\n";
 
 $s=$espacios[42-strlen($nt)-strlen($dr)]; $dr=$s . $dr;
