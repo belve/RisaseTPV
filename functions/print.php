@@ -36,17 +36,18 @@ $espacios[24]="                        ";
 $espacios[25]="                         ";
 
 $fecha=date('d') . "/" . date('m') . "/" . date('Y');
+
+
+
 //$ticket ="RISASE,S.A. (A-78088176)  Fecha:$fecha\n";
 //$ticket ="                          Fecha:$fecha\n";
 
 //$ticke="RISASE,S.A. (A-78088176)                  \n";
-$ticket ="JUAN MANUEL DEL RIO MENENDEZ(50.788.839-D)\n";
+$ticket ="Touch, S.A.                   (A-28817419)\n";
 $ticket.="Fecha:$fecha\n";
-
-
 $s=$espacios[42-strlen($nt)-strlen($dr)]; $dr=$s . $dr;
-$ticket.= $nt . $dr ."\n\n";
 
+$ticket.= $nt . $dr ."\n\n";
 
 $ticket.="------------------------------------------\n";
 $ticket.="             TICKET REGALO                \n";
