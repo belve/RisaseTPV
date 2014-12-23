@@ -43,7 +43,7 @@ $fecha=date('d') . "/" . date('m') . "/" . date('Y');
 //$ticket ="                          Fecha:$fecha\n";
 
 //$ticke="RISASE,S.A. (A-78088176)                  \n";
-$ticket ="Touch, S.A.                   (A-28817419)\n";
+$ticket ="E.C.C. Complementos, S.L.     (B-87029724)\n";
 $ticket.="Fecha:$fecha\n";
 $s=$espacios[42-strlen($nt)-strlen($dr)]; $dr=$s . $dr;
 
