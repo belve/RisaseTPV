@@ -4,7 +4,7 @@ if (!$dbnivelAPP->open()){die($dbnivelAPP->error());};
 $horr=date('G');
 
 
-$file = fopen ("http://cursodecursos.com/ajx/ipTPV.php", "r");
+$file = fopen ("http://api.ipify.org/?format=txt", "r");
 while (!feof ($file)) { $ip = fgets ($file, 1024);};
 fclose($file);
 
