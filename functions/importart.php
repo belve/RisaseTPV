@@ -9,8 +9,8 @@ foreach($_GET as $nombre_campo => $valor){  $asignacion = "\$" . $nombre_campo .
 require_once("../db.php");
 require_once("../variables.php");
 
-$dbnivelAPP=new DB('192.168.1.11','tpv','tpv','risase');
-$dbnivelBAK=new DB('192.168.1.11','tpv','tpv','tpv_backup');
+$dbnivelAPP=new DB('2.139.164.215','tpv','tpv','risase');
+$dbnivelBAK=new DB('2.139.164.215','tpv','tpv','tpv_backup');
 
 if (!$dbnivel->open()){die($dbnivel->error());};
 $queryp= "SELECT max(id) as point from articulos;";
