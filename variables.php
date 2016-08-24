@@ -9,7 +9,7 @@ $equiEST['A']="EN ALMACÉN";
 $equiEST['T']="ENVIADO A TIENDAS";
 
 $pathimages="c:/D/fotos/";
-$urlimages="http://2.139.164.215/photos/";
+$urlimages="http://192.168.1.11/photos/";
 
 global $dbnivel; global $tiendas; global $dbnivelCR; global $dbnivelAPP;
 

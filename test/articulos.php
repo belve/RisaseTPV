@@ -85,7 +85,7 @@ odbc_close($conn);
 require_once("../db.php");
 
 
-$dbnivel=new DB('2.139.164.215','edu','admin','risase');
+$dbnivel=new DB('192.168.1.11','edu','admin','risase');
 if (!$dbnivel->open()){die($dbnivel->error());};
 
 
